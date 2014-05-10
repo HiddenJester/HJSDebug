@@ -1,0 +1,95 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.iPad.XIB" version="3.0" toolsVersion="5056" systemVersion="13C1021" targetRuntime="iOS.CocoaTouch.iPad" propertyAccessControl="none" useAutolayout="YES">
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="3733"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="HJSDebugCenterControlPanelViewController">
+            <connections>
+                <outlet property="adHocSwitch" destination="SKW-OH-nJP" id="6sq-H1-Twn"/>
+                <outlet property="logText" destination="lJz-fv-Eyf" id="RCq-Kv-xfc"/>
+                <outlet property="loglevelSegmentedController" destination="12F-M6-Gqb" id="Zpd-ZG-w7u"/>
+            </connections>
+        </placeholder>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view contentMode="scaleToFill" id="iN0-l3-epB">
+            <rect key="frame" x="0.0" y="0.0" width="400" height="400"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="dqk-dK-MWa">
+                    <rect key="frame" x="20" y="21" width="59" height="30"/>
+                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                    <state key="normal" title="Mail Log">
+                        <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                    </state>
+                    <connections>
+                        <action selector="mailLog:" destination="-1" eventType="touchUpInside" id="obJ-RI-23G"/>
+                    </connections>
+                </button>
+                <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Ad-Hoc Debugging:" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="jJJ-FV-0Lq">
+                    <rect key="frame" x="158" y="25" width="153" height="21"/>
+                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                    <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                    <nil key="highlightedColor"/>
+                </label>
+                <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" on="YES" translatesAutoresizingMaskIntoConstraints="NO" id="SKW-OH-nJP" userLabel="Ad-Hoc Switch">
+                    <rect key="frame" x="331" y="20" width="51" height="31"/>
+                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                    <connections>
+                        <action selector="toggleAdHoc:" destination="-1" eventType="valueChanged" id="kfY-t2-UH4"/>
+                    </connections>
+                </switch>
+                <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="12F-M6-Gqb" userLabel="Logging Level">
+                    <rect key="frame" x="71" y="71" width="259" height="29"/>
+                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                    <segments>
+                        <segment title="Critical"/>
+                        <segment title="Warning"/>
+                        <segment title="Info"/>
+                        <segment title="Debug"/>
+                    </segments>
+                    <connections>
+                        <action selector="changeLogLevel:" destination="-1" eventType="valueChanged" id="pjO-pc-Gpd"/>
+                    </connections>
+                </segmentedControl>
+                <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" showsHorizontalScrollIndicator="NO" translatesAutoresizingMaskIntoConstraints="NO" id="lJz-fv-Eyf">
+                    <rect key="frame" x="20" y="119" width="360" height="211"/>
+                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                    <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                    <string key="text">Lorem ipsum dolor sit er elit lamet, consectetaur cillium adipisicing pecu, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Nam liber te conscient to factor tum poen legum odioque civiuda.</string>
+                    <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                    <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                </textView>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ZFt-xG-ZzA">
+                    <rect key="frame" x="173" y="350" width="54" height="30"/>
+                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                    <state key="normal" title="Dismiss">
+                        <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                    </state>
+                    <connections>
+                        <action selector="dismissSelf:" destination="-1" eventType="touchUpInside" id="qYw-7c-fSR"/>
+                    </connections>
+                </button>
+            </subviews>
+            <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+            <constraints>
+                <constraint firstItem="lJz-fv-Eyf" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" constant="20" id="0XC-Fn-U3f"/>
+                <constraint firstItem="SKW-OH-nJP" firstAttribute="leading" secondItem="jJJ-FV-0Lq" secondAttribute="trailing" constant="20" id="4MQ-dF-ISx"/>
+                <constraint firstAttribute="centerX" secondItem="ZFt-xG-ZzA" secondAttribute="centerX" id="8eA-GF-nPE"/>
+                <constraint firstAttribute="trailing" secondItem="SKW-OH-nJP" secondAttribute="trailing" constant="20" id="954-AU-MpQ"/>
+                <constraint firstItem="12F-M6-Gqb" firstAttribute="top" secondItem="SKW-OH-nJP" secondAttribute="bottom" constant="20" id="9q3-DQ-WbH"/>
+                <constraint firstItem="SKW-OH-nJP" firstAttribute="centerY" secondItem="jJJ-FV-0Lq" secondAttribute="centerY" id="D8c-Ed-1X4"/>
+                <constraint firstAttribute="bottom" secondItem="ZFt-xG-ZzA" secondAttribute="bottom" constant="20" id="GGY-Xb-vGm"/>
+                <constraint firstItem="ZFt-xG-ZzA" firstAttribute="top" secondItem="lJz-fv-Eyf" secondAttribute="bottom" constant="20" id="Iru-Zl-CIZ"/>
+                <constraint firstItem="SKW-OH-nJP" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" constant="20" id="Y3z-yz-CRY"/>
+                <constraint firstItem="dqk-dK-MWa" firstAttribute="centerY" secondItem="SKW-OH-nJP" secondAttribute="centerY" id="ZLA-gM-wj8"/>
+                <constraint firstItem="lJz-fv-Eyf" firstAttribute="top" secondItem="12F-M6-Gqb" secondAttribute="bottom" constant="20" id="hIV-B0-MOM"/>
+                <constraint firstAttribute="trailing" secondItem="lJz-fv-Eyf" secondAttribute="trailing" constant="20" id="ktI-r4-vDi"/>
+                <constraint firstItem="dqk-dK-MWa" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" constant="20" id="s9b-CD-eE9"/>
+                <constraint firstAttribute="centerX" secondItem="12F-M6-Gqb" secondAttribute="centerX" id="xTx-RT-CTG"/>
+            </constraints>
+            <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
+        </view>
+    </objects>
+</document>
