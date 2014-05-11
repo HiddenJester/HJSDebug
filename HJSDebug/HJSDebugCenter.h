@@ -51,6 +51,8 @@ typedef NS_ENUM(NSInteger, HJSLogLevel) {
 
 - (void)displayControlPanel;
 
+- (BOOL)canSendMail;
+
 #pragma mark Lifecycle Methods
 
 // Call when the app is terminating. This will close the log file and release ASL resources

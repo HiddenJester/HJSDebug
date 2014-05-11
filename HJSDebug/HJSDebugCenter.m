@@ -100,7 +100,7 @@ HJSDebugCenter * defaultCenter;
 }
 
 - (void)mailLogWithExplanation:(NSString *)explanation {
-	if (![MFMailComposeViewController canSendMail]) {
+	if (![self canSendMail]) {
 		[self logWithFormatString:@"Mail is not enabled, log cannot be sent."];
 		return;
 	}
@@ -151,6 +151,11 @@ HJSDebugCenter * defaultCenter;
 
 - (BOOL)adHocDebugging {
 	return [[_settings objectForKey:adHocDebuggingKey] boolValue];
+}
+
+- (BOOL)canSendMail {
+	// Could an option in the future to permanently disable mail
+	return [MFMailComposeViewController canSendMail];
 }
 
 #pragma mark Lifecycle
