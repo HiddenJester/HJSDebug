@@ -99,6 +99,8 @@ HJSDebugCenter * defaultCenter;
     }
 }
 
+static NSInteger logDelayCount = 0;
+
 - (void)mailLogWithExplanation:(NSString *)explanation {
 	if (![self canSendMail]) {
 		[self logWithFormatString:@"Mail is not enabled, log cannot be sent."];
@@ -117,7 +119,23 @@ HJSDebugCenter * defaultCenter;
 	NSString * body = [NSString stringWithFormat:@"%@\n\n=== LOG FILE BEGINS ===\n%@=== LOG FILE ENDS ===", explanation, [self logContents]];
 	[mailController setMessageBody:body isHTML:NO];
 	
-	[[[[UIApplication sharedApplication] keyWindow] rootViewController] presentViewController:mailController animated:YES completion:NULL];
+	if ([[[UIApplication sharedApplication] keyWindow] rootViewController]) {
+		[[[[UIApplication sharedApplication] keyWindow] rootViewController] presentViewController:mailController animated:YES completion:NULL];
+		logDelayCount = 0;
+	} else {
+		++logDelayCount;
+		if (logDelayCount > 10) {
+			// Seriously? We're super-boned and we *can't even tell the user*. Abort.
+			abort();
+		}
+		[self logWithFormatString:@"mailLog called before rootViewController is available, will retry in 1 second."];
+		// Assume we're starting up and just try again in a second
+		dispatch_after(dispatch_time(DISPATCH_TIME_NOW,(int64_t)(NSEC_PER_SEC)),
+					   dispatch_get_main_queue(),
+					   ^{
+						   [self mailLogWithExplanation:explanation];
+					   });
+	}
 }
 
 - (NSString *)logContents {
