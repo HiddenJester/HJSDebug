@@ -22,7 +22,7 @@ typedef NS_ENUM(NSInteger, HJSLogLevel) {
 @property (nonatomic) HJSLogLevel logLevel;
 @property (nonatomic) BOOL adHocDebugging;
 
-+ (instancetype)defaultCenter;
++ (HJSDebugCenter *)defaultCenter;
 
 // Raise SIGTRAP in debug, NOP in release
 - (void)debugBreak;

@@ -16,7 +16,7 @@ static NSString * settingsFilename = @"HJSDebugSettings.plist";
 static NSString * loggingLevelKey = @"LoggingLevel";
 static NSString * adHocDebuggingKey = @"adHocDebugging";
 
-HJSDebugCenter * defaultCenter;
+static HJSDebugCenter * defaultCenter;
 
 @implementation HJSDebugCenter {
 	// Runtime storage of the settings plist
@@ -31,7 +31,7 @@ HJSDebugCenter * defaultCenter;
 	HJSDebugMailComposeDelegate * _mailComposeDelegate;
 }
 
-+ (instancetype)defaultCenter {
++ (HJSDebugCenter *)defaultCenter {
 	static dispatch_once_t onceToken;
 	
 	dispatch_once(&onceToken, ^{
@@ -40,7 +40,31 @@ HJSDebugCenter * defaultCenter;
 	return defaultCenter;
 }
 
-# pragma Debugging only methods
+#pragma mark Properties
+
+- (void)setLogLevel:(HJSLogLevel)level {
+	NSNumber * loggingLevel = [NSNumber numberWithInteger:level];
+	[_settings setObject:loggingLevel forKey:loggingLevelKey];
+	asl_set_filter(_client, ASL_FILTER_MASK_UPTO(level));
+	if (_logFile) {
+		asl_set_output_file_filter(_client, _logFile.fileDescriptor, ASL_FILTER_MASK_UPTO(level));
+	}
+}
+
+- (HJSLogLevel)logLevel {
+	return [[_settings objectForKey:loggingLevelKey] integerValue];
+}
+
+- (void)setAdHocDebugging:(BOOL)adHocDebugging {
+	NSNumber * adHocFlag = [NSNumber numberWithBool:adHocDebugging];
+	[_settings setObject:adHocFlag forKey:adHocDebuggingKey];
+}
+
+- (BOOL)adHocDebugging {
+	return [[_settings objectForKey:adHocDebuggingKey] boolValue];
+}
+
+# pragma mark Debug only methods
 
 - (void)debugBreak {
 #if DEBUG
@@ -149,26 +173,16 @@ static NSInteger logDelayCount = 0;
 
 # pragma mark Configuration Methods
 
-- (void)setLogLevel:(HJSLogLevel)level {
-	NSNumber * loggingLevel = [NSNumber numberWithInteger:level];
-	[_settings setObject:loggingLevel forKey:loggingLevelKey];
-	asl_set_filter(_client, ASL_FILTER_MASK_UPTO(level));
-	if (_logFile) {
-		asl_set_output_file_filter(_client, _logFile.fileDescriptor, ASL_FILTER_MASK_UPTO(level));
-	}
+- (void)saveSettings {
+	[_settings writeToFile:_settingsFileURL.path atomically:YES];
 }
 
-- (HJSLogLevel)logLevel {
-	return [[_settings objectForKey:loggingLevelKey] integerValue];
-}
-
-- (void)setAdHocDebugging:(BOOL)adHocDebugging {
-	NSNumber * adHocFlag = [NSNumber numberWithBool:adHocDebugging];
-	[_settings setObject:adHocFlag forKey:adHocDebuggingKey];
-}
-
-- (BOOL)adHocDebugging {
-	return [[_settings objectForKey:adHocDebuggingKey] boolValue];
+- (void)displayControlPanel {
+	HJSDebugCenterControlPanelViewController * panelController = [HJSDebugCenterControlPanelViewController new];
+	NSArray * objects = [[NSBundle mainBundle] loadNibNamed:@"HJSDebugCenterControlPanel" owner:panelController options:nil];
+	panelController.view = objects[0];
+	
+	[[[[UIApplication sharedApplication] keyWindow] rootViewController] presentViewController:panelController animated:YES completion:NULL];
 }
 
 - (BOOL)canSendMail {
@@ -226,17 +240,6 @@ static NSInteger logDelayCount = 0;
     return self;
 }
 
-- (void)saveSettings {
-	[_settings writeToFile:_settingsFileURL.path atomically:YES];
-}
-
-- (void)displayControlPanel {
-	HJSDebugCenterControlPanelViewController * panelController = [HJSDebugCenterControlPanelViewController new];
-	NSArray * objects = [[NSBundle mainBundle] loadNibNamed:@"HJSDebugCenterControlPanel" owner:panelController options:nil];
-	panelController.view = objects[0];
-
-	[[[[UIApplication sharedApplication] keyWindow] rootViewController] presentViewController:panelController animated:YES completion:NULL];
-}
 - (void)terminateLogging {
 	if (_logFile) {
 		asl_remove_log_file(_client, _logFile.fileDescriptor);
