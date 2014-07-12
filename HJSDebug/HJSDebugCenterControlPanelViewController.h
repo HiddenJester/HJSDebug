@@ -8,6 +8,7 @@
 
 @property (nonatomic, weak) IBOutlet UITextView * logText;
 @property (nonatomic, weak) IBOutlet UISwitch * adHocSwitch;
+@property (weak, nonatomic) IBOutlet UILabel *adHocLabel;
 @property (nonatomic, weak) IBOutlet UISegmentedControl * loglevelSegmentedController;
 
 - (IBAction)mailLog:(id)sender;

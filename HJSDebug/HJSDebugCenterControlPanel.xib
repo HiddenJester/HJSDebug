@@ -1,11 +1,12 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.iPad.XIB" version="3.0" toolsVersion="5056" systemVersion="13C1021" targetRuntime="iOS.CocoaTouch.iPad" propertyAccessControl="none" useAutolayout="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.iPad.XIB" version="3.0" toolsVersion="5056" systemVersion="13E28" targetRuntime="iOS.CocoaTouch.iPad" propertyAccessControl="none" useAutolayout="YES">
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="3733"/>
     </dependencies>
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="HJSDebugCenterControlPanelViewController">
             <connections>
+                <outlet property="adHocLabel" destination="jJJ-FV-0Lq" id="9ER-if-sOy"/>
                 <outlet property="adHocSwitch" destination="SKW-OH-nJP" id="6sq-H1-Twn"/>
                 <outlet property="logText" destination="lJz-fv-Eyf" id="RCq-Kv-xfc"/>
                 <outlet property="loglevelSegmentedController" destination="12F-M6-Gqb" id="Zpd-ZG-w7u"/>

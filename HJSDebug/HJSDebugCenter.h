@@ -17,6 +17,11 @@ typedef NS_ENUM(NSInteger, HJSLogLevel) {
 	HJSLogLevelDebug = 7				// ASL_LEVEL_DEBUG
 };
 
+// At startup if there is no settings file we create one suitable for retail builds
+// with a logging level of warning and Ad-Hoc debugging set to NO. If BETA is #defined then
+// the logging level is set to Info and Ad-Hoc debugging is set to YES. Furthermore
+// if DEBUG is #defined then we ALSO set the log level to Debug and Ad-Hoc to YES. Note
+// that a debug build will then *persist* those settings into the file.
 @interface HJSDebugCenter : NSObject
 
 @property (nonatomic) HJSLogLevel logLevel;
@@ -37,7 +42,7 @@ typedef NS_ENUM(NSInteger, HJSLogLevel) {
 - (void)logAtLevel:(HJSLogLevel)level formatString:(NSString *)formatString, ... NS_FORMAT_FUNCTION(2, 3);
 
 // Recursively unpacks NSErrors and logs them in a reasonably pretty-printed format.
-// Actually logs at HJSLogLevelCritical, since NSErrors are pretty serious stuff.
+// Actually logs at HJSLogLevelCritical, since NSErrors are usually serious stuff.
 - (void)logError:(NSError*)error depth:(int)depth;
 
 // Creates an email containing the log file and displays it for the user to send

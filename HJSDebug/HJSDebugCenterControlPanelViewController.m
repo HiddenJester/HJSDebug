@@ -10,6 +10,12 @@
 
 - (void)viewWillAppear:(BOOL)animated {
 	[super viewWillAppear:animated];
+
+#if BETA
+	_adHocLabel.hidden = YES;
+	_adHocSwitch.hidden = YES;
+#endif
+
 	_logText.text = [[HJSDebugCenter defaultCenter] logContents];
 	_adHocSwitch.on = [HJSDebugCenter defaultCenter].adHocDebugging;
 	switch ([HJSDebugCenter defaultCenter].logLevel) {

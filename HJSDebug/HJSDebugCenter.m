@@ -93,7 +93,7 @@ static HJSDebugCenter * defaultCenter;
 }
 
 
-- (void)logError:(NSError*)error depth:(int)depth {
+- (void)logError:(NSError *)error depth:(int)depth {
 	NSMutableString * tempLeader = [[NSMutableString alloc] initWithString:@""];
 	
 	for (int i = 0; i < depth; ++i) {
@@ -163,7 +163,7 @@ static NSInteger logDelayCount = 0;
 }
 
 - (NSString *)logContents {
-	NSError * error;
+	NSError * __autoreleasing error;
 	NSString * log = [NSString stringWithContentsOfFile:_logFileURL.path encoding:NSUTF8StringEncoding error:&error];
 	if (error) {
 		[self logError:error depth:0];
@@ -174,7 +174,11 @@ static NSInteger logDelayCount = 0;
 # pragma mark Configuration Methods
 
 - (void)saveSettings {
-	[_settings writeToFile:_settingsFileURL.path atomically:YES];
+	if ([_settings writeToURL:_settingsFileURL atomically:YES]) {
+		[self logAtLevel:HJSLogLevelDebug formatString:@"Debug settings file saved successfully."];
+	} else {
+		[self logAtLevel:HJSLogLevelCritical formatString:@"Debug settings file failed to save."];
+	}
 }
 
 - (void)displayControlPanel {
@@ -193,8 +197,6 @@ static NSInteger logDelayCount = 0;
 #pragma mark Lifecycle
 
 - (id)init {
-    NSError* error = nil;
-
 	if (defaultCenter) {
 		[self logAtLevel:HJSLogLevelCritical
 			formatString:@"Don't create HJSDebugCenter objects, use HJSDebugCenter defaultCenter instead."];
@@ -204,11 +206,21 @@ static NSInteger logDelayCount = 0;
     self = [super init];
     if (self) {
 		_client = asl_open(NULL, NULL, ASL_OPT_NO_DELAY | ASL_OPT_STDERR);
-		
+
+
+		NSError * __autoreleasing error;
 		// Put the log file in the application's cache folder
-		NSArray * possibleURLs = [[NSFileManager defaultManager] URLsForDirectory:NSCachesDirectory
-																		inDomains:NSUserDomainMask];
-		_logFileURL = [NSURL URLWithString:logFilename relativeToURL:possibleURLs[0]];
+		_logFileURL = [[NSFileManager defaultManager] URLForDirectory:NSCachesDirectory
+															 inDomain:NSUserDomainMask
+													appropriateForURL:nil
+															   create:YES
+																error:&error];
+		if (error) {
+			[[HJSDebugCenter defaultCenter] logError:error depth:0];
+		} else {
+			_logFileURL = [_logFileURL URLByAppendingPathComponent:logFilename];
+		}
+
 		[[NSFileManager defaultManager] createFileAtPath:_logFileURL.path contents:nil attributes:nil];
 		_logFile = [NSFileHandle fileHandleForWritingToURL:_logFileURL error:&error];
 		if (!_logFile) {
@@ -216,26 +228,41 @@ static NSInteger logDelayCount = 0;
 		} else {
 			asl_add_log_file(_client, _logFile.fileDescriptor);
 		}
-		
-		// Create or open the settings plist in the application's document directory
-		possibleURLs = [[NSFileManager defaultManager] URLsForDirectory:NSDocumentDirectory
-															  inDomains:NSUserDomainMask];
-		_settingsFileURL = [NSURL URLWithString:settingsFilename relativeToURL:possibleURLs[0]];
-		_settings = [[NSMutableDictionary alloc] initWithContentsOfFile:_settingsFileURL.path];
+
+
+
+		_settingsFileURL = [[NSFileManager defaultManager] URLForDirectory:NSApplicationSupportDirectory
+																  inDomain:NSUserDomainMask
+														 appropriateForURL:nil
+																	create:YES
+																	 error:&error];
+		if (error) {
+			[[HJSDebugCenter defaultCenter] logError:error depth:0];
+		} else {
+			_settingsFileURL = [_settingsFileURL URLByAppendingPathComponent:settingsFilename];
+		}
+		_settings = [[NSDictionary dictionaryWithContentsOfURL:_settingsFileURL] mutableCopy];
 		if (!_settings) {
 			_settings = [NSMutableDictionary new];
 			[self setLogLevel:HJSLogLevelWarning];
 			[self setAdHocDebugging:NO];
+#if BETA
+			[self setAdHocDebugging:YES];
+			[self setLogLevel:HJSLogLevelInfo];
+			[self saveSettings];
+#endif
 			[self saveSettings];
 		} else {
 			[self setLogLevel:[[_settings objectForKey:loggingLevelKey] integerValue]];
 		}
 		
-#ifdef DEBUG
+#if DEBUG
 		[self setAdHocDebugging:YES];
 		[self setLogLevel:HJSLogLevelDebug];
 		[self saveSettings];
 #endif
+		[self logAtLevel:HJSLogLevelInfo formatString:@"App version: %@",
+		 [[[NSBundle mainBundle] infoDictionary] objectForKey:@"CFBundleVersion"]];
     }
     return self;
 }
