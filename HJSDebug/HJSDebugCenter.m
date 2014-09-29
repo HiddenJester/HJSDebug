@@ -262,7 +262,7 @@ static NSInteger logDelayCount = 0;
 		[self saveSettings];
 #endif
 		[self logAtLevel:HJSLogLevelInfo formatString:@"App version: %@",
-		 [[[NSBundle mainBundle] infoDictionary] objectForKey:@"CFBundleVersion"]];
+		 [[[NSBundle mainBundle] infoDictionary] objectForKey:@"CFBundleShortVersionString"]];
     }
     return self;
 }
