@@ -1,0 +1,6 @@
+[submodule "NSString+NSCharacterSetTesting"]
+	path = NSString+NSCharacterSetTesting
+	url = /Users/tsanders/code/GitHubRepos/NSString+NSCharacterSetTesting
+[submodule "UISplitViewController+QuickAccess"]
+	path = UISplitViewController+QuickAccess
+	url = /Users/tsanders/code/GitHubRepos/UISplitViewController+QuickAccess

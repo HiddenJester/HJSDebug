@@ -292,6 +292,9 @@ static NSInteger mailLogDelayCount = 0;
 		 [bundleInfo objectForKey:@"CFBundleShortVersionString"],
 		 [bundleInfo objectForKey:@"CFBundleVersion"]
 		 ];
+#if DEBUG
+		[self logAtLevel:HJSLogLevelInfo formatString:@"Debugbreak() is live"];
+#endif
     }
     return self;
 }
