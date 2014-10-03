@@ -3,6 +3,7 @@
 //
 
 #import <UIKit/UIKit.h>
+#import <CoreData/CoreData.h>
 
 // Logging sits atop ASL, but I don't want to include ASL.H everywhere, nor do I need
 // all 8 logging levels. So we A ) Objective-C-ify the #defines into a NS_ENUM,
@@ -39,9 +40,12 @@ typedef NS_ENUM(NSInteger, HJSLogLevel) {
 // Logs at HJSLogLevelInfo, so in ad-hoc or debug builds only. This is the drop-in replacement for
 // NSLog.
 - (void)logWithFormatString:(NSString *)formatString, ... NS_FORMAT_FUNCTION(1, 2);
-
 // Lets you specify the log level to use
 - (void)logAtLevel:(HJSLogLevel)level formatString:(NSString *)formatString, ... NS_FORMAT_FUNCTION(2, 3);
+
+// Swift needs the variadic version explicitly laid out
+- (void)logWithFormatString:(NSString *)formatString args:(va_list)args;
+- (void)logAtLevel:(HJSLogLevel)level formatString:(NSString *)formatString args:(va_list)args;
 
 // Recursively unpacks NSErrors and logs them in a reasonably pretty-printed format.
 // Actually logs at HJSLogLevelCritical, since NSErrors are usually serious stuff.
@@ -49,6 +53,8 @@ typedef NS_ENUM(NSInteger, HJSLogLevel) {
 
 // Creates an email containing the log file and displays it for the user to send
 - (void)mailLogWithExplanation:(NSString *)explanation;
+
+- (BOOL)canSendMail;
 
 - (NSString *)logContents;
 
@@ -58,12 +64,9 @@ typedef NS_ENUM(NSInteger, HJSLogLevel) {
 
 - (void)displayControlPanel;
 
-- (BOOL)canSendMail;
-
 #pragma mark Lifecycle Methods
 
 // Call when the app is terminating. This will close the log file and release ASL resources
 - (void)terminateLogging;
 
 @end
-
