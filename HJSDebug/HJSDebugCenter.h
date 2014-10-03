@@ -44,6 +44,8 @@ typedef NS_ENUM(NSInteger, HJSLogLevel) {
 - (void)logAtLevel:(HJSLogLevel)level formatString:(NSString *)formatString, ... NS_FORMAT_FUNCTION(2, 3);
 
 // Swift needs the variadic version explicitly laid out
+// NOTE: These are unsafe. If you mismatch your format string and your arguments
+// you are in for a sad, sad time. They explicitly disable -Wformat-nonliteral internally
 - (void)logWithFormatString:(NSString *)formatString args:(va_list)args;
 - (void)logAtLevel:(HJSLogLevel)level formatString:(NSString *)formatString args:(va_list)args;
 

@@ -76,7 +76,14 @@ static HJSDebugCenter * defaultCenter;
 #pragma mark Logging methods
 
 - (void)logWithFormatString:(NSString *)formatString args:(va_list)args {
-	[self logMessage:[[NSString alloc] initWithFormat:formatString arguments:args] level:HJSLogLevelInfo skipBreak:YES];
+#pragma clang diagnostic push
+#pragma clang diagnostic ignored "-Wformat-nonliteral"
+
+	[self logMessage:[[NSString alloc] initWithFormat:formatString arguments:args]
+			   level:HJSLogLevelInfo
+		   skipBreak:YES];
+
+#pragma clang diagnostic pop
 }
 
 - (void)logWithFormatString:(NSString *)formatString, ... {
@@ -89,9 +96,14 @@ static HJSDebugCenter * defaultCenter;
 }
 
 - (void)logAtLevel:(HJSLogLevel)level formatString:(NSString *)formatString args:(va_list)args {
+// TLS 2014-10-02: Yes this makes me a bad person. This means you can crash. Guess what: so does NSLog if you pass a non-object into %@
+#pragma clang diagnostic push
+#pragma clang diagnostic ignored "-Wformat-nonliteral"
+
 	[self logMessage:[[NSString alloc] initWithFormat:formatString arguments:args]
 			   level:level
 		   skipBreak:NO];
+#pragma clang diagnostic pop
 }
 
 - (void)logAtLevel:(HJSLogLevel)level formatString:(NSString *)formatString, ... {
