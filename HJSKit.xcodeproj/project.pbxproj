@@ -1,0 +1,471 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		3BAE2D7419DE1640003E6982 /* HJSKit.h in Headers */ = {isa = PBXBuildFile; fileRef = 3BAE2D7319DE1640003E6982 /* HJSKit.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		3BAE2D7E19DE1640003E6982 /* HJSKitTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 3BAE2D7D19DE1640003E6982 /* HJSKitTests.m */; };
+		3BAE2D8F19DE184E003E6982 /* HJSDebugCenter.h in Headers */ = {isa = PBXBuildFile; fileRef = 3BAE2D8819DE184D003E6982 /* HJSDebugCenter.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		3BAE2D9019DE184E003E6982 /* HJSDebugCenter.m in Sources */ = {isa = PBXBuildFile; fileRef = 3BAE2D8919DE184D003E6982 /* HJSDebugCenter.m */; };
+		3BAE2D9119DE184E003E6982 /* HJSDebugCenterControlPanel.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3BAE2D8A19DE184D003E6982 /* HJSDebugCenterControlPanel.xib */; };
+		3BAE2D9219DE184E003E6982 /* HJSDebugCenterControlPanelViewController.h in Headers */ = {isa = PBXBuildFile; fileRef = 3BAE2D8B19DE184D003E6982 /* HJSDebugCenterControlPanelViewController.h */; };
+		3BAE2D9319DE184E003E6982 /* HJSDebugCenterControlPanelViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3BAE2D8C19DE184D003E6982 /* HJSDebugCenterControlPanelViewController.m */; };
+		3BAE2D9419DE184E003E6982 /* HJSDebugMailComposeDelegate.h in Headers */ = {isa = PBXBuildFile; fileRef = 3BAE2D8D19DE184D003E6982 /* HJSDebugMailComposeDelegate.h */; };
+		3BAE2D9519DE184E003E6982 /* HJSDebugMailComposeDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 3BAE2D8E19DE184D003E6982 /* HJSDebugMailComposeDelegate.m */; };
+		3BAE2DB519DE21E3003E6982 /* NSString+NSCharacterSetTesting.h in Headers */ = {isa = PBXBuildFile; fileRef = 3BAE2DAE19DE21E3003E6982 /* NSString+NSCharacterSetTesting.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		3BAE2DB619DE21E3003E6982 /* NSString+NSCharacterSetTesting.m in Sources */ = {isa = PBXBuildFile; fileRef = 3BAE2DAF19DE21E3003E6982 /* NSString+NSCharacterSetTesting.m */; };
+		3BAE2DB919DE21E3003E6982 /* UISplitViewController+QuickAccess.h in Headers */ = {isa = PBXBuildFile; fileRef = 3BAE2DB319DE21E3003E6982 /* UISplitViewController+QuickAccess.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		3BAE2DBA19DE21E3003E6982 /* UISplitViewController+QuickAccess.m in Sources */ = {isa = PBXBuildFile; fileRef = 3BAE2DB419DE21E3003E6982 /* UISplitViewController+QuickAccess.m */; };
+		3BAE2DF619DE2857003E6982 /* HJSDebug.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3BAE2DF519DE2857003E6982 /* HJSDebug.swift */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXFileReference section */
+		3BAE2D6E19DE1640003E6982 /* HJSKit.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = HJSKit.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		3BAE2D7219DE1640003E6982 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		3BAE2D7319DE1640003E6982 /* HJSKit.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = HJSKit.h; sourceTree = "<group>"; };
+		3BAE2D7919DE1640003E6982 /* HJSKitTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = HJSKitTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		3BAE2D7C19DE1640003E6982 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		3BAE2D7D19DE1640003E6982 /* HJSKitTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = HJSKitTests.m; sourceTree = "<group>"; };
+		3BAE2D8819DE184D003E6982 /* HJSDebugCenter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HJSDebugCenter.h; sourceTree = "<group>"; };
+		3BAE2D8919DE184D003E6982 /* HJSDebugCenter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HJSDebugCenter.m; sourceTree = "<group>"; };
+		3BAE2D8A19DE184D003E6982 /* HJSDebugCenterControlPanel.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = HJSDebugCenterControlPanel.xib; sourceTree = "<group>"; };
+		3BAE2D8B19DE184D003E6982 /* HJSDebugCenterControlPanelViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HJSDebugCenterControlPanelViewController.h; sourceTree = "<group>"; };
+		3BAE2D8C19DE184D003E6982 /* HJSDebugCenterControlPanelViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HJSDebugCenterControlPanelViewController.m; sourceTree = "<group>"; };
+		3BAE2D8D19DE184D003E6982 /* HJSDebugMailComposeDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HJSDebugMailComposeDelegate.h; sourceTree = "<group>"; };
+		3BAE2D8E19DE184D003E6982 /* HJSDebugMailComposeDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HJSDebugMailComposeDelegate.m; sourceTree = "<group>"; };
+		3BAE2DAE19DE21E3003E6982 /* NSString+NSCharacterSetTesting.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSString+NSCharacterSetTesting.h"; sourceTree = "<group>"; };
+		3BAE2DAF19DE21E3003E6982 /* NSString+NSCharacterSetTesting.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSString+NSCharacterSetTesting.m"; sourceTree = "<group>"; };
+		3BAE2DB019DE21E3003E6982 /* README.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
+		3BAE2DB219DE21E3003E6982 /* README.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
+		3BAE2DB319DE21E3003E6982 /* UISplitViewController+QuickAccess.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UISplitViewController+QuickAccess.h"; sourceTree = "<group>"; };
+		3BAE2DB419DE21E3003E6982 /* UISplitViewController+QuickAccess.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UISplitViewController+QuickAccess.m"; sourceTree = "<group>"; };
+		3BAE2DF519DE2857003E6982 /* HJSDebug.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HJSDebug.swift; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		3BAE2D6A19DE1640003E6982 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		3BAE2D7619DE1640003E6982 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		3BAE2D6419DE1640003E6982 = {
+			isa = PBXGroup;
+			children = (
+				3BAE2DAD19DE21E3003E6982 /* NSString+NSCharacterSetTesting */,
+				3BAE2DB119DE21E3003E6982 /* UISplitViewController+QuickAccess */,
+				3BAE2D8719DE184D003E6982 /* HJSDebug */,
+				3BAE2D7019DE1640003E6982 /* HJSKit */,
+				3BAE2D7A19DE1640003E6982 /* HJSKitTests */,
+				3BAE2D6F19DE1640003E6982 /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		3BAE2D6F19DE1640003E6982 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				3BAE2D6E19DE1640003E6982 /* HJSKit.framework */,
+				3BAE2D7919DE1640003E6982 /* HJSKitTests.xctest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		3BAE2D7019DE1640003E6982 /* HJSKit */ = {
+			isa = PBXGroup;
+			children = (
+				3BAE2D7319DE1640003E6982 /* HJSKit.h */,
+				3BAE2D7119DE1640003E6982 /* Supporting Files */,
+			);
+			path = HJSKit;
+			sourceTree = "<group>";
+		};
+		3BAE2D7119DE1640003E6982 /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				3BAE2D7219DE1640003E6982 /* Info.plist */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		3BAE2D7A19DE1640003E6982 /* HJSKitTests */ = {
+			isa = PBXGroup;
+			children = (
+				3BAE2D7D19DE1640003E6982 /* HJSKitTests.m */,
+				3BAE2D7B19DE1640003E6982 /* Supporting Files */,
+			);
+			path = HJSKitTests;
+			sourceTree = "<group>";
+		};
+		3BAE2D7B19DE1640003E6982 /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				3BAE2D7C19DE1640003E6982 /* Info.plist */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		3BAE2D8719DE184D003E6982 /* HJSDebug */ = {
+			isa = PBXGroup;
+			children = (
+				3BAE2DF519DE2857003E6982 /* HJSDebug.swift */,
+				3BAE2D8819DE184D003E6982 /* HJSDebugCenter.h */,
+				3BAE2D8919DE184D003E6982 /* HJSDebugCenter.m */,
+				3BAE2D8A19DE184D003E6982 /* HJSDebugCenterControlPanel.xib */,
+				3BAE2D8B19DE184D003E6982 /* HJSDebugCenterControlPanelViewController.h */,
+				3BAE2D8C19DE184D003E6982 /* HJSDebugCenterControlPanelViewController.m */,
+				3BAE2D8D19DE184D003E6982 /* HJSDebugMailComposeDelegate.h */,
+				3BAE2D8E19DE184D003E6982 /* HJSDebugMailComposeDelegate.m */,
+			);
+			path = HJSDebug;
+			sourceTree = "<group>";
+		};
+		3BAE2DAD19DE21E3003E6982 /* NSString+NSCharacterSetTesting */ = {
+			isa = PBXGroup;
+			children = (
+				3BAE2DAE19DE21E3003E6982 /* NSString+NSCharacterSetTesting.h */,
+				3BAE2DAF19DE21E3003E6982 /* NSString+NSCharacterSetTesting.m */,
+				3BAE2DB019DE21E3003E6982 /* README.md */,
+			);
+			path = "NSString+NSCharacterSetTesting";
+			sourceTree = "<group>";
+		};
+		3BAE2DB119DE21E3003E6982 /* UISplitViewController+QuickAccess */ = {
+			isa = PBXGroup;
+			children = (
+				3BAE2DB219DE21E3003E6982 /* README.md */,
+				3BAE2DB319DE21E3003E6982 /* UISplitViewController+QuickAccess.h */,
+				3BAE2DB419DE21E3003E6982 /* UISplitViewController+QuickAccess.m */,
+			);
+			path = "UISplitViewController+QuickAccess";
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXHeadersBuildPhase section */
+		3BAE2D6B19DE1640003E6982 /* Headers */ = {
+			isa = PBXHeadersBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				3BAE2D7419DE1640003E6982 /* HJSKit.h in Headers */,
+				3BAE2D8F19DE184E003E6982 /* HJSDebugCenter.h in Headers */,
+				3BAE2D9219DE184E003E6982 /* HJSDebugCenterControlPanelViewController.h in Headers */,
+				3BAE2D9419DE184E003E6982 /* HJSDebugMailComposeDelegate.h in Headers */,
+				3BAE2DB919DE21E3003E6982 /* UISplitViewController+QuickAccess.h in Headers */,
+				3BAE2DB519DE21E3003E6982 /* NSString+NSCharacterSetTesting.h in Headers */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXHeadersBuildPhase section */
+
+/* Begin PBXNativeTarget section */
+		3BAE2D6D19DE1640003E6982 /* HJSKit */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 3BAE2D8119DE1640003E6982 /* Build configuration list for PBXNativeTarget "HJSKit" */;
+			buildPhases = (
+				3BAE2D6919DE1640003E6982 /* Sources */,
+				3BAE2D6A19DE1640003E6982 /* Frameworks */,
+				3BAE2D6B19DE1640003E6982 /* Headers */,
+				3BAE2D6C19DE1640003E6982 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = HJSKit;
+			productName = HJSKit;
+			productReference = 3BAE2D6E19DE1640003E6982 /* HJSKit.framework */;
+			productType = "com.apple.product-type.framework";
+		};
+		3BAE2D7819DE1640003E6982 /* HJSKitTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 3BAE2D8419DE1640003E6982 /* Build configuration list for PBXNativeTarget "HJSKitTests" */;
+			buildPhases = (
+				3BAE2D7519DE1640003E6982 /* Sources */,
+				3BAE2D7619DE1640003E6982 /* Frameworks */,
+				3BAE2D7719DE1640003E6982 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = HJSKitTests;
+			productName = HJSKitTests;
+			productReference = 3BAE2D7919DE1640003E6982 /* HJSKitTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		3BAE2D6519DE1640003E6982 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastUpgradeCheck = 0600;
+				ORGANIZATIONNAME = "HiddenJester Software";
+				TargetAttributes = {
+					3BAE2D6D19DE1640003E6982 = {
+						CreatedOnToolsVersion = 6.0.1;
+					};
+					3BAE2D7819DE1640003E6982 = {
+						CreatedOnToolsVersion = 6.0.1;
+					};
+				};
+			};
+			buildConfigurationList = 3BAE2D6819DE1640003E6982 /* Build configuration list for PBXProject "HJSKit" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+			);
+			mainGroup = 3BAE2D6419DE1640003E6982;
+			productRefGroup = 3BAE2D6F19DE1640003E6982 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				3BAE2D6D19DE1640003E6982 /* HJSKit */,
+				3BAE2D7819DE1640003E6982 /* HJSKitTests */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		3BAE2D6C19DE1640003E6982 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				3BAE2D9119DE184E003E6982 /* HJSDebugCenterControlPanel.xib in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		3BAE2D7719DE1640003E6982 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		3BAE2D6919DE1640003E6982 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				3BAE2DB619DE21E3003E6982 /* NSString+NSCharacterSetTesting.m in Sources */,
+				3BAE2D9319DE184E003E6982 /* HJSDebugCenterControlPanelViewController.m in Sources */,
+				3BAE2DBA19DE21E3003E6982 /* UISplitViewController+QuickAccess.m in Sources */,
+				3BAE2D9519DE184E003E6982 /* HJSDebugMailComposeDelegate.m in Sources */,
+				3BAE2D9019DE184E003E6982 /* HJSDebugCenter.m in Sources */,
+				3BAE2DF619DE2857003E6982 /* HJSDebug.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		3BAE2D7519DE1640003E6982 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				3BAE2D7E19DE1640003E6982 /* HJSKitTests.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin XCBuildConfiguration section */
+		3BAE2D7F19DE1640003E6982 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				CURRENT_PROJECT_VERSION = 1;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				MTL_ENABLE_DEBUG_INFO = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
+			};
+			name = Debug;
+		};
+		3BAE2D8019DE1640003E6982 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = YES;
+				CURRENT_PROJECT_VERSION = 1;
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				SDKROOT = iphoneos;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VALIDATE_PRODUCT = YES;
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
+			};
+			name = Release;
+		};
+		3BAE2D8219DE1640003E6982 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CLANG_ENABLE_MODULES = YES;
+				DEFINES_MODULE = YES;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				FRAMEWORK_SEARCH_PATHS = "";
+				INFOPLIST_FILE = HJSKit/Info.plist;
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+			};
+			name = Debug;
+		};
+		3BAE2D8319DE1640003E6982 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CLANG_ENABLE_MODULES = YES;
+				DEFINES_MODULE = YES;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				FRAMEWORK_SEARCH_PATHS = "";
+				INFOPLIST_FILE = HJSKit/Info.plist;
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
+			};
+			name = Release;
+		};
+		3BAE2D8519DE1640003E6982 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(SDKROOT)/Developer/Library/Frameworks",
+					"$(inherited)",
+				);
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				INFOPLIST_FILE = HJSKitTests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Debug;
+		};
+		3BAE2D8619DE1640003E6982 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(SDKROOT)/Developer/Library/Frameworks",
+					"$(inherited)",
+				);
+				INFOPLIST_FILE = HJSKitTests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		3BAE2D6819DE1640003E6982 /* Build configuration list for PBXProject "HJSKit" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				3BAE2D7F19DE1640003E6982 /* Debug */,
+				3BAE2D8019DE1640003E6982 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		3BAE2D8119DE1640003E6982 /* Build configuration list for PBXNativeTarget "HJSKit" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				3BAE2D8219DE1640003E6982 /* Debug */,
+				3BAE2D8319DE1640003E6982 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		3BAE2D8419DE1640003E6982 /* Build configuration list for PBXNativeTarget "HJSKitTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				3BAE2D8519DE1640003E6982 /* Debug */,
+				3BAE2D8619DE1640003E6982 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = 3BAE2D6519DE1640003E6982 /* Project object */;
+}

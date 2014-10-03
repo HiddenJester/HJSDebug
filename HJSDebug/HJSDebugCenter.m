@@ -5,6 +5,7 @@
 #import "HJSDebugCenter.h"
 
 #include <asl.h>
+
 #import <MessageUI/MessageUI.h>
 
 #import "HJSDebugMailComposeDelegate.h"
@@ -74,24 +75,45 @@ static HJSDebugCenter * defaultCenter;
 
 #pragma mark Logging methods
 
+- (void)logWithFormatString:(NSString *)formatString args:(va_list)args {
+#pragma clang diagnostic push
+#pragma clang diagnostic ignored "-Wformat-nonliteral"
+
+	[self logMessage:[[NSString alloc] initWithFormat:formatString arguments:args]
+			   level:HJSLogLevelInfo
+		   skipBreak:YES];
+
+#pragma clang diagnostic pop
+}
+
 - (void)logWithFormatString:(NSString *)formatString, ... {
     va_list args;
     va_start(args, formatString);
 
-	[self logMessage:[[NSString alloc] initWithFormat:formatString arguments:args] level:HJSLogLevelInfo skipBreak:YES];
+	[self logWithFormatString:formatString args:args];
 
 	va_end(args);
+}
+
+- (void)logAtLevel:(HJSLogLevel)level formatString:(NSString *)formatString args:(va_list)args {
+// TLS 2014-10-02: Yes this makes me a bad person. This means you can crash. Guess what: so does NSLog if you pass a non-object into %@
+#pragma clang diagnostic push
+#pragma clang diagnostic ignored "-Wformat-nonliteral"
+
+	[self logMessage:[[NSString alloc] initWithFormat:formatString arguments:args]
+			   level:level
+		   skipBreak:NO];
+#pragma clang diagnostic pop
 }
 
 - (void)logAtLevel:(HJSLogLevel)level formatString:(NSString *)formatString, ... {
     va_list args;
     va_start(args, formatString);
 	
-	[self logMessage:[[NSString alloc] initWithFormat:formatString arguments:args] level:level skipBreak:NO];
-	
+	[self logAtLevel:level formatString:formatString args:args];
+
     va_end(args);
 }
-
 
 - (void)logError:(NSError *)error depth:(int)depth {
 	NSMutableString * tempLeader = [[NSMutableString alloc] initWithString:@""];
@@ -123,7 +145,9 @@ static HJSDebugCenter * defaultCenter;
     }
 }
 
-static NSInteger logDelayCount = 0;
+#pragma mark Mail Log methods
+
+static NSInteger mailLogDelayCount = 0;
 
 - (void)mailLogWithExplanation:(NSString *)explanation {
 	if (![self canSendMail]) {
@@ -145,10 +169,10 @@ static NSInteger logDelayCount = 0;
 	
 	if ([[[UIApplication sharedApplication] keyWindow] rootViewController]) {
 		[[[[UIApplication sharedApplication] keyWindow] rootViewController] presentViewController:mailController animated:YES completion:NULL];
-		logDelayCount = 0;
+		mailLogDelayCount = 0;
 	} else {
-		++logDelayCount;
-		if (logDelayCount > 10) {
+		++mailLogDelayCount;
+		if (mailLogDelayCount > 10) {
 			// Seriously? We're super-boned and we *can't even tell the user*. Abort.
 			abort();
 		}
@@ -160,6 +184,11 @@ static NSInteger logDelayCount = 0;
 						   [self mailLogWithExplanation:explanation];
 					   });
 	}
+}
+
+- (BOOL)canSendMail {
+	// Could an option in the future to permanently disable mail
+	return [MFMailComposeViewController canSendMail];
 }
 
 - (NSString *)logContents {
@@ -181,17 +210,14 @@ static NSInteger logDelayCount = 0;
 	}
 }
 
+#pragma mark Control Panel methods
+
 - (void)displayControlPanel {
 	HJSDebugCenterControlPanelViewController * panelController = [HJSDebugCenterControlPanelViewController new];
 	NSArray * objects = [[NSBundle mainBundle] loadNibNamed:@"HJSDebugCenterControlPanel" owner:panelController options:nil];
 	panelController.view = objects[0];
 	
 	[[[[UIApplication sharedApplication] keyWindow] rootViewController] presentViewController:panelController animated:YES completion:NULL];
-}
-
-- (BOOL)canSendMail {
-	// Could an option in the future to permanently disable mail
-	return [MFMailComposeViewController canSendMail];
 }
 
 #pragma mark Lifecycle
@@ -261,8 +287,14 @@ static NSInteger logDelayCount = 0;
 		[self setLogLevel:HJSLogLevelDebug];
 		[self saveSettings];
 #endif
-		[self logAtLevel:HJSLogLevelInfo formatString:@"App version: %@",
-		 [[[NSBundle mainBundle] infoDictionary] objectForKey:@"CFBundleShortVersionString"]];
+		NSDictionary * bundleInfo = [[NSBundle mainBundle] infoDictionary];
+		[self logAtLevel:HJSLogLevelInfo formatString:@"App version: %@, build: %@",
+		 [bundleInfo objectForKey:@"CFBundleShortVersionString"],
+		 [bundleInfo objectForKey:@"CFBundleVersion"]
+		 ];
+#if DEBUG
+		[self logAtLevel:HJSLogLevelInfo formatString:@"Debugbreak() is live"];
+#endif
     }
     return self;
 }
@@ -287,4 +319,3 @@ static NSInteger logDelayCount = 0;
 }
 
 @end
-
