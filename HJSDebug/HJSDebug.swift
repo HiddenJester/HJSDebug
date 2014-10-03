@@ -6,6 +6,7 @@
 //
 
 import Foundation
+import HJSKit
 
 // The Objective-C API has the nifty NS_FORMAT_FUNCTION macros that let you call logWithFormatString like NSLog
 // Those do not convert nicely to Swift style variadic args, so here in a Swift extension we declare Swift wrappers
