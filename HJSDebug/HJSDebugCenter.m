@@ -6,6 +6,7 @@
 
 #include <asl.h>
 #import <MessageUI/MessageUI.h>
+#import <CoreData/CoreData.h>
 
 #import "HJSDebugMailComposeDelegate.h"
 #import "HJSDebugCenterControlPanelViewController.h"
