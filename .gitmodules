@@ -1,6 +1,10 @@
 [submodule "NSString+NSCharacterSetTesting"]
 	path = NSString+NSCharacterSetTesting
 	url = /Users/tsanders/code/GitHubRepos/NSString+NSCharacterSetTesting
+	fetchRecurseSubmodules = true
+	ignore = all
 [submodule "UISplitViewController+QuickAccess"]
 	path = UISplitViewController+QuickAccess
 	url = /Users/tsanders/code/GitHubRepos/UISplitViewController+QuickAccess
+	fetchRecurseSubmodules = true
+	ignore = all
