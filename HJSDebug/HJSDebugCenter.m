@@ -76,6 +76,8 @@ static HJSDebugCenter * defaultCenter;
 #pragma mark Logging methods
 
 - (void)logWithFormatString:(NSString *)formatString args:(va_list)args {
+// TLS 2014-10-02: Yes this makes me a bad person. This means you can crash. Guess what: so does NSLog
+// if you pass a non-object into %@
 #pragma clang diagnostic push
 #pragma clang diagnostic ignored "-Wformat-nonliteral"
 
@@ -96,7 +98,8 @@ static HJSDebugCenter * defaultCenter;
 }
 
 - (void)logAtLevel:(HJSLogLevel)level formatString:(NSString *)formatString args:(va_list)args {
-// TLS 2014-10-02: Yes this makes me a bad person. This means you can crash. Guess what: so does NSLog if you pass a non-object into %@
+// TLS 2014-10-02: Yes this makes me a bad person. This means you can crash. Guess what: so does NSLog
+// if you pass a non-object into %@
 #pragma clang diagnostic push
 #pragma clang diagnostic ignored "-Wformat-nonliteral"
 
@@ -148,8 +151,9 @@ static HJSDebugCenter * defaultCenter;
 #pragma mark Mail Log methods
 
 static NSInteger mailLogDelayCount = 0;
+static const int kMaxMailDelay = 10;
 
-- (void)mailLogWithExplanation:(NSString *)explanation {
+- (void)mailLogWithExplanation:(NSString *)explanation Subject:(NSString *)subject {
 	if (![self canSendMail]) {
 		[self logWithFormatString:@"Mail is not enabled, log cannot be sent."];
 		return;
@@ -161,18 +165,25 @@ static NSInteger mailLogDelayCount = 0;
 	}
 	mailController.mailComposeDelegate = _mailComposeDelegate;
 
-	[mailController setSubject:@"Data issue with Combat Imp"];
+	[mailController setSubject:subject];
 	[mailController setToRecipients:@[@"bugs@hiddenjester.com"]];
 	
-	NSString * body = [NSString stringWithFormat:@"%@\n\n=== LOG FILE BEGINS ===\n%@=== LOG FILE ENDS ===", explanation, [self logContents]];
+	NSString * body = [NSString stringWithFormat:@"%@\n\n=== LOG FILE BEGINS ===\n%@=== LOG FILE ENDS ===",
+					   explanation,
+					   [self logContents]];
 	[mailController setMessageBody:body isHTML:NO];
-	
+
+	// If we got here right at startup it's possible UIKit isn't up to speed yet. Wait until UIKit has enough
+	// UI up to present a controller.
 	if ([[[UIApplication sharedApplication] keyWindow] rootViewController]) {
-		[[[[UIApplication sharedApplication] keyWindow] rootViewController] presentViewController:mailController animated:YES completion:NULL];
+		// TIMTODO: does this work in iOS 8? seems like I should check to see if something is already presented
+		[[[[UIApplication sharedApplication] keyWindow] rootViewController] presentViewController:mailController
+																						 animated:YES
+																					   completion:NULL];
 		mailLogDelayCount = 0;
 	} else {
 		++mailLogDelayCount;
-		if (mailLogDelayCount > 10) {
+		if (mailLogDelayCount > kMaxMailDelay) {
 			// Seriously? We're super-boned and we *can't even tell the user*. Abort.
 			abort();
 		}
@@ -181,7 +192,7 @@ static NSInteger mailLogDelayCount = 0;
 		dispatch_after(dispatch_time(DISPATCH_TIME_NOW,(int64_t)(NSEC_PER_SEC)),
 					   dispatch_get_main_queue(),
 					   ^{
-						   [self mailLogWithExplanation:explanation];
+						   [self mailLogWithExplanation:explanation Subject:subject];
 					   });
 	}
 }
@@ -214,10 +225,14 @@ static NSInteger mailLogDelayCount = 0;
 
 - (void)displayControlPanel {
 	HJSDebugCenterControlPanelViewController * panelController = [HJSDebugCenterControlPanelViewController new];
-	NSArray * objects = [[NSBundle mainBundle] loadNibNamed:@"HJSDebugCenterControlPanel" owner:panelController options:nil];
+	NSArray * objects = [[NSBundle mainBundle] loadNibNamed:@"HJSDebugCenterControlPanel"
+													  owner:panelController
+													options:nil];
 	panelController.view = objects[0];
-	
-	[[[[UIApplication sharedApplication] keyWindow] rootViewController] presentViewController:panelController animated:YES completion:NULL];
+	// TIMTODO: does this work in iOS 8? seems like I should check to see if something is already presented
+	[[[[UIApplication sharedApplication] keyWindow] rootViewController] presentViewController:panelController
+																					 animated:YES
+																				   completion:NULL];
 }
 
 #pragma mark Lifecycle
@@ -275,6 +290,7 @@ static NSInteger mailLogDelayCount = 0;
 #if BETA
 			[self setAdHocDebugging:YES];
 			[self setLogLevel:HJSLogLevelInfo];
+			[self logAtLevel:HJSLogLevelInfo formatString:@"Beta defined, ad-hoc debugging activated."];
 			[self saveSettings];
 #endif
 			[self saveSettings];
@@ -286,6 +302,7 @@ static NSInteger mailLogDelayCount = 0;
 		[self setAdHocDebugging:YES];
 		[self setLogLevel:HJSLogLevelDebug];
 		[self saveSettings];
+		[self logAtLevel:HJSLogLevelInfo formatString:@"Debug defined, ad-hoc debugging activated."];
 #endif
 		NSDictionary * bundleInfo = [[NSBundle mainBundle] infoDictionary];
 		[self logAtLevel:HJSLogLevelInfo formatString:@"App version: %@, build: %@",
