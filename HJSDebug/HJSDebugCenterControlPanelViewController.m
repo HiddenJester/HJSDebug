@@ -42,7 +42,7 @@
 	[self dismissViewControllerAnimated:YES completion:^{
 		[[HJSDebugCenter defaultCenter]
 		 mailLogWithExplanation:@"This log was requested via the debug control panel."
-		 Subject:@"Debug log"];
+		 subject:@"Debug log"];
 	}];
 }
 

@@ -54,7 +54,7 @@ typedef NS_ENUM(NSInteger, HJSLogLevel) {
 - (void)logError:(NSError*)error depth:(int)depth;
 
 // Creates an email containing the log file and displays it for the user to send
-- (void)mailLogWithExplanation:(NSString *)explanation Subject:(NSString *)subject;
+- (void)mailLogWithExplanation:(NSString *)explanation subject:(NSString *)subject;
 
 - (BOOL)canSendMail;
 

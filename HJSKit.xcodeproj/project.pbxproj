@@ -7,7 +7,9 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		3B0AFB6B19EEDEF000043CCE /* Utilities.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B0AFB6A19EEDEF000043CCE /* Utilities.swift */; };
+		3BA0D2A719F086E900BF80CE /* HJSCoreDataCenter.h in Headers */ = {isa = PBXBuildFile; fileRef = 3BA0D2A519F086E900BF80CE /* HJSCoreDataCenter.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		3BA0D2A819F086E900BF80CE /* HJSCoreDataCenter.m in Sources */ = {isa = PBXBuildFile; fileRef = 3BA0D2A619F086E900BF80CE /* HJSCoreDataCenter.m */; };
+		3BA0D2A919F08BF400BF80CE /* Utilities.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B0AFB6A19EEDEF000043CCE /* Utilities.swift */; };
 		3BAE2D7419DE1640003E6982 /* HJSKit.h in Headers */ = {isa = PBXBuildFile; fileRef = 3BAE2D7319DE1640003E6982 /* HJSKit.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		3BAE2D7E19DE1640003E6982 /* HJSKitTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 3BAE2D7D19DE1640003E6982 /* HJSKitTests.m */; };
 		3BAE2D8F19DE184E003E6982 /* HJSDebugCenter.h in Headers */ = {isa = PBXBuildFile; fileRef = 3BAE2D8819DE184D003E6982 /* HJSDebugCenter.h */; settings = {ATTRIBUTES = (Public, ); }; };
@@ -26,6 +28,8 @@
 
 /* Begin PBXFileReference section */
 		3B0AFB6A19EEDEF000043CCE /* Utilities.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Utilities.swift; path = HJSKit/Utilities.swift; sourceTree = "<group>"; };
+		3BA0D2A519F086E900BF80CE /* HJSCoreDataCenter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HJSCoreDataCenter.h; sourceTree = "<group>"; };
+		3BA0D2A619F086E900BF80CE /* HJSCoreDataCenter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HJSCoreDataCenter.m; sourceTree = "<group>"; };
 		3BAE2D6E19DE1640003E6982 /* HJSKit.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = HJSKit.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		3BAE2D7219DE1640003E6982 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		3BAE2D7319DE1640003E6982 /* HJSKit.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = HJSKit.h; sourceTree = "<group>"; };
@@ -66,14 +70,24 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		3BA0D2A419F086E900BF80CE /* HJSCoreData */ = {
+			isa = PBXGroup;
+			children = (
+				3BA0D2A519F086E900BF80CE /* HJSCoreDataCenter.h */,
+				3BA0D2A619F086E900BF80CE /* HJSCoreDataCenter.m */,
+			);
+			path = HJSCoreData;
+			sourceTree = "<group>";
+		};
 		3BAE2D6419DE1640003E6982 = {
 			isa = PBXGroup;
 			children = (
+				3BAE2D7019DE1640003E6982 /* HJSKit */,
+				3BA0D2A419F086E900BF80CE /* HJSCoreData */,
+				3BAE2D8719DE184D003E6982 /* HJSDebug */,
 				3B0AFB6A19EEDEF000043CCE /* Utilities.swift */,
 				3BAE2DAD19DE21E3003E6982 /* NSString+NSCharacterSetTesting */,
 				3BAE2DB119DE21E3003E6982 /* UISplitViewController+QuickAccess */,
-				3BAE2D8719DE184D003E6982 /* HJSDebug */,
-				3BAE2D7019DE1640003E6982 /* HJSKit */,
 				3BAE2D7A19DE1640003E6982 /* HJSKitTests */,
 				3BAE2D6F19DE1640003E6982 /* Products */,
 			);
@@ -167,6 +181,7 @@
 				3BAE2D7419DE1640003E6982 /* HJSKit.h in Headers */,
 				3BAE2D8F19DE184E003E6982 /* HJSDebugCenter.h in Headers */,
 				3BAE2D9219DE184E003E6982 /* HJSDebugCenterControlPanelViewController.h in Headers */,
+				3BA0D2A719F086E900BF80CE /* HJSCoreDataCenter.h in Headers */,
 				3BAE2D9419DE184E003E6982 /* HJSDebugMailComposeDelegate.h in Headers */,
 				3BAE2DB919DE21E3003E6982 /* UISplitViewController+QuickAccess.h in Headers */,
 				3BAE2DB519DE21E3003E6982 /* NSString+NSCharacterSetTesting.h in Headers */,
@@ -271,11 +286,12 @@
 			files = (
 				3BAE2DB619DE21E3003E6982 /* NSString+NSCharacterSetTesting.m in Sources */,
 				3BAE2D9319DE184E003E6982 /* HJSDebugCenterControlPanelViewController.m in Sources */,
-				3B0AFB6B19EEDEF000043CCE /* Utilities.swift in Sources */,
 				3BAE2DBA19DE21E3003E6982 /* UISplitViewController+QuickAccess.m in Sources */,
 				3BAE2D9519DE184E003E6982 /* HJSDebugMailComposeDelegate.m in Sources */,
 				3BAE2D9019DE184E003E6982 /* HJSDebugCenter.m in Sources */,
 				3BAE2DF619DE2857003E6982 /* HJSDebug.swift in Sources */,
+				3BA0D2A919F08BF400BF80CE /* Utilities.swift in Sources */,
+				3BA0D2A819F086E900BF80CE /* HJSCoreDataCenter.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -378,6 +394,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				CLANG_ENABLE_MODULES = YES;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
 				DEFINES_MODULE = YES;
 				DYLIB_COMPATIBILITY_VERSION = 1;
 				DYLIB_CURRENT_VERSION = 1;
@@ -396,6 +413,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				CLANG_ENABLE_MODULES = YES;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
 				DEFINES_MODULE = YES;
 				DYLIB_COMPATIBILITY_VERSION = 1;
 				DYLIB_CURRENT_VERSION = 1;

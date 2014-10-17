@@ -153,7 +153,7 @@ static HJSDebugCenter * defaultCenter;
 static NSInteger mailLogDelayCount = 0;
 static const int kMaxMailDelay = 10;
 
-- (void)mailLogWithExplanation:(NSString *)explanation Subject:(NSString *)subject {
+- (void)mailLogWithExplanation:(NSString *)explanation subject:(NSString *)subject {
 	if (![self canSendMail]) {
 		[self logWithFormatString:@"Mail is not enabled, log cannot be sent."];
 		return;
@@ -192,7 +192,7 @@ static const int kMaxMailDelay = 10;
 		dispatch_after(dispatch_time(DISPATCH_TIME_NOW,(int64_t)(NSEC_PER_SEC)),
 					   dispatch_get_main_queue(),
 					   ^{
-						   [self mailLogWithExplanation:explanation Subject:subject];
+						   [self mailLogWithExplanation:explanation subject:subject];
 					   });
 	}
 }
