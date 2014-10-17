@@ -5,10 +5,13 @@
 #import "HJSKit/HJSKit.h"
 
 
-NSString * coreDataResetNotificationKey = @"coreDataResetNotification";
+NSString * HJSCoreDataCenterResetNotificationKey = @"coreDataResetNotification";
 
-static NSString * databaseName = @"Combat_ImpV3.sqlite";
-//static NSString * databaseName = @"Prerelease Combat Imp V0.5.sqlite";
+static NSString * defaultEmailHeader =
+	@"A serious error accessing your data has happened and your data cannot be recovered. Please send this email to the developer and we'll make every effort to work with you to recover your data. You might be able to use the app by deleting and reinstalling it but be aware that will delete your data forever.";
+static NSString * defaultEmailSubject = @"HiddenJester Software Data Error";
+static NSString * defaultNoEmailAlertMessage =
+	@"A serious issue accessing your data has happened and your data cannot be recovered.You might be able to use the app by deleting and reinstalling it but be aware that will delete your data forever. Please contact the developer by emailing bugs@hiddenjester.com and we'll make every effort to work with you to recover your data.";
 
 static HJSCoreDataCenter * defaultCenter;
 
@@ -85,9 +88,9 @@ static HJSCoreDataCenter * defaultCenter;
 	
 	self = [super init];
 	if (self) {
-		_errorEmailHeader = @"A serious error accessing your data has happened and your data cannot be recovered. Please send this email to the developer and we'll make every effort to work with you to recover your data. You might be able to use the app by deleting and reinstalling it but be aware that will delete your data forever.";
-		_errorEmailSubject = @"HiddenJester Software Data Error";
-		_errorNoEmailAlertMessage = @"A serious issue accessing your data has happened and your data cannot be recovered.You might be able to use the app by deleting and reinstalling it but be aware that will delete your data forever. Please contact the developer by emailing bugs@hiddenjester.com and we'll make every effort to work with you to recover your data.";
+		_errorEmailHeader = defaultEmailHeader;
+		_errorEmailSubject = defaultEmailSubject;
+		_errorNoEmailAlertMessage = defaultNoEmailAlertMessage;
 	}
 	return self;
 }
@@ -109,15 +112,13 @@ static HJSCoreDataCenter * defaultCenter;
 		[self resetStack];
 
 		if ([[HJSDebugCenter defaultCenter] canSendMail]) {
-			[[HJSDebugCenter defaultCenter] mailLogWithExplanation:@"An issue saving your data has happened. Combat Imp will attempt to recover from this error, but if you're willing to send this email it will help the developer fix the problem.\nPlease feel free to write a short message here describing what you were doing when this occurred. After you close this email Combat Imp will attempt to recover and continue."
-														   subject:@"Combat Imp Data Error"];
+			[[HJSDebugCenter defaultCenter] mailLogWithExplanation:_errorEmailSubject subject:_errorEmailHeader];
 		} else {
 			UIAlertView * alert = [[UIAlertView alloc] initWithTitle:@"Data Error"
-															 message:@"An issue saving your data has happened. Combat Imp will attempt to recover from this error now. If you see this message more than once please contact the developer by emailing bugs@hiddenjester.com."
+															 message:_errorNoEmailAlertMessage
 															delegate:nil
 												   cancelButtonTitle:@"Dismiss"
 												   otherButtonTitles:nil];
-			
 			[alert show];
 		}
 	}
@@ -130,7 +131,7 @@ static HJSCoreDataCenter * defaultCenter;
 	_managedObjectContext = nil;
 	_persistentStoreCoordinator = nil;
 	_managedObjectModel = nil;
-	[[NSNotificationCenter defaultCenter] postNotificationName:coreDataResetNotificationKey object:self userInfo:nil];
+	[[NSNotificationCenter defaultCenter] postNotificationName:HJSCoreDataCenterResetNotificationKey object:self userInfo:nil];
 }
 
 - (NSManagedObjectModel *)managedObjectModel
@@ -149,7 +150,12 @@ static HJSCoreDataCenter * defaultCenter;
 
 - (NSPersistentStoreCoordinator *)persistentStoreCoordinator {
 	if (!_persistentStoreCoordinator) {
-		NSURL * storeURL = [[self applicationDocumentsDirectory] URLByAppendingPathComponent:databaseName];
+		if (!_databaseName) {
+			[[HJSDebugCenter defaultCenter] logAtLevel:HJSLogLevelCritical
+										  formatString:@"databaseName has to be set before the persistentStoreCoordinator can be created"];
+			return nil;
+		}
+		NSURL * storeURL = [[self applicationDocumentsDirectory] URLByAppendingPathComponent:_databaseName];
 		NSError * __autoreleasing error = nil;
 		NSDictionary * options = [NSDictionary dictionaryWithObjectsAndKeys:
 								  [NSNumber numberWithBool:YES], NSMigratePersistentStoresAutomaticallyOption,
