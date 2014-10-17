@@ -2,8 +2,6 @@
 //
 //
 
-//#import "HJSCoreDataCenter.h"
-
 #import "HJSKit/HJSKit.h"
 
 
@@ -36,9 +34,11 @@ static HJSCoreDataCenter * defaultCenter;
 		if (coordinator != nil) {
 			_managedObjectContext = [[NSManagedObjectContext alloc] initWithConcurrencyType:NSMainQueueConcurrencyType];
 			[_managedObjectContext setPersistentStoreCoordinator:coordinator];
-			// I'm not thrilled by this but I'm pretty sure Core Data is making bogus conflicts on NSOrderedSet properties. Short form: it seems to object
-			// to NSManagedObjectID where the description strings don't match, even if those two "different" ID's will return the same NSManagedObject if you try that.
-			[_managedObjectContext setMergePolicy:[[NSMergePolicy alloc] initWithMergeType:NSMergeByPropertyObjectTrumpMergePolicyType]];
+			// I'm not thrilled by this but I'm pretty sure Core Data is making bogus conflicts on NSOrderedSet
+			// properties. Short form: it seems to object to NSManagedObjectID where the description strings don't
+			// match, even if those two "different" ID's will return the same NSManagedObject if you try that.
+			[_managedObjectContext setMergePolicy:[[NSMergePolicy alloc]
+												   initWithMergeType:NSMergeByPropertyObjectTrumpMergePolicyType]];
 		}
 	}
 
@@ -109,7 +109,8 @@ static HJSCoreDataCenter * defaultCenter;
 		[self resetStack];
 
 		if ([[HJSDebugCenter defaultCenter] canSendMail]) {
-			[[HJSDebugCenter defaultCenter] mailLogWithExplanation:@"An issue saving your data has happened. Combat Imp will attempt to recover from this error, but if you're willing to send this email it will help the developer fix the problem.\nPlease feel free to write a short message here describing what you were doing when this occurred. After you close this email Combat Imp will attempt to recover and continue." subject:@"Combat Imp Data Error"];
+			[[HJSDebugCenter defaultCenter] mailLogWithExplanation:@"An issue saving your data has happened. Combat Imp will attempt to recover from this error, but if you're willing to send this email it will help the developer fix the problem.\nPlease feel free to write a short message here describing what you were doing when this occurred. After you close this email Combat Imp will attempt to recover and continue."
+														   subject:@"Combat Imp Data Error"];
 		} else {
 			UIAlertView * alert = [[UIAlertView alloc] initWithTitle:@"Data Error"
 															 message:@"An issue saving your data has happened. Combat Imp will attempt to recover from this error now. If you see this message more than once please contact the developer by emailing bugs@hiddenjester.com."
@@ -135,7 +136,12 @@ static HJSCoreDataCenter * defaultCenter;
 - (NSManagedObjectModel *)managedObjectModel
 {
 	if (!_managedObjectModel) {
-		NSURL * modelURL = [[NSBundle mainBundle] URLForResource:@"Combat Imp" withExtension:@"momd"];
+		if (!_modelDirName) {
+			[[HJSDebugCenter defaultCenter] logAtLevel:HJSLogLevelCritical
+										  formatString:@"modelDirName has to be set before the managedObjectModel can be created"];
+			return nil;
+		}
+		NSURL * modelURL = [[NSBundle mainBundle] URLForResource:_modelDirName withExtension:@"momd"];
 		_managedObjectModel = [[NSManagedObjectModel alloc] initWithContentsOfURL:modelURL];
 	}
     return _managedObjectModel;
