@@ -61,18 +61,19 @@ static HJSCoreDataCenter * defaultCenter;
 	[self save];
 }
 
-- (void)reportDataError {
+- (void)presentErrorEmailFromViewController:(UIViewController *)presenter {
 	HJSDebugCenter * debugCenter = [HJSDebugCenter defaultCenter];
 	if ([debugCenter canSendMail]) {
-		[debugCenter mailLogWithExplanation:_errorEmailHeader subject:_errorEmailSubject];
-
-	} else {
+		[debugCenter presentMailLogWithExplanation:_errorEmailHeader
+										   subject:_errorEmailSubject
+								fromViewController:presenter];
+	}
+	else {
 		UIAlertView * alert = [[UIAlertView alloc] initWithTitle:@"Data Error"
 														 message:_errorNoEmailAlertMessage
 														delegate:nil
 											   cancelButtonTitle:@"Dismiss"
 											   otherButtonTitles:nil];
-		
 		[alert show];
 	}
 }
@@ -99,23 +100,22 @@ static HJSCoreDataCenter * defaultCenter;
 
 - (void)save {
 	NSError * __autoreleasing error = nil;
+	HJSDebugCenter * debug = [HJSDebugCenter defaultCenter];
+
 	[[self context] processPendingChanges];
 	if (![[self context] hasChanges]) {
-		[[HJSDebugCenter defaultCenter] logAtLevel:HJSLogLevelWarning
-									  formatString:@"Core Data save called with no changes pending."];
+		[debug logAtLevel:HJSLogLevelWarning formatString:@"Core Data save called with no changes pending."];
 	}
 	if ([[self context] save:&error]) {
-		[[HJSDebugCenter defaultCenter] logWithFormatString:@"Data saved successfully"];
+		[debug logWithFormatString:@"Data saved successfully"];
 	} else {
-		[[HJSDebugCenter defaultCenter] logError:error depth:0];
-		
+		[debug logError:error depth:0];
 		[self resetStack];
 
-		if ([[HJSDebugCenter defaultCenter] canSendMail]) {
-			[[HJSDebugCenter defaultCenter] mailLogWithExplanation:_errorEmailSubject subject:_errorEmailHeader];
-		} else {
+		if (debug.adHocDebugging) {
+			NSString * errorMessage = @"Please use the debug function to email the log as soon as possible.";
 			UIAlertView * alert = [[UIAlertView alloc] initWithTitle:@"Data Error"
-															 message:_errorNoEmailAlertMessage
+															 message:errorMessage
 															delegate:nil
 												   cancelButtonTitle:@"Dismiss"
 												   otherButtonTitles:nil];
@@ -171,7 +171,6 @@ static HJSCoreDataCenter * defaultCenter;
 																					  error:&error];
 		if (!store) {
 			[[HJSDebugCenter defaultCenter] logError:error depth:0];
-			[self reportDataError];
 		} // Couldn't open the store!
 	}
     

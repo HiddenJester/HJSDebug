@@ -53,8 +53,23 @@ typedef NS_ENUM(NSInteger, HJSLogLevel) {
 // Actually logs at HJSLogLevelCritical, since NSErrors are usually serious stuff.
 - (void)logError:(NSError*)error depth:(int)depth;
 
-// Creates an email containing the log file and displays it for the user to send
-- (void)mailLogWithExplanation:(NSString *)explanation subject:(NSString *)subject;
+/**
+ Presents a mail containing the log and a custom exmplanation to the user. Customize the 
+	explanation text so the user can understand why they should send the email.
+
+ @param explanation Text that is put at the top of the email above the log itself.
+
+ @param subject Subject of the email.
+ 
+ @param presenter The UIViewControler that presents the email panel. Note that this will fail if presenter
+	already has a presented view control.
+
+ @return YES if the panel presented, NO if it didn't. Two likely causes of failure: the system won't send email
+	or presenter is already presenting a view
+ */
+- (BOOL)presentMailLogWithExplanation:(NSString *)explanation
+							  subject:(NSString *)subject
+				   fromViewController:(UIViewController *)presenter;
 
 - (BOOL)canSendMail;
 
@@ -63,8 +78,16 @@ typedef NS_ENUM(NSInteger, HJSLogLevel) {
 #pragma mark Configuration Methods
 
 - (void)saveSettings;
-
-- (void)displayControlPanel;
+/**
+ Presents the control panel from the presenter.
+ 
+ @param presenter The UIViewControler that presents the control panel. Note that this will fail if presenter
+		already has a presented view control.
+ 
+ @return YES if the panel presented, NO if it didn't. (Most likely failure is a presented view already, which
+		 prevents presentation in iOS 8.)
+ */
+- (BOOL)presentControlPanelFromViewController:(UIViewController*)presenter;
 
 #pragma mark Lifecycle Methods
 

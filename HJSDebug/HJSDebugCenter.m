@@ -150,13 +150,23 @@ static HJSDebugCenter * defaultCenter;
 
 #pragma mark Mail Log methods
 
-static NSInteger mailLogDelayCount = 0;
-static const int kMaxMailDelay = 10;
+- (BOOL)presentMailLogWithExplanation:(NSString *)explanation
+							  subject:(NSString *)subject
+				   fromViewController:(UIViewController *)presenter {
+	if (!presenter) {
+		[self logAtLevel:HJSLogLevelCritical
+			formatString:@"Must provide presenter to present ControlPanel."];
+		return NO;
+	}
+	if (presenter.presentedViewController) {
+		[self logAtLevel:HJSLogLevelCritical
+			formatString:@"Can't present ControlPanel while another view is presented."];
+		return NO;
+	}
 
-- (void)mailLogWithExplanation:(NSString *)explanation subject:(NSString *)subject {
 	if (![self canSendMail]) {
 		[self logWithFormatString:@"Mail is not enabled, log cannot be sent."];
-		return;
+		return NO;
 	}
 
 	MFMailComposeViewController * mailController = [MFMailComposeViewController new];
@@ -173,28 +183,12 @@ static const int kMaxMailDelay = 10;
 					   [self logContents]];
 	[mailController setMessageBody:body isHTML:NO];
 
-	// If we got here right at startup it's possible UIKit isn't up to speed yet. Wait until UIKit has enough
-	// UI up to present a controller.
-	if ([[[UIApplication sharedApplication] keyWindow] rootViewController]) {
-		// TIMTODO: does this work in iOS 8? seems like I should check to see if something is already presented
-		[[[[UIApplication sharedApplication] keyWindow] rootViewController] presentViewController:mailController
-																						 animated:YES
-																					   completion:NULL];
-		mailLogDelayCount = 0;
-	} else {
-		++mailLogDelayCount;
-		if (mailLogDelayCount > kMaxMailDelay) {
-			// Seriously? We're super-boned and we *can't even tell the user*. Abort.
-			abort();
+	[presenter presentViewController:mailController animated:YES completion:^{
+		if (presenter.presentedViewController != mailController) {
+			[self logAtLevel:HJSLogLevelCritical formatString:@"Couldn't present the mail dialog."];
 		}
-		[self logWithFormatString:@"mailLog called before rootViewController is available, will retry in 1 second."];
-		// Assume we're starting up and just try again in a second
-		dispatch_after(dispatch_time(DISPATCH_TIME_NOW,(int64_t)(NSEC_PER_SEC)),
-					   dispatch_get_main_queue(),
-					   ^{
-						   [self mailLogWithExplanation:explanation subject:subject];
-					   });
-	}
+	}];
+	return YES;
 }
 
 - (BOOL)canSendMail {
@@ -223,16 +217,40 @@ static const int kMaxMailDelay = 10;
 
 #pragma mark Control Panel methods
 
-- (void)displayControlPanel {
+- (BOOL)presentControlPanelFromViewController:(UIViewController*)presenter {
+	if (!presenter) {
+		[self logAtLevel:HJSLogLevelCritical
+			formatString:@"Must provide presenter to present ControlPanel."];
+		return NO;
+	}
+	if (presenter.presentedViewController) {
+		[self logAtLevel:HJSLogLevelCritical
+			formatString:@"Can't present ControlPanel while another view is presented."];
+		return NO;
+	}
+
 	HJSDebugCenterControlPanelViewController * panelController = [HJSDebugCenterControlPanelViewController new];
-	NSArray * objects = [[NSBundle mainBundle] loadNibNamed:@"HJSDebugCenterControlPanel"
+	NSBundle * myBundle = [NSBundle bundleForClass:self.class];
+	if (!myBundle) {
+		[self logAtLevel:HJSLogLevelCritical formatString:@"Can't find the ControlPanel bundle."];
+		return NO;
+	}
+	NSArray * objects = [myBundle loadNibNamed:@"HJSDebugCenterControlPanel"
 													  owner:panelController
 													options:nil];
+	if (!objects || objects.count == 0) {
+		[self logAtLevel:HJSLogLevelCritical formatString:@"Can't find the ControlPanel in the bundle."];
+		return NO;
+	}
+
 	panelController.view = objects[0];
-	// TIMTODO: does this work in iOS 8? seems like I should check to see if something is already presented
-	[[[[UIApplication sharedApplication] keyWindow] rootViewController] presentViewController:panelController
-																					 animated:YES
-																				   completion:NULL];
+	[presenter presentViewController:panelController animated:YES completion:^{
+		// I dunno, did that work?
+		if (presenter.presentedViewController != panelController) {
+			[self logAtLevel:HJSLogLevelCritical formatString:@"Couldn't present the ControlPanel."];
+		}
+	}];
+	return YES;
 }
 
 #pragma mark Lifecycle
@@ -241,7 +259,7 @@ static const int kMaxMailDelay = 10;
 	if (defaultCenter) {
 		[self logAtLevel:HJSLogLevelCritical
 			formatString:@"Don't create HJSDebugCenter objects, use HJSDebugCenter defaultCenter instead."];
-		return nil;
+		return defaultCenter;
 	}
 
     self = [super init];
@@ -304,11 +322,17 @@ static const int kMaxMailDelay = 10;
 		[self saveSettings];
 		[self logAtLevel:HJSLogLevelInfo formatString:@"Debug defined, ad-hoc debugging activated."];
 #endif
-		NSDictionary * bundleInfo = [[NSBundle mainBundle] infoDictionary];
+		NSDictionary * mainBundleInfo = [[NSBundle mainBundle] infoDictionary];
 		[self logAtLevel:HJSLogLevelInfo formatString:@"App version: %@, build: %@",
-		 [bundleInfo objectForKey:@"CFBundleShortVersionString"],
-		 [bundleInfo objectForKey:@"CFBundleVersion"]
+		 [mainBundleInfo objectForKey:@"CFBundleShortVersionString"],
+		 [mainBundleInfo objectForKey:@"CFBundleVersion"]
 		 ];
+		NSDictionary * frameworkBundleInfo = [[NSBundle bundleForClass:self.class] infoDictionary];
+		[self logAtLevel:HJSLogLevelInfo formatString:@"HJSKit version: %@, build: %@",
+		 [frameworkBundleInfo objectForKey:@"CFBundleShortVersionString"],
+		 [frameworkBundleInfo objectForKey:@"CFBundleVersion"]
+		 ];
+
 #if DEBUG
 		[self logAtLevel:HJSLogLevelInfo formatString:@"Debugbreak() is live"];
 #endif

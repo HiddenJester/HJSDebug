@@ -39,10 +39,12 @@
 }
 
 - (IBAction)mailLog:(id)sender {
+	UIViewController * presenter = self.presentingViewController;
 	[self dismissViewControllerAnimated:YES completion:^{
 		[[HJSDebugCenter defaultCenter]
-		 mailLogWithExplanation:@"This log was requested via the debug control panel."
-		 subject:@"Debug log"];
+		 presentMailLogWithExplanation:@"This log was requested via the debug control panel."
+		 subject:@"Debug log"
+		 fromViewController:presenter];
 	}];
 }
 
