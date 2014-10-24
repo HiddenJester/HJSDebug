@@ -19,3 +19,4 @@ FOUNDATION_EXPORT const unsigned char HJSKitVersionString[];
 #import "HJSCoreDataCenter.h"
 #import "NSString+NSCharacterSetTesting.h"
 #import "UISplitViewController+QuickAccess.h"
+#import "UIColor+iOS7Colors.h"
