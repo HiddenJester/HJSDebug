@@ -25,7 +25,6 @@
 		3BAE2DB619DE21E3003E6982 /* NSString+NSCharacterSetTesting.m in Sources */ = {isa = PBXBuildFile; fileRef = 3BAE2DAF19DE21E3003E6982 /* NSString+NSCharacterSetTesting.m */; };
 		3BAE2DB919DE21E3003E6982 /* UISplitViewController+QuickAccess.h in Headers */ = {isa = PBXBuildFile; fileRef = 3BAE2DB319DE21E3003E6982 /* UISplitViewController+QuickAccess.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		3BAE2DBA19DE21E3003E6982 /* UISplitViewController+QuickAccess.m in Sources */ = {isa = PBXBuildFile; fileRef = 3BAE2DB419DE21E3003E6982 /* UISplitViewController+QuickAccess.m */; };
-		3BAE2DF619DE2857003E6982 /* HJSDebug.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3BAE2DF519DE2857003E6982 /* HJSDebug.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -53,7 +52,6 @@
 		3BAE2DB219DE21E3003E6982 /* README.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
 		3BAE2DB319DE21E3003E6982 /* UISplitViewController+QuickAccess.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UISplitViewController+QuickAccess.h"; sourceTree = "<group>"; };
 		3BAE2DB419DE21E3003E6982 /* UISplitViewController+QuickAccess.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UISplitViewController+QuickAccess.m"; sourceTree = "<group>"; };
-		3BAE2DF519DE2857003E6982 /* HJSDebug.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HJSDebug.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -154,7 +152,6 @@
 		3BAE2D8719DE184D003E6982 /* HJSDebug */ = {
 			isa = PBXGroup;
 			children = (
-				3BAE2DF519DE2857003E6982 /* HJSDebug.swift */,
 				3BAE2D8819DE184D003E6982 /* HJSDebugCenter.h */,
 				3BAE2D8919DE184D003E6982 /* HJSDebugCenter.m */,
 				3BAE2D8A19DE184D003E6982 /* HJSDebugCenterControlPanel.xib */,
@@ -323,7 +320,6 @@
 				3BAE2DBA19DE21E3003E6982 /* UISplitViewController+QuickAccess.m in Sources */,
 				3BAE2D9519DE184E003E6982 /* HJSDebugMailComposeDelegate.m in Sources */,
 				3BAE2D9019DE184E003E6982 /* HJSDebugCenter.m in Sources */,
-				3BAE2DF619DE2857003E6982 /* HJSDebug.swift in Sources */,
 				3BA0D2A919F08BF400BF80CE /* Utilities.swift in Sources */,
 				3BA0D2A819F086E900BF80CE /* HJSCoreDataCenter.m in Sources */,
 			);
