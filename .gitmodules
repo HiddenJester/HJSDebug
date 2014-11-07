@@ -8,6 +8,3 @@
 	url = /Users/tsanders/code/GitHubRepos/UISplitViewController+QuickAccess
 	fetchRecurseSubmodules = true
 	ignore = all
-[submodule "iOS7Colors"]
-	path = iOS7Colors
-	url = /Users/tsanders/code/ThirdParty/iOS7Colors
