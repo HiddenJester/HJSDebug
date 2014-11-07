@@ -1,0 +1,9 @@
+[submodule "iOS7Colors"]
+	path = iOS7Colors
+	url = /Users/tsanders/code/ThirdParty/iOS7Colors.git
+[submodule "NSString-NSCharacterSetTesting"]
+	path = NSString-NSCharacterSetTesting
+	url = /Users/tsanders/code/GitHubRepos/NSString-NSCharacterSetTesting.git
+[submodule "UISplitViewController+QuickAccess"]
+	path = UISplitViewController+QuickAccess
+	url = /Users/tsanders/code/GitHubRepos/UISplitViewController+QuickAccess.git
