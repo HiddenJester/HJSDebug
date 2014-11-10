@@ -2,7 +2,7 @@
 //
 //
 
-#import <MessageUI/MessageUI.h>
+@import MessageUI;
 
 @interface HJSDebugMailComposeDelegate : NSObject <MFMailComposeViewControllerDelegate>
 
