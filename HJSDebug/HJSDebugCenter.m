@@ -321,7 +321,7 @@ static HJSDebugCenter * defaultCenter;
 		 [frameworkBundleInfo objectForKey:@"CFBundleVersion"]
 		 ];
 #else
-		[self logMessage:@"HJS not coming from framework and has no separate version number."];
+		[self logMessage:@"HJSKit not built from framework and has no separate version number."];
 #endif
 		[self logMessage:@"HJSDebugCenter initialized"];
 		[self logMessage:@"=========================="];
