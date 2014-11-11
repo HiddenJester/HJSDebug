@@ -307,22 +307,24 @@ static HJSDebugCenter * defaultCenter;
 		[self setAdHocDebugging:YES];
 		[self setLogLevel:HJSLogLevelDebug];
 		[self saveSettings];
-		[self logAtLevel:HJSLogLevelInfo formatString:@"Debug defined, ad-hoc debugging activated."];
+		[self logMessage:@"Debug build with ad-hoc debugging & debugBreak()."];
 #endif
 		NSDictionary * mainBundleInfo = [[NSBundle mainBundle] infoDictionary];
 		[self logAtLevel:HJSLogLevelInfo formatString:@"App version: %@, build: %@",
 		 [mainBundleInfo objectForKey:@"CFBundleShortVersionString"],
 		 [mainBundleInfo objectForKey:@"CFBundleVersion"]
 		 ];
+#if HJS_FRAMEWORK_BUILD
 		NSDictionary * frameworkBundleInfo = [[NSBundle bundleForClass:self.class] infoDictionary];
-		[self logAtLevel:HJSLogLevelInfo formatString:@"HJSKit version: %@, build: %@",
+		[self logWithFormatString:@"HJSKit version: %@, build: %@",
 		 [frameworkBundleInfo objectForKey:@"CFBundleShortVersionString"],
 		 [frameworkBundleInfo objectForKey:@"CFBundleVersion"]
 		 ];
-
-#if DEBUG
-		[self logAtLevel:HJSLogLevelInfo formatString:@"Debugbreak() is live"];
+#else
+		[self logMessage:@"HJS not coming from framework and has no separate version number."];
 #endif
+		[self logMessage:@"HJSDebugCenter initialized"];
+		[self logMessage:@"=========================="];
     }
     return self;
 }
