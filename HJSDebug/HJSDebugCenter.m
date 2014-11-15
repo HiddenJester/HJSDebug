@@ -75,7 +75,7 @@ static HJSDebugCenter * defaultCenter;
 
 #pragma mark Logging methods
 
-- (void)logWithFormatString:(NSString *)formatString, ... {
+- (void)logFormattedString:(NSString *)formatString, ... {
     va_list args;
     va_start(args, formatString);
 
@@ -105,7 +105,11 @@ static HJSDebugCenter * defaultCenter;
 	[self logMessage:message level:HJSLogLevelInfo skipBreak:NO];
 }
 
-- (void)logError:(NSError *)error depth:(int)depth {
+- (void)logError:(NSError *)error {
+	[self logError:error atDepth:0];
+}
+
+- (void)logError:(NSError *)error atDepth:(int)depth {
 	NSMutableString * tempLeader = [[NSMutableString alloc] initWithString:@""];
 	
 	for (int i = 0; i < depth; ++i) {
@@ -113,16 +117,16 @@ static HJSDebugCenter * defaultCenter;
 	}
 	NSString * leader = [tempLeader copy];
 	
-	[self logWithFormatString:@"%@Logging error at depth %d", leader, depth];
+	[self logFormattedString:@"%@Logging error at depth %d", leader, depth];
     if ([error.userInfo objectForKey:NSDetailedErrorsKey]) {
         for (NSError* subError in [error.userInfo objectForKey:NSDetailedErrorsKey]) {
-            [self logError:subError depth:depth + 1];
+            [self logError:subError atDepth:depth + 1];
         }
     }
     else {
-        [self logWithFormatString:@"%@Error %ld %@ userInfo:", leader, (long)error.code, error.localizedDescription];
+        [self logFormattedString:@"%@Error %ld %@ userInfo:", leader, (long)error.code, error.localizedDescription];
 		[error.userInfo enumerateKeysAndObjectsUsingBlock:^(id key, id obj, BOOL *stop) {
-			[self logWithFormatString:@"%@ key:%@", leader, key];
+			[self logFormattedString:@"%@ key:%@", leader, key];
 			NSArray * lines = [[obj description] componentsSeparatedByString:@"\\n"];
 			for (NSString * line in lines) {
 				NSString * output = [NSString stringWithFormat:@"%@   %@", leader, line];
@@ -152,7 +156,7 @@ static HJSDebugCenter * defaultCenter;
 	}
 
 	if (![self canSendMail]) {
-		[self logWithFormatString:@"Mail is not enabled, log cannot be sent."];
+		[self logFormattedString:@"Mail is not enabled, log cannot be sent."];
 		return NO;
 	}
 
@@ -187,7 +191,7 @@ static HJSDebugCenter * defaultCenter;
 	NSError * __autoreleasing error;
 	NSString * log = [NSString stringWithContentsOfFile:_logFileURL.path encoding:NSUTF8StringEncoding error:&error];
 	if (error) {
-		[self logError:error depth:0];
+		[self logError:error];
 	}
 	return log;
 }
@@ -262,7 +266,7 @@ static HJSDebugCenter * defaultCenter;
 															   create:YES
 																error:&error];
 		if (error) {
-			[[HJSDebugCenter defaultCenter] logError:error depth:0];
+			[[HJSDebugCenter defaultCenter] logError:error];
 		} else {
 			_logFileURL = [_logFileURL URLByAppendingPathComponent:logFilename];
 		}
@@ -270,7 +274,7 @@ static HJSDebugCenter * defaultCenter;
 		[[NSFileManager defaultManager] createFileAtPath:_logFileURL.path contents:nil attributes:nil];
 		_logFile = [NSFileHandle fileHandleForWritingToURL:_logFileURL error:&error];
 		if (!_logFile) {
-			[self logError:error depth:0];
+			[self logError:error];
 		} else {
 			asl_add_log_file(_client, _logFile.fileDescriptor);
 		}
@@ -283,7 +287,7 @@ static HJSDebugCenter * defaultCenter;
 																	create:YES
 																	 error:&error];
 		if (error) {
-			[[HJSDebugCenter defaultCenter] logError:error depth:0];
+			[[HJSDebugCenter defaultCenter] logError:error];
 		} else {
 			_settingsFileURL = [_settingsFileURL URLByAppendingPathComponent:settingsFilename];
 		}

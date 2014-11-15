@@ -39,16 +39,16 @@ typedef NS_ENUM(NSInteger, HJSLogLevel) {
 
 // Logs at HJSLogLevelInfo, so in ad-hoc or debug builds only. This is the drop-in replacement for
 // NSLog.
-- (void)logWithFormatString:(NSString *)formatString, ... NS_FORMAT_FUNCTION(1, 2);
+- (void)logFormattedString:(NSString *)formatString, ... NS_FORMAT_FUNCTION(1, 2);
+- (void)logMessage:(NSString *)message;
 // Lets you specify the log level to use
 - (void)logAtLevel:(HJSLogLevel)level formatString:(NSString *)formatString, ... NS_FORMAT_FUNCTION(2, 3);
 // Versions without formatting for Swift (which can do the string formatting itself)
 - (void)logAtLevel:(HJSLogLevel)level message:(NSString *)message;
-- (void)logMessage:(NSString *)message;
 
 // Recursively unpacks NSErrors and logs them in a reasonably pretty-printed format.
 // Actually logs at HJSLogLevelCritical, since NSErrors are usually serious stuff.
-- (void)logError:(NSError*)error depth:(int)depth;
+- (void)logError:(NSError*)error;
 
 /**
  Presents a mail containing the log and a custom exmplanation to the user. Customize the 

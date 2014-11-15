@@ -34,7 +34,7 @@
 	}
 	[[HJSDebugCenter defaultCenter] logAtLevel:HJSLogLevelDebug formatString:@"Mail log send attempted, the result was %@", mailResult];
 	if (error) {
-		[[HJSDebugCenter defaultCenter] logError:error depth:0];
+		[[HJSDebugCenter defaultCenter] logError:error];
 	}
 	[controller dismissViewControllerAnimated:YES completion:NULL];
 }
