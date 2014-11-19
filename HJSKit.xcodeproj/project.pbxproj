@@ -23,7 +23,7 @@
 		3BAE2D9519DE184E003E6982 /* HJSDebugMailComposeDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 3BAE2D8E19DE184D003E6982 /* HJSDebugMailComposeDelegate.m */; };
 		3BAE2DB919DE21E3003E6982 /* UISplitViewController+QuickAccess.h in Headers */ = {isa = PBXBuildFile; fileRef = 3BAE2DB319DE21E3003E6982 /* UISplitViewController+QuickAccess.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		3BAE2DBA19DE21E3003E6982 /* UISplitViewController+QuickAccess.m in Sources */ = {isa = PBXBuildFile; fileRef = 3BAE2DB419DE21E3003E6982 /* UISplitViewController+QuickAccess.m */; };
-		3BF7ABF01A0D5FB400CB2848 /* NSString+NSCharacterSetTesting.h in Headers */ = {isa = PBXBuildFile; fileRef = 3BF7ABED1A0D5FB400CB2848 /* NSString+NSCharacterSetTesting.h */; };
+		3BF7ABF01A0D5FB400CB2848 /* NSString+NSCharacterSetTesting.h in Headers */ = {isa = PBXBuildFile; fileRef = 3BF7ABED1A0D5FB400CB2848 /* NSString+NSCharacterSetTesting.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		3BF7ABF11A0D5FB400CB2848 /* NSString+NSCharacterSetTesting.m in Sources */ = {isa = PBXBuildFile; fileRef = 3BF7ABEE1A0D5FB400CB2848 /* NSString+NSCharacterSetTesting.m */; };
 /* End PBXBuildFile section */
 

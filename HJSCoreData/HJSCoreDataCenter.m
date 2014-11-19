@@ -107,9 +107,9 @@ static HJSCoreDataCenter * defaultCenter;
 		[debug logAtLevel:HJSLogLevelWarning formatString:@"Core Data save called with no changes pending."];
 	}
 	if ([[self context] save:&error]) {
-		[debug logWithFormatString:@"Data saved successfully"];
+		[debug logMessage:@"Data saved successfully"];
 	} else {
-		[debug logError:error depth:0];
+		[debug logError:error];
 		[self resetStack];
 
 		if (debug.adHocDebugging) {
@@ -170,7 +170,7 @@ static HJSCoreDataCenter * defaultCenter;
 																					options:options
 																					  error:&error];
 		if (!store) {
-			[[HJSDebugCenter defaultCenter] logError:error depth:0];
+			[[HJSDebugCenter defaultCenter] logError:error];
 		} // Couldn't open the store!
 	}
     

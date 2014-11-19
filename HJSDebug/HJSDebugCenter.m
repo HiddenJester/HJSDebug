@@ -320,7 +320,7 @@ static HJSDebugCenter * defaultCenter;
 		 ];
 #if HJS_FRAMEWORK_BUILD
 		NSDictionary * frameworkBundleInfo = [[NSBundle bundleForClass:self.class] infoDictionary];
-		[self logWithFormatString:@"HJSKit version: %@, build: %@",
+		[self logFormattedString:@"HJSKit version: %@, build: %@",
 		 [frameworkBundleInfo objectForKey:@"CFBundleShortVersionString"],
 		 [frameworkBundleInfo objectForKey:@"CFBundleVersion"]
 		 ];
