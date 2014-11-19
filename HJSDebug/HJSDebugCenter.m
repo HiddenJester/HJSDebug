@@ -16,6 +16,7 @@ static NSString * settingsFilename = @"HJSDebugSettings.plist";
 
 static NSString * loggingLevelKey = @"LoggingLevel";
 static NSString * adHocDebuggingKey = @"adHocDebugging";
+static NSString * debugBreakEnabledKey = @"debugBreakEnabled";
 
 static HJSDebugCenter * defaultCenter;
 
@@ -46,6 +47,28 @@ static HJSDebugCenter * defaultCenter;
 - (void)setLogLevel:(HJSLogLevel)level {
 	NSNumber * loggingLevel = [NSNumber numberWithInteger:level];
 	[_settings setObject:loggingLevel forKey:loggingLevelKey];
+
+	switch (level) {
+		case HJSLogLevelCritical:
+			[self logMessage:@"Log level set to critical."];
+			break;
+
+		case HJSLogLevelWarning:
+			[self logMessage:@"Log level set to warning."];
+			break;
+
+		case HJSLogLevelInfo:
+			[self logMessage:@"Log level set to info."];
+			break;
+
+		case HJSLogLevelDebug:
+			[self logMessage:@"Log level set to debug."];
+			break;
+
+		default:
+			break;
+	}
+
 	asl_set_filter(_client, ASL_FILTER_MASK_UPTO(level));
 	if (_logFile) {
 		asl_set_output_file_filter(_client, _logFile.fileDescriptor, ASL_FILTER_MASK_UPTO(level));
@@ -59,17 +82,33 @@ static HJSDebugCenter * defaultCenter;
 - (void)setAdHocDebugging:(BOOL)adHocDebugging {
 	NSNumber * adHocFlag = [NSNumber numberWithBool:adHocDebugging];
 	[_settings setObject:adHocFlag forKey:adHocDebuggingKey];
+	adHocDebugging ? [self logMessage:@"Ad-hoc enabled"] : [self logMessage:@"Ad-hoc disabled"];
 }
 
 - (BOOL)adHocDebugging {
 	return [[_settings objectForKey:adHocDebuggingKey] boolValue];
 }
 
+- (void)setDebugBreakEnabled:(BOOL)debugBreakEnabled {
+	NSNumber * debugBreakFlag = [NSNumber numberWithBool:debugBreakEnabled];
+	[_settings setObject:debugBreakFlag forKey:debugBreakEnabledKey];
+	debugBreakEnabled ? [self logMessage:@"debugBreak enabled"] : [self logMessage:@"debugBreak disabled"];
+}
+
+- (BOOL)debugBreakEnabled {
+	return [[_settings objectForKey:debugBreakEnabledKey] boolValue];
+}
+
 # pragma mark Debug only methods
 
 - (void)debugBreak {
 #if DEBUG
-	raise(SIGTRAP);
+	if (self.debugBreakEnabled) {
+		raise(SIGTRAP);
+	}
+	else {
+		[self logAtLevel:HJSLogLevelDebug message:@"debugBreak called, but is disabled via options."];
+	}
 #endif
 }
 
@@ -296,23 +335,33 @@ static HJSDebugCenter * defaultCenter;
 			_settings = [NSMutableDictionary new];
 			[self setLogLevel:HJSLogLevelWarning];
 			[self setAdHocDebugging:NO];
+			[self setDebugBreakEnabled:NO];
 #if BETA
 			[self setAdHocDebugging:YES];
 			[self setLogLevel:HJSLogLevelInfo];
-			[self logAtLevel:HJSLogLevelInfo formatString:@"Beta defined, ad-hoc debugging activated."];
+			[self logMessage:@"Beta defined, ad-hoc debugging activated."];
 			[self saveSettings];
+#endif
+#if DEBUG
+			[self setAdHocDebugging:YES];
+			[self setDebugBreakEnabled:YES];
+			[self setLogLevel:HJSLogLevelInfo];
+			[self saveSettings];
+			[self logMessage:@"Debug defined, ad-hoc debugging & debugBreak() activated."];
 #endif
 			[self saveSettings];
 		} else {
 			[self setLogLevel:[[_settings objectForKey:loggingLevelKey] integerValue]];
-		}
-		
 #if DEBUG
-		[self setAdHocDebugging:YES];
-		[self setLogLevel:HJSLogLevelDebug];
-		[self saveSettings];
-		[self logMessage:@"Debug build with ad-hoc debugging & debugBreak()."];
+			if (self.debugBreakEnabled) {
+				[self logMessage:@"Debug Break is enabled."];
+			}
+			else {
+				[self logMessage:@"Debug Break is off in the options."];
+			}
 #endif
+		}
+
 		NSDictionary * mainBundleInfo = [[NSBundle mainBundle] infoDictionary];
 		[self logAtLevel:HJSLogLevelInfo formatString:@"App version: %@, build: %@",
 		 [mainBundleInfo objectForKey:@"CFBundleShortVersionString"],

@@ -29,6 +29,7 @@ typedef NS_ENUM(NSInteger, HJSLogLevel) {
 
 @property (nonatomic) HJSLogLevel logLevel;
 @property (nonatomic) BOOL adHocDebugging;
+@property (nonatomic) BOOL debugBreakEnabled;
 
 + (HJSDebugCenter *)defaultCenter;
 

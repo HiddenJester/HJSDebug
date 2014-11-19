@@ -14,10 +14,13 @@
 #if BETA
 	_adHocLabel.hidden = YES;
 	_adHocSwitch.hidden = YES;
+	_breakEnabledLabel.hidden = YES;
+	_breakEnabledSwitch.hidden = YES;
 #endif
 
 	_logText.text = [[HJSDebugCenter defaultCenter] logContents];
 	_adHocSwitch.on = [HJSDebugCenter defaultCenter].adHocDebugging;
+	_breakEnabledSwitch.on = [HJSDebugCenter defaultCenter].debugBreakEnabled;
 	switch ([HJSDebugCenter defaultCenter].logLevel) {
 		case HJSLogLevelCritical:
 			_loglevelSegmentedController.selectedSegmentIndex = 0;
@@ -50,6 +53,11 @@
 
 - (IBAction)toggleAdHoc:(id)sender {
 	[[HJSDebugCenter defaultCenter] setAdHocDebugging:_adHocSwitch.on];
+	[[HJSDebugCenter defaultCenter] saveSettings];
+}
+
+- (IBAction)toggleBreakEnabled:(id)sender {
+	[[HJSDebugCenter defaultCenter] setDebugBreakEnabled:_breakEnabledSwitch.on];
 	[[HJSDebugCenter defaultCenter] saveSettings];
 }
 
