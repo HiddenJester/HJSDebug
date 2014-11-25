@@ -20,3 +20,14 @@ import Foundation
 public func CGSizeInset(size: CGSize, dx: CGFloat, dy: CGFloat) -> CGSize {
 	return CGSizeMake(size.width - dx, size.height - dy)
 }
+
+// MARK: Not-extension safe methods
+/*!
+	Simple function that wraps around UIApplication to determine whether we have badge permissions.
+
+	:returns: true if we currently have badge permissions, false otherwise.
+*/
+public func hasBadgePermissions() -> Bool {
+	return (UIApplication.sharedApplication().currentUserNotificationSettings().types & UIUserNotificationType.Badge)
+		== UIUserNotificationType.Badge
+}
