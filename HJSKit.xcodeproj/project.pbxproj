@@ -7,11 +7,10 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		3B24F81419FAAC7F008809AD /* UIColor+iOS7Colors.h in Headers */ = {isa = PBXBuildFile; fileRef = 3B24F7FE19FAAC7F008809AD /* UIColor+iOS7Colors.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		3B24F81519FAAC7F008809AD /* UIColor+iOS7Colors.m in Sources */ = {isa = PBXBuildFile; fileRef = 3B24F7FF19FAAC7F008809AD /* UIColor+iOS7Colors.m */; };
 		3BA0D2A719F086E900BF80CE /* HJSCoreDataCenter.h in Headers */ = {isa = PBXBuildFile; fileRef = 3BA0D2A519F086E900BF80CE /* HJSCoreDataCenter.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		3BA0D2A819F086E900BF80CE /* HJSCoreDataCenter.m in Sources */ = {isa = PBXBuildFile; fileRef = 3BA0D2A619F086E900BF80CE /* HJSCoreDataCenter.m */; };
 		3BA0D2A919F08BF400BF80CE /* Utilities.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B0AFB6A19EEDEF000043CCE /* Utilities.swift */; };
+		3BA38A221A263A05004E2CE4 /* HJSExtension.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3BA38A1D1A263832004E2CE4 /* HJSExtension.framework */; };
 		3BAE2D7419DE1640003E6982 /* HJSKit.h in Headers */ = {isa = PBXBuildFile; fileRef = 3BAE2D7319DE1640003E6982 /* HJSKit.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		3BAE2D7E19DE1640003E6982 /* HJSKitTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 3BAE2D7D19DE1640003E6982 /* HJSKitTests.m */; };
 		3BAE2D8F19DE184E003E6982 /* HJSDebugCenter.h in Headers */ = {isa = PBXBuildFile; fileRef = 3BAE2D8819DE184D003E6982 /* HJSDebugCenter.h */; settings = {ATTRIBUTES = (Public, ); }; };
@@ -27,12 +26,28 @@
 		3BF7ABF11A0D5FB400CB2848 /* NSString+NSCharacterSetTesting.m in Sources */ = {isa = PBXBuildFile; fileRef = 3BF7ABEE1A0D5FB400CB2848 /* NSString+NSCharacterSetTesting.m */; };
 /* End PBXBuildFile section */
 
+/* Begin PBXContainerItemProxy section */
+		3BA38A1C1A263832004E2CE4 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 3BA38A171A263832004E2CE4 /* HJSExtension.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 3BA389FB1A263831004E2CE4;
+			remoteInfo = HJSExtension;
+		};
+		3BA38A1E1A263832004E2CE4 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 3BA38A171A263832004E2CE4 /* HJSExtension.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 3BA38A061A263832004E2CE4;
+			remoteInfo = HJSExtensionTests;
+		};
+/* End PBXContainerItemProxy section */
+
 /* Begin PBXFileReference section */
 		3B0AFB6A19EEDEF000043CCE /* Utilities.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Utilities.swift; path = HJSKit/Utilities.swift; sourceTree = "<group>"; };
-		3B24F7FE19FAAC7F008809AD /* UIColor+iOS7Colors.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIColor+iOS7Colors.h"; sourceTree = "<group>"; };
-		3B24F7FF19FAAC7F008809AD /* UIColor+iOS7Colors.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIColor+iOS7Colors.m"; sourceTree = "<group>"; };
 		3BA0D2A519F086E900BF80CE /* HJSCoreDataCenter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HJSCoreDataCenter.h; sourceTree = "<group>"; };
 		3BA0D2A619F086E900BF80CE /* HJSCoreDataCenter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HJSCoreDataCenter.m; sourceTree = "<group>"; };
+		3BA38A171A263832004E2CE4 /* HJSExtension.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = HJSExtension.xcodeproj; path = HJSExtension/HJSExtension.xcodeproj; sourceTree = "<group>"; };
 		3BAE2D6E19DE1640003E6982 /* HJSKit.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = HJSKit.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		3BAE2D7219DE1640003E6982 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		3BAE2D7319DE1640003E6982 /* HJSKit.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = HJSKit.h; sourceTree = "<group>"; };
@@ -59,6 +74,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				3BA38A221A263A05004E2CE4 /* HJSExtension.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -72,16 +88,6 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		3B24F7EF19FAAC7F008809AD /* iOS7Colors */ = {
-			isa = PBXGroup;
-			children = (
-				3B24F7FE19FAAC7F008809AD /* UIColor+iOS7Colors.h */,
-				3B24F7FF19FAAC7F008809AD /* UIColor+iOS7Colors.m */,
-			);
-			name = iOS7Colors;
-			path = iOS7Colors/iOS7Colors;
-			sourceTree = "<group>";
-		};
 		3BA0D2A419F086E900BF80CE /* HJSCoreData */ = {
 			isa = PBXGroup;
 			children = (
@@ -91,10 +97,19 @@
 			path = HJSCoreData;
 			sourceTree = "<group>";
 		};
+		3BA38A181A263832004E2CE4 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				3BA38A1D1A263832004E2CE4 /* HJSExtension.framework */,
+				3BA38A1F1A263832004E2CE4 /* HJSExtensionTests.xctest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
 		3BAE2D6419DE1640003E6982 = {
 			isa = PBXGroup;
 			children = (
-				3B24F7EF19FAAC7F008809AD /* iOS7Colors */,
+				3BA38A171A263832004E2CE4 /* HJSExtension.xcodeproj */,
 				3BAE2D7019DE1640003E6982 /* HJSKit */,
 				3BA0D2A419F086E900BF80CE /* HJSCoreData */,
 				3BAE2D8719DE184D003E6982 /* HJSDebug */,
@@ -194,7 +209,6 @@
 				3BAE2D8F19DE184E003E6982 /* HJSDebugCenter.h in Headers */,
 				3BF7ABF01A0D5FB400CB2848 /* NSString+NSCharacterSetTesting.h in Headers */,
 				3BAE2D9219DE184E003E6982 /* HJSDebugCenterControlPanelViewController.h in Headers */,
-				3B24F81419FAAC7F008809AD /* UIColor+iOS7Colors.h in Headers */,
 				3BA0D2A719F086E900BF80CE /* HJSCoreDataCenter.h in Headers */,
 				3BAE2D9419DE184E003E6982 /* HJSDebugMailComposeDelegate.h in Headers */,
 				3BAE2DB919DE21E3003E6982 /* UISplitViewController+QuickAccess.h in Headers */,
@@ -267,6 +281,12 @@
 			mainGroup = 3BAE2D6419DE1640003E6982;
 			productRefGroup = 3BAE2D6F19DE1640003E6982 /* Products */;
 			projectDirPath = "";
+			projectReferences = (
+				{
+					ProductGroup = 3BA38A181A263832004E2CE4 /* Products */;
+					ProjectRef = 3BA38A171A263832004E2CE4 /* HJSExtension.xcodeproj */;
+				},
+			);
 			projectRoot = "";
 			targets = (
 				3BAE2D6D19DE1640003E6982 /* HJSKit */,
@@ -274,6 +294,23 @@
 			);
 		};
 /* End PBXProject section */
+
+/* Begin PBXReferenceProxy section */
+		3BA38A1D1A263832004E2CE4 /* HJSExtension.framework */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.framework;
+			path = HJSExtension.framework;
+			remoteRef = 3BA38A1C1A263832004E2CE4 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		3BA38A1F1A263832004E2CE4 /* HJSExtensionTests.xctest */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.cfbundle;
+			path = HJSExtensionTests.xctest;
+			remoteRef = 3BA38A1E1A263832004E2CE4 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+/* End PBXReferenceProxy section */
 
 /* Begin PBXResourcesBuildPhase section */
 		3BAE2D6C19DE1640003E6982 /* Resources */ = {
@@ -315,7 +352,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				3BAE2D9319DE184E003E6982 /* HJSDebugCenterControlPanelViewController.m in Sources */,
-				3B24F81519FAAC7F008809AD /* UIColor+iOS7Colors.m in Sources */,
 				3BAE2DBA19DE21E3003E6982 /* UISplitViewController+QuickAccess.m in Sources */,
 				3BAE2D9519DE184E003E6982 /* HJSDebugMailComposeDelegate.m in Sources */,
 				3BF7ABF11A0D5FB400CB2848 /* NSString+NSCharacterSetTesting.m in Sources */,

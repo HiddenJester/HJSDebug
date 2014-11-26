@@ -6,7 +6,7 @@
 //  Copyright (c) 2014 HiddenJester Software. All rights reserved.
 //
 
-#import <UIKit/UIKit.h>
+@import HJSExtension;
 
 //! Project version number for HJSKit.
 FOUNDATION_EXPORT double HJSKitVersionNumber;
@@ -19,4 +19,3 @@ FOUNDATION_EXPORT const unsigned char HJSKitVersionString[];
 #import "HJSCoreDataCenter.h"
 #import "NSString+NSCharacterSetTesting.h"
 #import "UISplitViewController+QuickAccess.h"
-#import "UIColor+iOS7Colors.h"
