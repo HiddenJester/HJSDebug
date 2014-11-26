@@ -2,16 +2,21 @@
 //
 //
 
-#import "HJSKit/HJSKit.h"
+@import UIKit;
+@import CoreData;
 
+#import "HJSCoreDataCenter.h"
+
+#import "HJSExtension.h"
 
 NSString * HJSCoreDataCenterResetNotificationKey = @"coreDataResetNotification";
 
 static NSString * defaultEmailHeader =
-	@"A serious error accessing your data has happened and your data cannot be recovered. Please send this email to the developer and we'll make every effort to work with you to recover your data. You might be able to use the app by deleting and reinstalling it but be aware that will delete your data forever.";
+@"A serious error accessing your data has happened and your data cannot be recovered. Please send this email to the developer and we'll make every effort to work with you to recover your data. You might be able to use the app by deleting and reinstalling it but be aware that will delete your data forever.";
 static NSString * defaultEmailSubject = @"HiddenJester Software Data Error";
 static NSString * defaultNoEmailAlertMessage =
-	@"A serious issue accessing your data has happened and your data cannot be recovered.You might be able to use the app by deleting and reinstalling it but be aware that will delete your data forever. Please contact the developer by emailing bugs@hiddenjester.com and we'll make every effort to work with you to recover your data.";
+@"A serious issue accessing your data has happened and your data cannot be recovered.You might be able to use the app by deleting and reinstalling it but be aware that will delete your data forever. Please contact the developer by emailing bugs@hiddenjester.com and we'll make every effort to work with you to recover your data.";
+
 
 static HJSCoreDataCenter * defaultCenter;
 
@@ -61,23 +66,6 @@ static HJSCoreDataCenter * defaultCenter;
 	[self save];
 }
 
-- (void)presentErrorEmailFromViewController:(UIViewController *)presenter {
-	HJSDebugCenter * debugCenter = [HJSDebugCenter defaultCenter];
-	if ([debugCenter canSendMail]) {
-		[debugCenter presentMailLogWithExplanation:_errorEmailHeader
-										   subject:_errorEmailSubject
-								fromViewController:presenter];
-	}
-	else {
-		UIAlertView * alert = [[UIAlertView alloc] initWithTitle:@"Data Error"
-														 message:_errorNoEmailAlertMessage
-														delegate:nil
-											   cancelButtonTitle:@"Dismiss"
-											   otherButtonTitles:nil];
-		[alert show];
-	}
-}
-
 #pragma mark Lifecycle
 
 - (id)init {
@@ -113,13 +101,18 @@ static HJSCoreDataCenter * defaultCenter;
 		[self resetStack];
 
 		if (debug.adHocDebugging) {
-			NSString * errorMessage = @"Please use the debug function to email the log as soon as possible.";
-			UIAlertView * alert = [[UIAlertView alloc] initWithTitle:@"Data Error"
-															 message:errorMessage
-															delegate:nil
-												   cancelButtonTitle:@"Dismiss"
-												   otherButtonTitles:nil];
-			[alert show];
+			// If we're running in an extension there's nothing to do here but if we're in the full HJSKit we need to
+			// try to present an alert asking the user to email the log as soon as possible. presentAlert is added
+			// as a category in the full HJSKit so this selector is present in HJSKit, but not in HJSExtension.
+			SEL presentAlert = NSSelectorFromString(@"presentAlert");
+			if ([self respondsToSelector:presentAlert]) {
+				// Reassure ARC we aren't leaking anything by building a NSInvocation
+				NSMethodSignature * methodSig = [[self class] instanceMethodSignatureForSelector:presentAlert];
+				NSInvocation * invocation = [NSInvocation invocationWithMethodSignature:methodSig];
+				[invocation setSelector:presentAlert];
+				[invocation setTarget:self];
+				[invocation invoke];
+			}
 		}
 	}
 	_savePending = NO;

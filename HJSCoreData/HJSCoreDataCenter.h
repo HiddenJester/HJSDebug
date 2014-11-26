@@ -46,22 +46,28 @@ extern NSString * HJSCoreDataCenterResetNotificationKey;
 @property (nonatomic) NSString * databaseName;
 
 /**
- When reportDataError is called it will attempt to create an email for the user to send to us containing the
-	log. errorEmailHeader will be put in the body of the proposed message above the log. There is a default
-	message provided if this isn't customized.
+ When presentErrorEmailFromViewController is called it will attempt to create an email for the user to send to us 
+	containing the log. errorEmailHeader will be put in the body of the proposed message above the log. There is a
+	default message provided if this isn't customized. Note that presentErrorEmailFromViewController isn't in
+	HJSExtension, only in the full kit, but it's easier to just have the properties here because the category providing
+	presentErrorEmailFromViewController doesn't have ivars.
  */
 @property (nonatomic) NSString * errorEmailHeader;
 
 /**
- When reportDataError is called it will attempt to create an email for the user to send to us containing the
-	log. errorEmailSubject will be put in the subject of the proposed message. There is a default
-	message provided if this isn't customized.
+ When presentErrorEmailFromViewController is called it will attempt to create an email for the user to send to us 
+	containing the log. errorEmailSubject will be put in the subject of the proposed message. There is a default
+	message provided if this isn't customized. Note that presentErrorEmailFromViewController isn't in
+	HJSExtension, only in the full kit, but it's easier to just have the properties here because the category providing
+	presentErrorEmailFromViewController doesn't have ivars.
  */
 @property (nonatomic) NSString * errorEmailSubject;
 
 /**
- When reportDataError is called if mail cannot be sent then an alert dialog will be displayed containing
-	errorNoEmailAlertMessage. There is a default message provided if this isn't customized.
+ When presentErrorEmailFromViewController is called if mail cannot be sent then an alert dialog will be displayed
+	containing errorNoEmailAlertMessage. There is a default message provided if this isn't customized. Note that
+	presentErrorEmailFromViewController isn't in HJSExtension, only in the full kit, but it's easier to just have the 
+	properties here because the category providing presentErrorEmailFromViewController doesn't have ivars.
  */
 @property (nonatomic) NSString * errorNoEmailAlertMessage;
 
@@ -95,15 +101,5 @@ extern NSString * HJSCoreDataCenterResetNotificationKey;
  @result Core Data immediately saves.
  */
 - (void)immediateSave; // Mostly a debugging aid, but can be useful to force a save RIGHT NOW
-
-/**
- This is a convenience method that will attempt to send an email containing the log. If mail cannot be sent it will
-	present a modal alert dialog alerting the user a data error has occurred.
- 
- @param presenter A View Controller that will present the mail dialog.
-
- @result The user is either presented an email to send or an alert dialog informing them there has been an error.
- */
-- (void)presentErrorEmailFromViewController:(UIViewController *)presenter;
 
 @end

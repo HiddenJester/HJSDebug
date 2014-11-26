@@ -12,6 +12,20 @@
 		3BA38A0E1A263832004E2CE4 /* HJSExtensionTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3BA38A0D1A263832004E2CE4 /* HJSExtensionTests.swift */; };
 		3BA38A261A263A66004E2CE4 /* UIColor+iOS7Colors.h in Headers */ = {isa = PBXBuildFile; fileRef = 3BA38A231A263A66004E2CE4 /* UIColor+iOS7Colors.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		3BA38A271A263A66004E2CE4 /* UIColor+iOS7Colors.m in Sources */ = {isa = PBXBuildFile; fileRef = 3BA38A241A263A66004E2CE4 /* UIColor+iOS7Colors.m */; };
+		3BA38A301A263EB5004E2CE4 /* NSString+NSCharacterSetTesting.h in Headers */ = {isa = PBXBuildFile; fileRef = 3BA38A281A263EB5004E2CE4 /* NSString+NSCharacterSetTesting.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		3BA38A311A263EB5004E2CE4 /* NSString+NSCharacterSetTesting.m in Sources */ = {isa = PBXBuildFile; fileRef = 3BA38A291A263EB5004E2CE4 /* NSString+NSCharacterSetTesting.m */; };
+		3BA38A341A263EB5004E2CE4 /* UISplitViewController+QuickAccess.h in Headers */ = {isa = PBXBuildFile; fileRef = 3BA38A2D1A263EB5004E2CE4 /* UISplitViewController+QuickAccess.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		3BA38A351A263EB5004E2CE4 /* UISplitViewController+QuickAccess.m in Sources */ = {isa = PBXBuildFile; fileRef = 3BA38A2E1A263EB5004E2CE4 /* UISplitViewController+QuickAccess.m */; };
+		3BA38A3E1A263F74004E2CE4 /* HJSDebugCenter.h in Headers */ = {isa = PBXBuildFile; fileRef = 3BA38A361A263F74004E2CE4 /* HJSDebugCenter.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		3BA38A3F1A263F74004E2CE4 /* HJSDebugCenter.m in Sources */ = {isa = PBXBuildFile; fileRef = 3BA38A371A263F74004E2CE4 /* HJSDebugCenter.m */; };
+		3BA38A401A263F74004E2CE4 /* HJSDebugCenterControlPanel.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3BA38A381A263F74004E2CE4 /* HJSDebugCenterControlPanel.xib */; };
+		3BA38A411A263F74004E2CE4 /* HJSDebugCenterControlPanelViewController.h in Headers */ = {isa = PBXBuildFile; fileRef = 3BA38A391A263F74004E2CE4 /* HJSDebugCenterControlPanelViewController.h */; };
+		3BA38A421A263F74004E2CE4 /* HJSDebugCenterControlPanelViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3BA38A3A1A263F74004E2CE4 /* HJSDebugCenterControlPanelViewController.m */; };
+		3BA38A431A263F74004E2CE4 /* HJSDebugMailComposeDelegate.h in Headers */ = {isa = PBXBuildFile; fileRef = 3BA38A3B1A263F74004E2CE4 /* HJSDebugMailComposeDelegate.h */; };
+		3BA38A441A263F74004E2CE4 /* HJSDebugMailComposeDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 3BA38A3C1A263F74004E2CE4 /* HJSDebugMailComposeDelegate.m */; };
+		3BA38A461A263FF8004E2CE4 /* Utilities.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3BA38A451A263FF8004E2CE4 /* Utilities.swift */; };
+		3BA38A4C1A264146004E2CE4 /* HJSCoreDataCenter.h in Headers */ = {isa = PBXBuildFile; fileRef = 3BA38A491A264146004E2CE4 /* HJSCoreDataCenter.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		3BA38A4D1A264146004E2CE4 /* HJSCoreDataCenter.m in Sources */ = {isa = PBXBuildFile; fileRef = 3BA38A4A1A264146004E2CE4 /* HJSCoreDataCenter.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -33,6 +47,22 @@
 		3BA38A0D1A263832004E2CE4 /* HJSExtensionTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HJSExtensionTests.swift; sourceTree = "<group>"; };
 		3BA38A231A263A66004E2CE4 /* UIColor+iOS7Colors.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIColor+iOS7Colors.h"; sourceTree = "<group>"; };
 		3BA38A241A263A66004E2CE4 /* UIColor+iOS7Colors.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIColor+iOS7Colors.m"; sourceTree = "<group>"; };
+		3BA38A281A263EB5004E2CE4 /* NSString+NSCharacterSetTesting.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "NSString+NSCharacterSetTesting.h"; path = "../NSString-NSCharacterSetTesting/NSString+NSCharacterSetTesting.h"; sourceTree = "<group>"; };
+		3BA38A291A263EB5004E2CE4 /* NSString+NSCharacterSetTesting.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "NSString+NSCharacterSetTesting.m"; path = "../NSString-NSCharacterSetTesting/NSString+NSCharacterSetTesting.m"; sourceTree = "<group>"; };
+		3BA38A2A1A263EB5004E2CE4 /* README.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; name = README.md; path = "../NSString-NSCharacterSetTesting/README.md"; sourceTree = "<group>"; };
+		3BA38A2C1A263EB5004E2CE4 /* README.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
+		3BA38A2D1A263EB5004E2CE4 /* UISplitViewController+QuickAccess.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UISplitViewController+QuickAccess.h"; sourceTree = "<group>"; };
+		3BA38A2E1A263EB5004E2CE4 /* UISplitViewController+QuickAccess.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UISplitViewController+QuickAccess.m"; sourceTree = "<group>"; };
+		3BA38A361A263F74004E2CE4 /* HJSDebugCenter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HJSDebugCenter.h; sourceTree = "<group>"; };
+		3BA38A371A263F74004E2CE4 /* HJSDebugCenter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HJSDebugCenter.m; sourceTree = "<group>"; };
+		3BA38A381A263F74004E2CE4 /* HJSDebugCenterControlPanel.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = HJSDebugCenterControlPanel.xib; sourceTree = "<group>"; };
+		3BA38A391A263F74004E2CE4 /* HJSDebugCenterControlPanelViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HJSDebugCenterControlPanelViewController.h; sourceTree = "<group>"; };
+		3BA38A3A1A263F74004E2CE4 /* HJSDebugCenterControlPanelViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HJSDebugCenterControlPanelViewController.m; sourceTree = "<group>"; };
+		3BA38A3B1A263F74004E2CE4 /* HJSDebugMailComposeDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HJSDebugMailComposeDelegate.h; sourceTree = "<group>"; };
+		3BA38A3C1A263F74004E2CE4 /* HJSDebugMailComposeDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HJSDebugMailComposeDelegate.m; sourceTree = "<group>"; };
+		3BA38A451A263FF8004E2CE4 /* Utilities.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Utilities.swift; path = ../../HJSKit/Utilities.swift; sourceTree = "<group>"; };
+		3BA38A491A264146004E2CE4 /* HJSCoreDataCenter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HJSCoreDataCenter.h; sourceTree = "<group>"; };
+		3BA38A4A1A264146004E2CE4 /* HJSCoreDataCenter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HJSCoreDataCenter.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -58,7 +88,11 @@
 			isa = PBXGroup;
 			children = (
 				3BA389FD1A263831004E2CE4 /* HJSExtension */,
+				3BA38A4B1A264146004E2CE4 /* HJSCoreData */,
+				3BA38A3D1A263F74004E2CE4 /* HJSDebug */,
 				3BA38A251A263A66004E2CE4 /* iOS7Colors */,
+				3BA38A2B1A263EB5004E2CE4 /* NSString+NSCharacterSetTesting */,
+				3BA38A2F1A263EB5004E2CE4 /* UISplitViewController+QuickAccess */,
 				3BA38A0A1A263832004E2CE4 /* HJSExtensionTests */,
 				3BA389FC1A263831004E2CE4 /* Products */,
 			);
@@ -76,6 +110,7 @@
 		3BA389FD1A263831004E2CE4 /* HJSExtension */ = {
 			isa = PBXGroup;
 			children = (
+				3BA38A451A263FF8004E2CE4 /* Utilities.swift */,
 				3BA38A001A263831004E2CE4 /* HJSExtension.h */,
 				3BA389FE1A263831004E2CE4 /* Supporting Files */,
 			);
@@ -117,6 +152,53 @@
 			path = ../iOS7Colors/iOS7Colors;
 			sourceTree = "<group>";
 		};
+		3BA38A2B1A263EB5004E2CE4 /* NSString+NSCharacterSetTesting */ = {
+			isa = PBXGroup;
+			children = (
+				3BA38A281A263EB5004E2CE4 /* NSString+NSCharacterSetTesting.h */,
+				3BA38A291A263EB5004E2CE4 /* NSString+NSCharacterSetTesting.m */,
+				3BA38A2A1A263EB5004E2CE4 /* README.md */,
+			);
+			name = "NSString+NSCharacterSetTesting";
+			path = "../NSString+NSCharacterSetTesting";
+			sourceTree = "<group>";
+		};
+		3BA38A2F1A263EB5004E2CE4 /* UISplitViewController+QuickAccess */ = {
+			isa = PBXGroup;
+			children = (
+				3BA38A2C1A263EB5004E2CE4 /* README.md */,
+				3BA38A2D1A263EB5004E2CE4 /* UISplitViewController+QuickAccess.h */,
+				3BA38A2E1A263EB5004E2CE4 /* UISplitViewController+QuickAccess.m */,
+			);
+			name = "UISplitViewController+QuickAccess";
+			path = "../UISplitViewController+QuickAccess";
+			sourceTree = "<group>";
+		};
+		3BA38A3D1A263F74004E2CE4 /* HJSDebug */ = {
+			isa = PBXGroup;
+			children = (
+				3BA38A361A263F74004E2CE4 /* HJSDebugCenter.h */,
+				3BA38A371A263F74004E2CE4 /* HJSDebugCenter.m */,
+				3BA38A381A263F74004E2CE4 /* HJSDebugCenterControlPanel.xib */,
+				3BA38A391A263F74004E2CE4 /* HJSDebugCenterControlPanelViewController.h */,
+				3BA38A3A1A263F74004E2CE4 /* HJSDebugCenterControlPanelViewController.m */,
+				3BA38A3B1A263F74004E2CE4 /* HJSDebugMailComposeDelegate.h */,
+				3BA38A3C1A263F74004E2CE4 /* HJSDebugMailComposeDelegate.m */,
+			);
+			name = HJSDebug;
+			path = ../HJSDebug;
+			sourceTree = "<group>";
+		};
+		3BA38A4B1A264146004E2CE4 /* HJSCoreData */ = {
+			isa = PBXGroup;
+			children = (
+				3BA38A491A264146004E2CE4 /* HJSCoreDataCenter.h */,
+				3BA38A4A1A264146004E2CE4 /* HJSCoreDataCenter.m */,
+			);
+			name = HJSCoreData;
+			path = ../HJSCoreData;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXHeadersBuildPhase section */
@@ -124,8 +206,14 @@
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				3BA38A341A263EB5004E2CE4 /* UISplitViewController+QuickAccess.h in Headers */,
+				3BA38A431A263F74004E2CE4 /* HJSDebugMailComposeDelegate.h in Headers */,
+				3BA38A4C1A264146004E2CE4 /* HJSCoreDataCenter.h in Headers */,
 				3BA38A261A263A66004E2CE4 /* UIColor+iOS7Colors.h in Headers */,
 				3BA38A011A263831004E2CE4 /* HJSExtension.h in Headers */,
+				3BA38A301A263EB5004E2CE4 /* NSString+NSCharacterSetTesting.h in Headers */,
+				3BA38A3E1A263F74004E2CE4 /* HJSDebugCenter.h in Headers */,
+				3BA38A411A263F74004E2CE4 /* HJSDebugCenterControlPanelViewController.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -208,6 +296,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				3BA38A401A263F74004E2CE4 /* HJSDebugCenterControlPanel.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -225,7 +314,14 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				3BA38A3F1A263F74004E2CE4 /* HJSDebugCenter.m in Sources */,
+				3BA38A311A263EB5004E2CE4 /* NSString+NSCharacterSetTesting.m in Sources */,
+				3BA38A461A263FF8004E2CE4 /* Utilities.swift in Sources */,
+				3BA38A421A263F74004E2CE4 /* HJSDebugCenterControlPanelViewController.m in Sources */,
+				3BA38A351A263EB5004E2CE4 /* UISplitViewController+QuickAccess.m in Sources */,
+				3BA38A441A263F74004E2CE4 /* HJSDebugMailComposeDelegate.m in Sources */,
 				3BA38A271A263A66004E2CE4 /* UIColor+iOS7Colors.m in Sources */,
+				3BA38A4D1A264146004E2CE4 /* HJSCoreDataCenter.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

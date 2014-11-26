@@ -15,7 +15,4 @@ FOUNDATION_EXPORT double HJSKitVersionNumber;
 FOUNDATION_EXPORT const unsigned char HJSKitVersionString[];
 
 // In this header, you should import all the public headers of your framework using statements like #import <HJSKit/PublicHeader.h>
-#import "HJSDebugCenter.h"
-#import "HJSCoreDataCenter.h"
-#import "NSString+NSCharacterSetTesting.h"
-#import "UISplitViewController+QuickAccess.h"
+#import "HJSCoreDataCenter+PresentErrors.h"
