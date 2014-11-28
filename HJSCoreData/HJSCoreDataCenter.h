@@ -14,7 +14,7 @@ extern NSString * HJSCoreDataCenterResetNotificationKey;
 	of a data error. This is a singleton object, the proper way to get a center is via the class call
 	defaultCenter. [HJSCoreDataCenter defaultCenter]
 
- @warning You must set defaultCenter.modelDirName and defaultCenter.databaseName before you do anything that
+ @warning You must set defaultCenter.modelDirURL and defaultCenter.databaseName before you do anything that
 	will actually create the Core Data objects.
 
  HJSCoreDataCenter attempts to recover from certain types of merge errors and that can cause the stack to reset
@@ -30,12 +30,11 @@ extern NSString * HJSCoreDataCenterResetNotificationKey;
 @interface HJSCoreDataCenter : NSObject
 
 /**
- This is the string used to build the URL for the momD folder. We'll look for <modelDirName>.momd in the main
-	bundle and use that to get the NSManagedObjectModel.
+ This is the URL for the momD folder. We'll get the NSManagedObjectModel from here.
 
  Set it BEFORE you do anything that requires the managedObjectModel or you'll get an assert.
  */
-@property (nonatomic) NSString * modelDirName;
+@property (nonatomic) NSURL * modelDirURL;
 
 /**
  This is the string used to build the URL for the persistent store folder. We'll look for <databaseName> in the
@@ -79,7 +78,7 @@ extern NSString * HJSCoreDataCenterResetNotificationKey;
 + (instancetype)defaultCenter;
 
 /**
- @warning You really need to configure modelDirName and databaseName before calling context.
+ @warning You really need to configure modelDirURL and databaseName before calling context.
 
  @result a NSManagedObjectContext that is configured and ready for use.
  */

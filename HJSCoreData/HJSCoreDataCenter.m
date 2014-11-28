@@ -130,13 +130,12 @@ static HJSCoreDataCenter * defaultCenter;
 - (NSManagedObjectModel *)managedObjectModel
 {
 	if (!_managedObjectModel) {
-		if (!_modelDirName) {
+		if (!_modelDirURL) {
 			[[HJSDebugCenter defaultCenter] logAtLevel:HJSLogLevelCritical
-										  formatString:@"modelDirName has to be set before the managedObjectModel can be created"];
+										  formatString:@"modelDirURL has to be set before the managedObjectModel can be created"];
 			return nil;
 		}
-		NSURL * modelURL = [[NSBundle mainBundle] URLForResource:_modelDirName withExtension:@"momd"];
-		_managedObjectModel = [[NSManagedObjectModel alloc] initWithContentsOfURL:modelURL];
+		_managedObjectModel = [[NSManagedObjectModel alloc] initWithContentsOfURL:_modelDirURL];
 	}
     return _managedObjectModel;
 }
