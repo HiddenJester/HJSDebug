@@ -37,12 +37,11 @@ extern NSString * HJSCoreDataCenterResetNotificationKey;
 @property (nonatomic) NSURL * modelDirURL;
 
 /**
- This is the string used to build the URL for the persistent store folder. We'll look for <databaseName> in the
-	application documents directory. Note that this means it should be fully qualifed, ie. "name.sqlite"
-
+ This is the NSURL for the persistent store. This should be fully qualified, be it in the application
+	documents directory, or an app group, or some other locale.
  Set it BEFORE you do anything that requires the persistentStoreCoordinator or you'll get an assert.
  */
-@property (nonatomic) NSString * databaseName;
+@property (nonatomic) NSURL * storeURL;
 
 /**
  When presentErrorEmailFromViewController is called it will attempt to create an email for the user to send to us 

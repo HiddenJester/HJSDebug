@@ -70,8 +70,9 @@ static HJSCoreDataCenter * defaultCenter;
 
 - (id)init {
 	if (defaultCenter) {
-		[[HJSDebugCenter defaultCenter] logAtLevel:HJSLogLevelCritical
-			formatString:@"Don't create HJSCoreDataCenter objects, use HJSCoreDataCenter defaultCenter instead."];
+		[[HJSDebugCenter defaultCenter]
+		 logAtLevel:HJSLogLevelCritical
+			message:@"HJSCoreData: Don't create HJSCoreDataCenter objects, use [HJSCoreDataCenter defaultCenter]."];
 		return nil;
 	}
 	
@@ -92,10 +93,10 @@ static HJSCoreDataCenter * defaultCenter;
 
 	[[self context] processPendingChanges];
 	if (![[self context] hasChanges]) {
-		[debug logAtLevel:HJSLogLevelWarning formatString:@"Core Data save called with no changes pending."];
+		[debug logAtLevel:HJSLogLevelWarning message:@"HJSCoreData: Core Data save called with no changes pending."];
 	}
 	if ([[self context] save:&error]) {
-		[debug logMessage:@"Data saved successfully"];
+		[debug logMessage:@"HJSCoreData: Data saved successfully"];
 	} else {
 		[debug logError:error];
 		[self resetStack];
@@ -119,7 +120,8 @@ static HJSCoreDataCenter * defaultCenter;
 }
 
 - (void)resetStack {
-	[[HJSDebugCenter defaultCenter] logAtLevel:HJSLogLevelWarning formatString:@"Resetting the core data stack."];
+	[[HJSDebugCenter defaultCenter] logAtLevel:HJSLogLevelWarning
+									   message:@"HJSCoreData: Resetting the core data stack."];
 	_savePending = NO;
 	_managedObjectContext = nil;
 	_persistentStoreCoordinator = nil;
@@ -131,10 +133,12 @@ static HJSCoreDataCenter * defaultCenter;
 {
 	if (!_managedObjectModel) {
 		if (!_modelDirURL) {
-			[[HJSDebugCenter defaultCenter] logAtLevel:HJSLogLevelCritical
-										  formatString:@"modelDirURL has to be set before the managedObjectModel can be created"];
+			[[HJSDebugCenter defaultCenter]
+			 logAtLevel:HJSLogLevelCritical
+			 message:@"HJSCoreData: modelDirURL has to be set before the managedObjectModel can be created"];
 			return nil;
 		}
+		[[HJSDebugCenter defaultCenter] logFormattedString:@"HJSCoreData: Opening the model dir at %@", _modelDirURL];
 		_managedObjectModel = [[NSManagedObjectModel alloc] initWithContentsOfURL:_modelDirURL];
 	}
     return _managedObjectModel;
@@ -142,12 +146,12 @@ static HJSCoreDataCenter * defaultCenter;
 
 - (NSPersistentStoreCoordinator *)persistentStoreCoordinator {
 	if (!_persistentStoreCoordinator) {
-		if (!_databaseName) {
-			[[HJSDebugCenter defaultCenter] logAtLevel:HJSLogLevelCritical
-										  formatString:@"databaseName has to be set before the persistentStoreCoordinator can be created"];
+		if (!_storeURL) {
+			[[HJSDebugCenter defaultCenter]
+			 logAtLevel:HJSLogLevelCritical
+			 message:@"HJSCoreData: storeURL has to be set before the persistentStoreCoordinator can be created"];
 			return nil;
 		}
-		NSURL * storeURL = [[self applicationDocumentsDirectory] URLByAppendingPathComponent:_databaseName];
 		NSError * __autoreleasing error = nil;
 		NSDictionary * options = [NSDictionary dictionaryWithObjectsAndKeys:
 								  [NSNumber numberWithBool:YES], NSMigratePersistentStoresAutomaticallyOption,
@@ -156,9 +160,11 @@ static HJSCoreDataCenter * defaultCenter;
 		
 		_persistentStoreCoordinator = [[NSPersistentStoreCoordinator alloc]
 									  initWithManagedObjectModel:[self managedObjectModel]];
+		[[HJSDebugCenter defaultCenter] logFormattedString:@"HJSCoreData: Opening the persistent store at %@",
+		 _modelDirURL];
 		NSPersistentStore * store = [_persistentStoreCoordinator addPersistentStoreWithType:NSSQLiteStoreType
 																			  configuration:nil
-																						URL:storeURL
+																						URL:_storeURL
 																					options:options
 																					  error:&error];
 		if (!store) {
@@ -167,12 +173,6 @@ static HJSCoreDataCenter * defaultCenter;
 	}
     
     return _persistentStoreCoordinator;
-}
-
-// Returns the URL to the application's Documents directory.
-- (NSURL *)applicationDocumentsDirectory
-{
-    return [[[NSFileManager defaultManager] URLsForDirectory:NSDocumentDirectory inDomains:NSUserDomainMask] lastObject];
 }
 
 @end
