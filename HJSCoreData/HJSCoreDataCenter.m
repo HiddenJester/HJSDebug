@@ -70,7 +70,7 @@ static HJSCoreDataCenter * defaultCenter;
 
 - (id)init {
 	if (defaultCenter) {
-		[[HJSDebugCenter defaultCenter]
+		[[HJSDebugCenter existingCenter]
 		 logAtLevel:HJSLogLevelCritical
 			message:@"HJSCoreData: Don't create HJSCoreDataCenter objects, use [HJSCoreDataCenter defaultCenter]."];
 		return nil;
@@ -89,7 +89,7 @@ static HJSCoreDataCenter * defaultCenter;
 
 - (void)save {
 	NSError * __autoreleasing error = nil;
-	HJSDebugCenter * debug = [HJSDebugCenter defaultCenter];
+	HJSDebugCenter * debug = [HJSDebugCenter existingCenter];
 
 	[[self context] processPendingChanges];
 	if (![[self context] hasChanges]) {
@@ -120,7 +120,7 @@ static HJSCoreDataCenter * defaultCenter;
 }
 
 - (void)resetStack {
-	[[HJSDebugCenter defaultCenter] logAtLevel:HJSLogLevelWarning
+	[[HJSDebugCenter existingCenter] logAtLevel:HJSLogLevelWarning
 									   message:@"HJSCoreData: Resetting the core data stack."];
 	_savePending = NO;
 	_managedObjectContext = nil;
@@ -133,12 +133,12 @@ static HJSCoreDataCenter * defaultCenter;
 {
 	if (!_managedObjectModel) {
 		if (!_modelDirURL) {
-			[[HJSDebugCenter defaultCenter]
+			[[HJSDebugCenter existingCenter]
 			 logAtLevel:HJSLogLevelCritical
 			 message:@"HJSCoreData: modelDirURL has to be set before the managedObjectModel can be created"];
 			return nil;
 		}
-		[[HJSDebugCenter defaultCenter] logFormattedString:@"HJSCoreData: Opening the model dir at %@", _modelDirURL];
+		[[HJSDebugCenter existingCenter] logFormattedString:@"HJSCoreData: Opening the model dir at %@", _modelDirURL];
 		_managedObjectModel = [[NSManagedObjectModel alloc] initWithContentsOfURL:_modelDirURL];
 	}
     return _managedObjectModel;
@@ -147,7 +147,7 @@ static HJSCoreDataCenter * defaultCenter;
 - (NSPersistentStoreCoordinator *)persistentStoreCoordinator {
 	if (!_persistentStoreCoordinator) {
 		if (!_storeURL) {
-			[[HJSDebugCenter defaultCenter]
+			[[HJSDebugCenter existingCenter]
 			 logAtLevel:HJSLogLevelCritical
 			 message:@"HJSCoreData: storeURL has to be set before the persistentStoreCoordinator can be created"];
 			return nil;
@@ -160,15 +160,15 @@ static HJSCoreDataCenter * defaultCenter;
 		
 		_persistentStoreCoordinator = [[NSPersistentStoreCoordinator alloc]
 									  initWithManagedObjectModel:[self managedObjectModel]];
-		[[HJSDebugCenter defaultCenter] logFormattedString:@"HJSCoreData: Opening the persistent store at %@",
-		 _modelDirURL];
+		[[HJSDebugCenter existingCenter] logFormattedString:@"HJSCoreData: Opening the persistent store at %@",
+		 _storeURL];
 		NSPersistentStore * store = [_persistentStoreCoordinator addPersistentStoreWithType:NSSQLiteStoreType
 																			  configuration:nil
 																						URL:_storeURL
 																					options:options
 																					  error:&error];
 		if (!store) {
-			[[HJSDebugCenter defaultCenter] logError:error];
+			[[HJSDebugCenter existingCenter] logError:error];
 		} // Couldn't open the store!
 	}
     

@@ -13,7 +13,7 @@
 
 #pragma mark Public methods
 - (void)presentErrorEmailFromViewController:(UIViewController *)presenter {
-	HJSDebugCenter * debugCenter = [HJSDebugCenter defaultCenter];
+	HJSDebugCenter * debugCenter = [HJSDebugCenter existingCenter];
 	if ([debugCenter canSendMail]) {
 		[debugCenter presentMailLogWithExplanation:self.errorEmailHeader
 										   subject:self.errorEmailSubject

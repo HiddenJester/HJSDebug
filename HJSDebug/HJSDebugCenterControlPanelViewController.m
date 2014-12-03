@@ -18,10 +18,11 @@
 	_breakEnabledSwitch.hidden = YES;
 #endif
 
-	_logText.text = [[HJSDebugCenter defaultCenter] logContents];
-	_adHocSwitch.on = [HJSDebugCenter defaultCenter].adHocDebugging;
-	_breakEnabledSwitch.on = [HJSDebugCenter defaultCenter].debugBreakEnabled;
-	switch ([HJSDebugCenter defaultCenter].logLevel) {
+	HJSDebugCenter * debug = [HJSDebugCenter existingCenter];
+	_logText.text = debug.logContents;
+	_adHocSwitch.on = debug.adHocDebugging;
+	_breakEnabledSwitch.on = debug.debugBreakEnabled;
+	switch (debug.logLevel) {
 		case HJSLogLevelCritical:
 			_loglevelSegmentedController.selectedSegmentIndex = 0;
 			break;
@@ -44,7 +45,7 @@
 - (IBAction)mailLog:(id)sender {
 	UIViewController * presenter = self.presentingViewController;
 	[self dismissViewControllerAnimated:YES completion:^{
-		[[HJSDebugCenter defaultCenter]
+		[[HJSDebugCenter existingCenter]
 		 presentMailLogWithExplanation:@"This log was requested via the debug control panel."
 		 subject:@"Debug log"
 		 fromViewController:presenter];
@@ -52,37 +53,40 @@
 }
 
 - (IBAction)toggleAdHoc:(id)sender {
-	[[HJSDebugCenter defaultCenter] setAdHocDebugging:_adHocSwitch.on];
-	[[HJSDebugCenter defaultCenter] saveSettings];
+	HJSDebugCenter * debug = [HJSDebugCenter existingCenter];
+	debug.adHocDebugging =  _adHocSwitch.on;
+	[debug saveSettings];
 }
 
 - (IBAction)toggleBreakEnabled:(id)sender {
-	[[HJSDebugCenter defaultCenter] setDebugBreakEnabled:_breakEnabledSwitch.on];
-	[[HJSDebugCenter defaultCenter] saveSettings];
+	HJSDebugCenter * debug = [HJSDebugCenter existingCenter];
+	debug.debugBreakEnabled = _breakEnabledSwitch.on;
+	[debug saveSettings];
 }
 
 - (IBAction)changeLogLevel:(id)sender {
-	HJSLogLevel level;
+	HJSDebugCenter * debug = [HJSDebugCenter existingCenter];
+
 	switch (_loglevelSegmentedController.selectedSegmentIndex) {
 		case 0:
-			level = HJSLogLevelCritical;
+			debug.logLevel = HJSLogLevelCritical;
 			break;
 			
 		case 1:
-			level = HJSLogLevelWarning;
+			debug.logLevel = HJSLogLevelWarning;
 			break;
 
 		case 3:
-			level = HJSLogLevelDebug;
+			debug.logLevel = HJSLogLevelDebug;
 			break;
 			
 		case 2:
 		default:
-			level = HJSLogLevelInfo;
+			debug.logLevel = HJSLogLevelInfo;
 			break;
 	}
-	[[HJSDebugCenter defaultCenter] setLogLevel:level];
-	[[HJSDebugCenter defaultCenter] saveSettings];
+
+	[debug saveSettings];
 }
 
 - (IBAction)dismissSelf:(id)sender {

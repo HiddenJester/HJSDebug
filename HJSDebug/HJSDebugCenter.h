@@ -32,6 +32,11 @@ typedef NS_ENUM(NSInteger, HJSLogLevel) {
 /// URLs for both the log and the config file and returns the fresh center.
 + (HJSDebugCenter *)defaultCenter;
 
+/// This will return an existing defaultCenter but otherwise will simply debugBreak and retun nil. It's mostly useful
+/// for framework components like the CoreData stack who want to use the logger but would consider an error condition
+/// if one was not available.
++ (HJSDebugCenter *)existingCenter;
+
 // Raise SIGTRAP in debug, NOP in release
 - (void)debugBreak;
 

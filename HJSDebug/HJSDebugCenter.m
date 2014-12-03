@@ -45,7 +45,8 @@ static HJSDebugCenter * defaultCenter;
 															  create:YES
 															   error:&error];
 	if (error) {
-		[[HJSDebugCenter defaultCenter] logError:error];
+		// Argh. Can't use defaultCenter here, it doesn't exist yet.
+		NSLog(@"%@", error.description);
 	} else {
 		logURL = [logURL URLByAppendingPathComponent:logFilename];
 	}
@@ -57,7 +58,8 @@ static HJSDebugCenter * defaultCenter;
 																 create:YES
 																  error:&error];
 	if (error) {
-		[[HJSDebugCenter defaultCenter] logError:error];
+		// Argh. Can't use defaultCenter here, it doesn't exist yet.
+		NSLog(@"%@", error.description);
 	} else {
 		configURL = [configURL URLByAppendingPathComponent:configFilename];
 	}
@@ -72,6 +74,17 @@ static HJSDebugCenter * defaultCenter;
 		defaultCenter = [[HJSDebugCenter alloc] initWithConfigURL:configURL logURL:logURL];
 	});
 	return defaultCenter;
+}
+
++ (HJSDebugCenter *)existingCenter {
+	if (defaultCenter) {
+		return defaultCenter;
+	}
+	// Otherwise, make a default one, debug break about it, then destroy it.
+	HJSDebugCenter * tempCenter = [HJSDebugCenter defaultCenter];
+	[tempCenter logAtLevel:HJSLogLevelCritical message:@"existingCenter called with no center provided."];
+	defaultCenter = nil;
+	return nil;
 }
 
 #pragma mark Properties
@@ -350,6 +363,7 @@ static HJSDebugCenter * defaultCenter;
 		} else {
 			asl_add_log_file(_aslClient, _logFile.fileDescriptor);
 		}
+		[self logFormattedString:@"Logging to %@", _logFileURL];
 
 		_settingsFileURL = configURL;
 		// Doesn't really give back an error. Either we get data or we get nil.
@@ -362,11 +376,11 @@ static HJSDebugCenter * defaultCenter;
 		else {
 			// Set the log level as specified
 			[self setLogLevel:[[_settings objectForKey:loggingLevelKey] integerValue]];
+			[self logFormattedString:@"Debug settings file loaded from %@", _settingsFileURL];
 		}
 
 		[self logStartupInfo];
 		[self logMessage:@"HJSDebugCenter initialized"];
-		[self logMessage:@"=========================="];
     }
     return self;
 }
@@ -392,8 +406,8 @@ static HJSDebugCenter * defaultCenter;
 
 /// Build a settings file from scratch, based on compile-time defines active.
 - (void)createSettings {
-	[self logFormattedString:@"Creating new settings file at %@",
-	 _settingsFileURL];
+	[self logFormattedString:@"Creating new settings file at %@", _settingsFileURL];
+
 	_settings = [NSMutableDictionary new];
 	// Release builds log warnings & up, no ad-hoc debugging, and no debug break
 	[self setLogLevel:HJSLogLevelWarning];
@@ -436,6 +450,12 @@ static HJSDebugCenter * defaultCenter;
 #else
 	[self logMessage:@"HJSKit not built from framework and has no separate version number."];
 #endif
+	if (self.adHocDebugging) {
+		[self logMessage:@"Ad-hoc debugging is on."];
+	}
+	else {
+		[self logMessage:@"Ad-hoc debugging is off."];
+	}
 #if DEBUG
 	if (self.debugBreakEnabled) {
 		[self logMessage:@"Debug Break is enabled."];
@@ -444,6 +464,8 @@ static HJSDebugCenter * defaultCenter;
 		[self logMessage:@"Debug Break is off in the options."];
 	}
 #endif
+
+	[self logMessage:@"=========================="];
 }
 
 @end
