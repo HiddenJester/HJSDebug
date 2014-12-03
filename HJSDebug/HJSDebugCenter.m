@@ -2,17 +2,15 @@
 //
 //
 
+@import MessageUI;
+
 #import "HJSDebugCenter.h"
 
 #include <asl.h>
-
-#import <MessageUI/MessageUI.h>
+#import "CoreData/CoreDataErrors.h" // Need definition of NSDetailedErrorsKey
 
 #import "HJSDebugMailComposeDelegate.h"
 #import "HJSDebugCenterControlPanelViewController.h"
-
-static NSString * logFilename = @"HJSDebugLog.txt";
-static NSString * settingsFilename = @"HJSDebugSettings.plist";
 
 static NSString * loggingLevelKey = @"LoggingLevel";
 static NSString * adHocDebuggingKey = @"adHocDebugging";
@@ -26,7 +24,7 @@ static HJSDebugCenter * defaultCenter;
 	NSURL * _settingsFileURL;
 	
 	// Logging bits
-	aslclient _client;
+	aslclient _aslClient;
 	NSFileHandle * _logFile;
 	NSURL * _logFileURL;
 
@@ -34,10 +32,44 @@ static HJSDebugCenter * defaultCenter;
 }
 
 + (HJSDebugCenter *)defaultCenter {
-	static dispatch_once_t onceToken;
+	if (defaultCenter) {
+		return defaultCenter;
+	}
 	
+	static NSString * logFilename = @"HJSDebugLog.txt";
+	static NSString * configFilename = @"HJSDebugSettings.plist";
+	NSError * __autoreleasing  error;
+	NSURL * logURL = [[NSFileManager defaultManager] URLForDirectory:NSCachesDirectory
+															inDomain:NSUserDomainMask
+												   appropriateForURL:nil
+															  create:YES
+															   error:&error];
+	if (error) {
+		[[HJSDebugCenter defaultCenter] logError:error];
+	} else {
+		logURL = [logURL URLByAppendingPathComponent:logFilename];
+	}
+
+	// Create the config URL
+	NSURL * configURL = [[NSFileManager defaultManager] URLForDirectory:NSApplicationSupportDirectory
+															   inDomain:NSUserDomainMask
+													  appropriateForURL:nil
+																 create:YES
+																  error:&error];
+	if (error) {
+		[[HJSDebugCenter defaultCenter] logError:error];
+	} else {
+		configURL = [configURL URLByAppendingPathComponent:configFilename];
+	}
+
+	return [HJSDebugCenter defaultCenterWithConfigURL:configURL logURL:logURL];
+}
+
++ (HJSDebugCenter *)defaultCenterWithConfigURL:(NSURL *)configURL logURL:(NSURL *)logURL {
+	static dispatch_once_t onceToken;
+
 	dispatch_once(&onceToken, ^{
-		defaultCenter = [HJSDebugCenter new];
+		defaultCenter = [[HJSDebugCenter alloc] initWithConfigURL:configURL logURL:logURL];
 	});
 	return defaultCenter;
 }
@@ -69,9 +101,9 @@ static HJSDebugCenter * defaultCenter;
 			break;
 	}
 
-	asl_set_filter(_client, ASL_FILTER_MASK_UPTO(level));
+	asl_set_filter(_aslClient, ASL_FILTER_MASK_UPTO(level));
 	if (_logFile) {
-		asl_set_output_file_filter(_client, _logFile.fileDescriptor, ASL_FILTER_MASK_UPTO(level));
+		asl_set_output_file_filter(_aslClient, _logFile.fileDescriptor, ASL_FILTER_MASK_UPTO(level));
 	}
 }
 
@@ -284,8 +316,19 @@ static HJSDebugCenter * defaultCenter;
 }
 
 #pragma mark Lifecycle
-
 - (id)init {
+	if (defaultCenter) {
+		[self logAtLevel:HJSLogLevelCritical
+			formatString:@"Don't create HJSDebugCenter objects, use HJSDebugCenter defaultCenter instead."];
+		return defaultCenter;
+	}
+
+	return [HJSDebugCenter defaultCenter];
+}
+
+- (id)initWithConfigURL:(NSURL *)configURL logURL:(NSURL *)logURL {
+	NSError * __autoreleasing error;
+
 	if (defaultCenter) {
 		[self logAtLevel:HJSLogLevelCritical
 			formatString:@"Don't create HJSDebugCenter objects, use HJSDebugCenter defaultCenter instead."];
@@ -294,88 +337,34 @@ static HJSDebugCenter * defaultCenter;
 
     self = [super init];
     if (self) {
-		_client = asl_open(NULL, NULL, ASL_OPT_NO_DELAY | ASL_OPT_STDERR);
+		//set up the aslClient
+		_aslClient = asl_open(NULL, NULL, ASL_OPT_NO_DELAY | ASL_OPT_STDERR);
 
-
-		NSError * __autoreleasing error;
 		// Put the log file in the application's cache folder
-		_logFileURL = [[NSFileManager defaultManager] URLForDirectory:NSCachesDirectory
-															 inDomain:NSUserDomainMask
-													appropriateForURL:nil
-															   create:YES
-																error:&error];
-		if (error) {
-			[[HJSDebugCenter defaultCenter] logError:error];
-		} else {
-			_logFileURL = [_logFileURL URLByAppendingPathComponent:logFilename];
-		}
+		_logFileURL = logURL;
 
 		[[NSFileManager defaultManager] createFileAtPath:_logFileURL.path contents:nil attributes:nil];
 		_logFile = [NSFileHandle fileHandleForWritingToURL:_logFileURL error:&error];
 		if (!_logFile) {
 			[self logError:error];
 		} else {
-			asl_add_log_file(_client, _logFile.fileDescriptor);
+			asl_add_log_file(_aslClient, _logFile.fileDescriptor);
 		}
 
-
-
-		_settingsFileURL = [[NSFileManager defaultManager] URLForDirectory:NSApplicationSupportDirectory
-																  inDomain:NSUserDomainMask
-														 appropriateForURL:nil
-																	create:YES
-																	 error:&error];
-		if (error) {
-			[[HJSDebugCenter defaultCenter] logError:error];
-		} else {
-			_settingsFileURL = [_settingsFileURL URLByAppendingPathComponent:settingsFilename];
-		}
+		_settingsFileURL = configURL;
+		// Doesn't really give back an error. Either we get data or we get nil.
 		_settings = [[NSDictionary dictionaryWithContentsOfURL:_settingsFileURL] mutableCopy];
+
+		// If we didn't load settings from the specified file make fresh ones
 		if (!_settings) {
-			_settings = [NSMutableDictionary new];
-			[self setLogLevel:HJSLogLevelWarning];
-			[self setAdHocDebugging:NO];
-			[self setDebugBreakEnabled:NO];
-#if BETA
-			[self setAdHocDebugging:YES];
-			[self setLogLevel:HJSLogLevelInfo];
-			[self logMessage:@"Beta defined, ad-hoc debugging activated."];
-			[self saveSettings];
-#endif
-#if DEBUG
-			[self setAdHocDebugging:YES];
-			[self setDebugBreakEnabled:YES];
-			[self setLogLevel:HJSLogLevelInfo];
-			[self saveSettings];
-			[self logMessage:@"Debug defined, ad-hoc debugging & debugBreak() activated."];
-#endif
-			[self saveSettings];
-		} else {
+			[self createSettings];
+		}
+		else {
+			// Set the log level as specified
 			[self setLogLevel:[[_settings objectForKey:loggingLevelKey] integerValue]];
-#if DEBUG
-			if (self.debugBreakEnabled) {
-				[self logMessage:@"Debug Break is enabled."];
-			}
-			else {
-				[self logMessage:@"Debug Break is off in the options."];
-			}
-#endif
 		}
 
-		NSDictionary * mainBundleInfo = [[NSBundle mainBundle] infoDictionary];
-		[self logAtLevel:HJSLogLevelInfo formatString:@"App version: %@, build: %@",
-		 [mainBundleInfo objectForKey:@"CFBundleShortVersionString"],
-		 [mainBundleInfo objectForKey:@"CFBundleVersion"]
-		 ];
-#if HJS_FRAMEWORK_BUILD
-		NSDictionary * frameworkBundleInfo = [[NSBundle bundleForClass:self.class] infoDictionary];
-		[self logFormattedString:@"HJSKit version: %@, build: %@",
-		 [frameworkBundleInfo objectForKey:@"CFBundleShortVersionString"],
-		 [frameworkBundleInfo objectForKey:@"CFBundleVersion"]
-		 ];
-#else
-		[self logMessage:@"HJSKit not built from framework and has no separate version number."];
-#endif
+		[self logStartupInfo];
 		[self logMessage:@"HJSDebugCenter initialized"];
 		[self logMessage:@"=========================="];
     }
@@ -384,21 +373,77 @@ static HJSDebugCenter * defaultCenter;
 
 - (void)terminateLogging {
 	if (_logFile) {
-		asl_remove_log_file(_client, _logFile.fileDescriptor);
+		asl_remove_log_file(_aslClient, _logFile.fileDescriptor);
 		[_logFile closeFile];
 		_logFile = nil;
 	}
-	asl_close(_client);
-	_client = NULL;
+	asl_close(_aslClient);
+	_aslClient = NULL;
 }
 
 #pragma mark internals
 
 - (void)logMessage:(NSString *)message level:(HJSLogLevel)level skipBreak:(BOOL)skipBreak {
-	asl_log(_client, NULL, level, "%s", [message UTF8String]);
+	asl_log(_aslClient, NULL, level, "%s", [message UTF8String]);
 	if (!skipBreak && level == HJSLogLevelCritical) {
 		[self debugBreak];
 	}
+}
+
+/// Build a settings file from scratch, based on compile-time defines active.
+- (void)createSettings {
+	[self logFormattedString:@"Creating new settings file at %@",
+	 _settingsFileURL];
+	_settings = [NSMutableDictionary new];
+	// Release builds log warnings & up, no ad-hoc debugging, and no debug break
+	[self setLogLevel:HJSLogLevelWarning];
+	[self setAdHocDebugging:NO];
+	[self setDebugBreakEnabled:NO];
+#if BETA
+	// Beta cranks the level down to Info, and turns on ad-hoc debugging. DebugBreak is still disabled.
+	[self setAdHocDebugging:YES];
+	[self setLogLevel:HJSLogLevelInfo];
+	[self logMessage:@"Beta defined, ad-hoc debugging activated."];
+#endif
+#if DEBUG
+	// Debug cranks the level down to Info and turns on ad-hoc & debugBreak. Note this overrrides BETA if
+	// both are defined
+	[self setAdHocDebugging:YES];
+	[self setDebugBreakEnabled:YES];
+	[self setLogLevel:HJSLogLevelInfo];
+	[self logMessage:@"Debug defined, ad-hoc debugging & debugBreak() activated."];
+#endif
+	// save the settings we just created
+	[self saveSettings];
+}
+
+/// Dumps some useful information into the log
+- (void)logStartupInfo {
+	[self logMessage:@"=========================="];
+
+	NSDictionary * mainBundleInfo = [[NSBundle mainBundle] infoDictionary];
+	[self logFormattedString:@"%@ version: %@, build: %@",
+	 [mainBundleInfo objectForKey:@"CFBundleExecutable"],
+	 [mainBundleInfo objectForKey:@"CFBundleShortVersionString"],
+	 [mainBundleInfo objectForKey:@"CFBundleVersion"]
+	 ];
+#if HJS_FRAMEWORK_BUILD
+	NSDictionary * frameworkBundleInfo = [[NSBundle bundleForClass:self.class] infoDictionary];
+	[self logFormattedString:@"HJSExtension version: %@, build: %@",
+	 [frameworkBundleInfo objectForKey:@"CFBundleShortVersionString"],
+	 [frameworkBundleInfo objectForKey:@"CFBundleVersion"]
+	 ];
+#else
+	[self logMessage:@"HJSKit not built from framework and has no separate version number."];
+#endif
+#if DEBUG
+	if (self.debugBreakEnabled) {
+		[self logMessage:@"Debug Break is enabled."];
+	}
+	else {
+		[self logMessage:@"Debug Break is off in the options."];
+	}
+#endif
 }
 
 @end

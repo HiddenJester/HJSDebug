@@ -1,9 +1,7 @@
 //  Created by Timothy Sanders on 4/3/14.
 //
 //
-
-#import <UIKit/UIKit.h>
-#import <CoreData/CoreData.h>
+@import UIKit;
 
 // Logging sits atop ASL, but I don't want to include ASL.H everywhere, nor do I need
 // all 8 logging levels. So we A ) Objective-C-ify the #defines into a NS_ENUM,
@@ -20,17 +18,18 @@ typedef NS_ENUM(NSInteger, HJSLogLevel) {
 	HJSLogLevelDebug = 7				// ASL_LEVEL_DEBUG
 };
 
-// At startup if there is no settings file we create one suitable for retail builds
-// with a logging level of warning and Ad-Hoc debugging set to NO. If BETA is #defined then
-// the logging level is set to Info and Ad-Hoc debugging is set to YES. Furthermore
-// if DEBUG is #defined then we ALSO set the log level to Debug and Ad-Hoc to YES. Note
-// that a debug build will then *persist* those settings into the file.
 @interface HJSDebugCenter : NSObject
 
 @property (nonatomic) HJSLogLevel logLevel;
 @property (nonatomic) BOOL adHocDebugging;
 @property (nonatomic) BOOL debugBreakEnabled;
 
+/// If defaultCenter has already been created this returns it. Otherwise it creates defaultCenter to use the specified
+/// URLs for both the log and the config file and returns the fresh center.
++ (HJSDebugCenter *)defaultCenterWithConfigURL:(NSURL *)configURL logURL:(NSURL *)logURL;
+
+/// If defaultCenter has already been created this returns it. Otherwise it creates defaultCenter with default
+/// URLs for both the log and the config file and returns the fresh center.
 + (HJSDebugCenter *)defaultCenter;
 
 // Raise SIGTRAP in debug, NOP in release
@@ -88,6 +87,7 @@ typedef NS_ENUM(NSInteger, HJSLogLevel) {
 - (BOOL)presentControlPanelFromViewController:(UIViewController*)presenter;
 
 #pragma mark Lifecycle Methods
+- (id)initWithConfigURL:(NSURL *)configURL logURL:(NSURL *)logURL;
 
 // Call when the app is terminating. This will close the log file and release ASL resources
 - (void)terminateLogging;
