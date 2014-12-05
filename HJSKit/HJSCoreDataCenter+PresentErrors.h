@@ -15,7 +15,8 @@
 
  @param presenter A View Controller that will present the mail dialog.
 
- @result The user is either presented an email to send or an alert dialog informing them there has been an error.
+ There is no return but the user is either presented an email to send or an alert dialog informing them there has 
+ been an error.
  */
 - (void)presentErrorEmailFromViewController:(UIViewController *)presenter;
 

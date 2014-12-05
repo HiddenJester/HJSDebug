@@ -88,7 +88,7 @@ extern NSString * HJSCoreDataCenterResetNotificationKey;
 	is put on the mainQueue for later execution. This makes coalescing multiple requests easy. Just call requestSave
 	after every data change and big sweeping changes will still only trigger a single Core Data save.
 
- @result No return value but at some point in the future a Core Data save will happen on the main operation queue.
+ There is no return value but at some point in the future a Core Data save will happen on the main operation queue.
  */
 - (void)requestSave;
 
@@ -96,7 +96,7 @@ extern NSString * HJSCoreDataCenterResetNotificationKey;
  This is mostly a debugging aid. It triggers an immediate save. Note that this does not remove the future save if
 	requestSave is called.
 
- @result Core Data immediately saves.
+ There is no return value but Core Data immediately saves.
  */
 - (void)immediateSave; // Mostly a debugging aid, but can be useful to force a save RIGHT NOW
 
