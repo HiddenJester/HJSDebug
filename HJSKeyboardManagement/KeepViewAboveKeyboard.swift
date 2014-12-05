@@ -4,7 +4,9 @@
 //
 //  Created by Timothy Sanders on 2014-12-04.
 //  Copyright (c) 2014 HIddenJester Software. All rights reserved.
-//
+// This work is licensed under the Creative Commons Attribution-ShareAlike 4.0
+// International License. To view a copy of this license, visit
+// http://creativecommons.org/licenses/by-sa/4.0/deed.en_US.//
 
 import UIKit
 
@@ -23,7 +25,7 @@ rawValue was 7 then it will go ahead and log a debug message to that effect and 
 If the value was some *OTHER* thing it logs a critical message about having an unknown value and sets the curveType
 to .EaseInEaseOut anyway. So curveType will ALWAYS be legal, even if the behavior of this is changed in the future.
 
-:warning:
+:warning: 
 This class is designed for a simple UIView that just needs to be adjusted in parent space. If you have a
 UIScrollView than you probably also want to take contentOffset into account which this class does not.
 
