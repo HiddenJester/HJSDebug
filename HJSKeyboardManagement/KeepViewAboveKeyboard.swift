@@ -44,6 +44,11 @@ _keyboardWatcher.targetView = _detailField;
 		}
 	}
 
+	/// You can provide the completion block for all of the animations if you'd like to do something when the animation
+	/// finishes. Note that we don't call this when we cancel out the adjustment, just when the adjustment is altered
+	/// to a non-zero value.
+	@objc public var completionBlock: ((Bool) -> Void)?
+
 	/// The view is that is adjusted as needed. Note that this is for views that are not UIScrollViews as we are
 	/// simply manipulating the view's center property with no adjustments for content offsets.
 	private weak var adjustedView : UIView?
@@ -187,7 +192,7 @@ _keyboardWatcher.targetView = _detailField;
 					self.adjustedView!.center =
 						CGPointMake(self.adjustedView!.center.x, self.adjustedView!.center.y + verticalDelta);
 				},
-				completion: nil)
+				completion: completionBlock)
 			currentAdjustment += verticalDelta
 		}
 		// TargetViewBottomY is not inside keyboardRect. If we have previously adjusted we should spend some/all of it.
@@ -201,7 +206,7 @@ _keyboardWatcher.targetView = _detailField;
 						self.adjustedView!.center =
 							CGPointMake(self.adjustedView!.center.x, self.adjustedView!.center.y + verticalDelta);
 					},
-					completion: nil)
+					completion: completionBlock)
 				currentAdjustment += verticalDelta
 			}
 			// currentAdjustement is less than -verticalDelta, we can zero it out now.

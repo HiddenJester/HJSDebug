@@ -126,7 +126,9 @@ static HJSCoreDataCenter * defaultCenter;
 	_managedObjectContext = nil;
 	_persistentStoreCoordinator = nil;
 	_managedObjectModel = nil;
-	[[NSNotificationCenter defaultCenter] postNotificationName:HJSCoreDataCenterResetNotificationKey object:self userInfo:nil];
+	[[NSNotificationCenter defaultCenter] postNotificationName:HJSCoreDataCenterResetNotificationKey
+														object:self
+													  userInfo:nil];
 }
 
 - (NSManagedObjectModel *)managedObjectModel
