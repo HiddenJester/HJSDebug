@@ -53,22 +53,23 @@ _keyboardWatcher.targetView = _detailField;
 		// do the math we need to adjust targetView's origin into scrolleeView's local space.
 		let targetFrame = targetView!.superview!.convertRect(targetView!.frame, toView:adjustee!)
 		let targetViewBottomY = targetFrame.origin.y + targetFrame.size.height
-		let verticalDelta = keyboardRect.origin.y - targetViewBottomY;
+		// Pretend the keyboardRect starts at the top of the padding for the purposes of this math. Note that 
+		// after the first adjustment verticalDelta starts containing the padding from previous passes (because the
+		// padding moves keyboardRect as well.)
+		let verticalDelta = keyboardRect.origin.y - padding - targetViewBottomY;
 		// If currentAdjustment is zero then this is our first adjustment and we want to add the padding into
 		// verticalDelta
-		let paddingDelta = (currentAdjustment == 0) ? padding : 0
 
 		// If targetViewBottomY is inside keyboardRect then we need to move
-		if verticalDelta - paddingDelta < 0.0 {
+		if verticalDelta < 0.0 {
 			UIView.animateWithDuration(animDuration,
 				delay: 0,
 				options: animOptions,
 				animations: { () -> Void in
 					self.adjustee!.center = CGPointMake(self.adjustee!.center.x,
-						self.adjustee!.center.y + verticalDelta - paddingDelta);
+						self.adjustee!.center.y + verticalDelta);
 				},
 				completion: nil)
-
 			currentAdjustment += verticalDelta
 		}
 		// TargetViewBottomY is not inside keyboardRect. If we have previously adjusted we should spend some/all of it.
@@ -83,7 +84,6 @@ _keyboardWatcher.targetView = _detailField;
 							self.adjustee!.center.y + verticalDelta);
 					},
 					completion: nil)
-
 				currentAdjustment += verticalDelta
 			}
 			// currentAdjustement is less than -verticalDelta, we can zero it out now.
@@ -103,9 +103,8 @@ _keyboardWatcher.targetView = _detailField;
 					delay: 0,
 					options: animOptions,
 					animations: { () -> Void in
-						// Also roll off the padding
 						view.center = CGPointMake(view.center.x,
-							view.center.y - self.currentAdjustment + self.padding);
+							view.center.y - self.currentAdjustment);
 					},
 					completion: nil)
 				currentAdjustment = 0
