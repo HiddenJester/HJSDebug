@@ -8,6 +8,8 @@
 
 /* Begin PBXBuildFile section */
 		3B241B021A31210E0031DF80 /* SlideViewAboveKeyboard.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B241B011A31210E0031DF80 /* SlideViewAboveKeyboard.swift */; };
+		3B6702BE1A34C07B00CF7156 /* ShrinkViewAboveKeyboard.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B6702BD1A34C07B00CF7156 /* ShrinkViewAboveKeyboard.swift */; };
+		3B6702C01A34C0AE00CF7156 /* BaseViewAboveKeyboard.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B6702BF1A34C0AE00CF7156 /* BaseViewAboveKeyboard.swift */; };
 		3BA38A011A263831004E2CE4 /* HJSExtension.h in Headers */ = {isa = PBXBuildFile; fileRef = 3BA38A001A263831004E2CE4 /* HJSExtension.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		3BA38A071A263832004E2CE4 /* HJSExtension.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3BA389FB1A263831004E2CE4 /* HJSExtension.framework */; };
 		3BA38A0E1A263832004E2CE4 /* HJSExtensionTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3BA38A0D1A263832004E2CE4 /* HJSExtensionTests.swift */; };
@@ -41,6 +43,8 @@
 
 /* Begin PBXFileReference section */
 		3B241B011A31210E0031DF80 /* SlideViewAboveKeyboard.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SlideViewAboveKeyboard.swift; path = ../../HJSKeyboardManagement/SlideViewAboveKeyboard.swift; sourceTree = "<group>"; };
+		3B6702BD1A34C07B00CF7156 /* ShrinkViewAboveKeyboard.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ShrinkViewAboveKeyboard.swift; path = ../../HJSKeyboardManagement/ShrinkViewAboveKeyboard.swift; sourceTree = "<group>"; };
+		3B6702BF1A34C0AE00CF7156 /* BaseViewAboveKeyboard.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = BaseViewAboveKeyboard.swift; path = ../../HJSKeyboardManagement/BaseViewAboveKeyboard.swift; sourceTree = "<group>"; };
 		3BA389FB1A263831004E2CE4 /* HJSExtension.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = HJSExtension.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		3BA389FF1A263831004E2CE4 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		3BA38A001A263831004E2CE4 /* HJSExtension.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = HJSExtension.h; sourceTree = "<group>"; };
@@ -89,7 +93,9 @@
 		3B241B001A3120B30031DF80 /* HJSKeyboardManagement */ = {
 			isa = PBXGroup;
 			children = (
+				3B6702BF1A34C0AE00CF7156 /* BaseViewAboveKeyboard.swift */,
 				3B241B011A31210E0031DF80 /* SlideViewAboveKeyboard.swift */,
+				3B6702BD1A34C07B00CF7156 /* ShrinkViewAboveKeyboard.swift */,
 			);
 			name = HJSKeyboardManagement;
 			path = HJSExtension;
@@ -343,6 +349,8 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				3B6702BE1A34C07B00CF7156 /* ShrinkViewAboveKeyboard.swift in Sources */,
+				3B6702C01A34C0AE00CF7156 /* BaseViewAboveKeyboard.swift in Sources */,
 				3BA38A3F1A263F74004E2CE4 /* HJSDebugCenter.m in Sources */,
 				3BA38A311A263EB5004E2CE4 /* NSString+NSCharacterSetTesting.m in Sources */,
 				3BA38A461A263FF8004E2CE4 /* Utilities.swift in Sources */,
