@@ -1,5 +1,5 @@
 //
-//  KeepViewAboveKeyboard.swift
+//  SlideViewAboveKeyboard.swift
 //  HJSExtension
 //
 //  Created by Timothy Sanders on 2014-12-04.
@@ -32,10 +32,10 @@ UIScrollView than you probably also want to take contentOffset into account whic
 Objective C usage (called from a UIViewController):
 
 :code:
-KeepViewAboveKeyboard * _keyboardWatcher = [[KeepViewAboveKeyboard alloc] initWithView:self.view];
+SlideViewAboveKeyboard * _keyboardWatcher = [[KeepViewAboveKeyboard alloc] initWithView:self.view];
 _keyboardWatcher.targetView = _detailField;
 */
-@objc public class KeepViewAboveKeyboard : NSObject {
+@objc public class SlideViewAboveKeyboard : NSObject {
 	/// The view that we are keeping just above the keyboard. Changing this while the keyboard is up can update
 	/// the offset. You can set this from textFieldDidBeginEditing to make sure the correct field is above the keyboard.
 	@objc public weak var targetView: UIView? = nil {
@@ -44,10 +44,9 @@ _keyboardWatcher.targetView = _detailField;
 		}
 	}
 
-	/// You can provide the completion block for all of the animations if you'd like to do something when the animation
-	/// finishes. Note that we don't call this when we cancel out the adjustment, just when the adjustment is altered
-	/// to a non-zero value.
-	@objc public var completionBlock: ((Bool) -> Void)?
+	/// You can provide a block that will be called when each adjustment is made. This will be called when the
+	/// adjustment animation *starts*. It is passed a float which is currentAdjustment value.
+	@objc public var adjustmentBlock: ((CGFloat) -> Void)?
 
 	/// The view is that is adjusted as needed. Note that this is for views that are not UIScrollViews as we are
 	/// simply manipulating the view's center property with no adjustments for content offsets.
@@ -192,7 +191,8 @@ _keyboardWatcher.targetView = _detailField;
 					self.adjustedView!.center =
 						CGPointMake(self.adjustedView!.center.x, self.adjustedView!.center.y + verticalDelta);
 				},
-				completion: completionBlock)
+				completion: nil)
+
 			currentAdjustment += verticalDelta
 		}
 		// TargetViewBottomY is not inside keyboardRect. If we have previously adjusted we should spend some/all of it.
@@ -206,13 +206,17 @@ _keyboardWatcher.targetView = _detailField;
 						self.adjustedView!.center =
 							CGPointMake(self.adjustedView!.center.x, self.adjustedView!.center.y + verticalDelta);
 					},
-					completion: completionBlock)
+					completion: nil)
+
 				currentAdjustment += verticalDelta
 			}
 			// currentAdjustement is less than -verticalDelta, we can zero it out now.
 			else {
 				zeroScroll()
 			}
+		}
+		if let block = adjustmentBlock? {
+			block(currentAdjustment)
 		}
 	}
 
@@ -227,8 +231,8 @@ _keyboardWatcher.targetView = _detailField;
 						view.center = CGPointMake(view.center.x, view.center.y - self.currentAdjustment);
 					},
 					completion: nil)
+				currentAdjustment = 0
 			}
-			currentAdjustment = 0
 		}
 	}
 
