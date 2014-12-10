@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		3B7330C61A37D79900F538D1 /* HJSExtension.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = 3BA38A1D1A263832004E2CE4 /* HJSExtension.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		3BA38A221A263A05004E2CE4 /* HJSExtension.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3BA38A1D1A263832004E2CE4 /* HJSExtension.framework */; };
 		3BA38A481A264039004E2CE4 /* UIApplication Utilities.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3BA38A471A264039004E2CE4 /* UIApplication Utilities.swift */; };
 		3BA38A511A26443E004E2CE4 /* HJSCoreDataCenter+PresentErrors.m in Sources */ = {isa = PBXBuildFile; fileRef = 3BA38A501A26443E004E2CE4 /* HJSCoreDataCenter+PresentErrors.m */; };
@@ -31,6 +32,19 @@
 			remoteInfo = HJSExtensionTests;
 		};
 /* End PBXContainerItemProxy section */
+
+/* Begin PBXCopyFilesBuildPhase section */
+		3B7330C31A37D78F00F538D1 /* CopyFiles */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 10;
+			files = (
+				3B7330C61A37D79900F538D1 /* HJSExtension.framework in CopyFiles */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
 		3BA38A171A263832004E2CE4 /* HJSExtension.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = HJSExtension.xcodeproj; path = HJSExtension/HJSExtension.xcodeproj; sourceTree = "<group>"; };
@@ -153,6 +167,7 @@
 				3BAE2D6B19DE1640003E6982 /* Headers */,
 				3BAE2D6C19DE1640003E6982 /* Resources */,
 				3B5DB62C19F81F3900DFF6CE /* ShellScript */,
+				3B7330C31A37D78F00F538D1 /* CopyFiles */,
 			);
 			buildRules = (
 			);
