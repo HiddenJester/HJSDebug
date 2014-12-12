@@ -7,8 +7,6 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		3B7330C61A37D79900F538D1 /* HJSExtension.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = 3BA38A1D1A263832004E2CE4 /* HJSExtension.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
-		3BA38A221A263A05004E2CE4 /* HJSExtension.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3BA38A1D1A263832004E2CE4 /* HJSExtension.framework */; };
 		3BA38A481A264039004E2CE4 /* UIApplication Utilities.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3BA38A471A264039004E2CE4 /* UIApplication Utilities.swift */; };
 		3BA38A511A26443E004E2CE4 /* HJSCoreDataCenter+PresentErrors.m in Sources */ = {isa = PBXBuildFile; fileRef = 3BA38A501A26443E004E2CE4 /* HJSCoreDataCenter+PresentErrors.m */; };
 		3BA38A531A2644AE004E2CE4 /* HJSCoreDataCenter+PresentErrors.h in Headers */ = {isa = PBXBuildFile; fileRef = 3BA38A521A264465004E2CE4 /* HJSCoreDataCenter+PresentErrors.h */; settings = {ATTRIBUTES = (Public, ); }; };
@@ -17,54 +15,47 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
-		3BA38A1C1A263832004E2CE4 /* PBXContainerItemProxy */ = {
+		3B4FB63F1A3B5EC3007A6DF3 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
-			containerPortal = 3BA38A171A263832004E2CE4 /* HJSExtension.xcodeproj */;
+			containerPortal = 3B4FB63A1A3B5EC3007A6DF3 /* HJSExtension.xcodeproj */;
 			proxyType = 2;
 			remoteGlobalIDString = 3BA389FB1A263831004E2CE4;
 			remoteInfo = HJSExtension;
 		};
-		3BA38A1E1A263832004E2CE4 /* PBXContainerItemProxy */ = {
+		3B4FB6411A3B5EC3007A6DF3 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
-			containerPortal = 3BA38A171A263832004E2CE4 /* HJSExtension.xcodeproj */;
+			containerPortal = 3B4FB63A1A3B5EC3007A6DF3 /* HJSExtension.xcodeproj */;
 			proxyType = 2;
 			remoteGlobalIDString = 3BA38A061A263832004E2CE4;
 			remoteInfo = HJSExtensionTests;
 		};
+		3B4FB6591A3B6082007A6DF3 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 3B4FB63A1A3B5EC3007A6DF3 /* HJSExtension.xcodeproj */;
+			proxyType = 1;
+			remoteGlobalIDString = 3BA389FA1A263831004E2CE4;
+			remoteInfo = HJSExtension;
+		};
 /* End PBXContainerItemProxy section */
 
-/* Begin PBXCopyFilesBuildPhase section */
-		3B7330C31A37D78F00F538D1 /* CopyFiles */ = {
-			isa = PBXCopyFilesBuildPhase;
-			buildActionMask = 2147483647;
-			dstPath = "";
-			dstSubfolderSpec = 10;
-			files = (
-				3B7330C61A37D79900F538D1 /* HJSExtension.framework in CopyFiles */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-/* End PBXCopyFilesBuildPhase section */
-
 /* Begin PBXFileReference section */
-		3BA38A171A263832004E2CE4 /* HJSExtension.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = HJSExtension.xcodeproj; path = HJSExtension/HJSExtension.xcodeproj; sourceTree = "<group>"; };
-		3BA38A471A264039004E2CE4 /* UIApplication Utilities.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIApplication Utilities.swift"; sourceTree = "<group>"; };
-		3BA38A501A26443E004E2CE4 /* HJSCoreDataCenter+PresentErrors.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "HJSCoreDataCenter+PresentErrors.m"; sourceTree = "<group>"; };
-		3BA38A521A264465004E2CE4 /* HJSCoreDataCenter+PresentErrors.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "HJSCoreDataCenter+PresentErrors.h"; sourceTree = "<group>"; };
+		3B4FB63A1A3B5EC3007A6DF3 /* HJSExtension.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = HJSExtension.xcodeproj; path = HJSExtension/HJSExtension.xcodeproj; sourceTree = "<group>"; };
+		3BA38A471A264039004E2CE4 /* UIApplication Utilities.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "UIApplication Utilities.swift"; path = "HJSKit/UIApplication Utilities.swift"; sourceTree = "<group>"; };
+		3BA38A501A26443E004E2CE4 /* HJSCoreDataCenter+PresentErrors.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "HJSCoreDataCenter+PresentErrors.m"; path = "HJSKit/HJSCoreDataCenter+PresentErrors.m"; sourceTree = "<group>"; };
+		3BA38A521A264465004E2CE4 /* HJSCoreDataCenter+PresentErrors.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = "HJSCoreDataCenter+PresentErrors.h"; path = "HJSKit/HJSCoreDataCenter+PresentErrors.h"; sourceTree = "<group>"; };
 		3BAE2D6E19DE1640003E6982 /* HJSKit.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = HJSKit.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		3BAE2D7219DE1640003E6982 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		3BAE2D7319DE1640003E6982 /* HJSKit.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = HJSKit.h; sourceTree = "<group>"; };
+		3BAE2D7319DE1640003E6982 /* HJSKit.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = HJSKit.h; path = HJSKit/HJSKit.h; sourceTree = "<group>"; };
 		3BAE2D7919DE1640003E6982 /* HJSKitTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = HJSKitTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		3BAE2D7C19DE1640003E6982 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		3BAE2D7D19DE1640003E6982 /* HJSKitTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = HJSKitTests.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
-		3BAE2D6A19DE1640003E6982 /* Frameworks */ = {
+		3B4FB6521A3B5F95007A6DF3 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				3BA38A221A263A05004E2CE4 /* HJSExtension.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -78,11 +69,11 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		3BA38A181A263832004E2CE4 /* Products */ = {
+		3B4FB63B1A3B5EC3007A6DF3 /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				3BA38A1D1A263832004E2CE4 /* HJSExtension.framework */,
-				3BA38A1F1A263832004E2CE4 /* HJSExtensionTests.xctest */,
+				3B4FB6401A3B5EC3007A6DF3 /* HJSExtension.framework */,
+				3B4FB6421A3B5EC3007A6DF3 /* HJSExtensionTests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -90,8 +81,13 @@
 		3BAE2D6419DE1640003E6982 = {
 			isa = PBXGroup;
 			children = (
-				3BA38A171A263832004E2CE4 /* HJSExtension.xcodeproj */,
+				3B4FB63A1A3B5EC3007A6DF3 /* HJSExtension.xcodeproj */,
 				3BAE2D7019DE1640003E6982 /* HJSKit */,
+				3BAE2D7319DE1640003E6982 /* HJSKit.h */,
+				3BAE2D7119DE1640003E6982 /* Supporting Files */,
+				3BA38A471A264039004E2CE4 /* UIApplication Utilities.swift */,
+				3BA38A521A264465004E2CE4 /* HJSCoreDataCenter+PresentErrors.h */,
+				3BA38A501A26443E004E2CE4 /* HJSCoreDataCenter+PresentErrors.m */,
 				3BAE2D7A19DE1640003E6982 /* HJSKitTests */,
 				3BAE2D6F19DE1640003E6982 /* Products */,
 			);
@@ -109,11 +105,6 @@
 		3BAE2D7019DE1640003E6982 /* HJSKit */ = {
 			isa = PBXGroup;
 			children = (
-				3BAE2D7319DE1640003E6982 /* HJSKit.h */,
-				3BAE2D7119DE1640003E6982 /* Supporting Files */,
-				3BA38A471A264039004E2CE4 /* UIApplication Utilities.swift */,
-				3BA38A521A264465004E2CE4 /* HJSCoreDataCenter+PresentErrors.h */,
-				3BA38A501A26443E004E2CE4 /* HJSCoreDataCenter+PresentErrors.m */,
 			);
 			path = HJSKit;
 			sourceTree = "<group>";
@@ -124,6 +115,7 @@
 				3BAE2D7219DE1640003E6982 /* Info.plist */,
 			);
 			name = "Supporting Files";
+			path = HJSKit;
 			sourceTree = "<group>";
 		};
 		3BAE2D7A19DE1640003E6982 /* HJSKitTests */ = {
@@ -163,15 +155,15 @@
 			buildConfigurationList = 3BAE2D8119DE1640003E6982 /* Build configuration list for PBXNativeTarget "HJSKit" */;
 			buildPhases = (
 				3BAE2D6919DE1640003E6982 /* Sources */,
-				3BAE2D6A19DE1640003E6982 /* Frameworks */,
 				3BAE2D6B19DE1640003E6982 /* Headers */,
 				3BAE2D6C19DE1640003E6982 /* Resources */,
+				3B4FB6521A3B5F95007A6DF3 /* Frameworks */,
 				3B5DB62C19F81F3900DFF6CE /* ShellScript */,
-				3B7330C31A37D78F00F538D1 /* CopyFiles */,
 			);
 			buildRules = (
 			);
 			dependencies = (
+				3B4FB65A1A3B6082007A6DF3 /* PBXTargetDependency */,
 			);
 			name = HJSKit;
 			productName = HJSKit;
@@ -224,8 +216,8 @@
 			projectDirPath = "";
 			projectReferences = (
 				{
-					ProductGroup = 3BA38A181A263832004E2CE4 /* Products */;
-					ProjectRef = 3BA38A171A263832004E2CE4 /* HJSExtension.xcodeproj */;
+					ProductGroup = 3B4FB63B1A3B5EC3007A6DF3 /* Products */;
+					ProjectRef = 3B4FB63A1A3B5EC3007A6DF3 /* HJSExtension.xcodeproj */;
 				},
 			);
 			projectRoot = "";
@@ -237,18 +229,18 @@
 /* End PBXProject section */
 
 /* Begin PBXReferenceProxy section */
-		3BA38A1D1A263832004E2CE4 /* HJSExtension.framework */ = {
+		3B4FB6401A3B5EC3007A6DF3 /* HJSExtension.framework */ = {
 			isa = PBXReferenceProxy;
 			fileType = wrapper.framework;
 			path = HJSExtension.framework;
-			remoteRef = 3BA38A1C1A263832004E2CE4 /* PBXContainerItemProxy */;
+			remoteRef = 3B4FB63F1A3B5EC3007A6DF3 /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
-		3BA38A1F1A263832004E2CE4 /* HJSExtensionTests.xctest */ = {
+		3B4FB6421A3B5EC3007A6DF3 /* HJSExtensionTests.xctest */ = {
 			isa = PBXReferenceProxy;
 			fileType = wrapper.cfbundle;
 			path = HJSExtensionTests.xctest;
-			remoteRef = 3BA38A1E1A263832004E2CE4 /* PBXContainerItemProxy */;
+			remoteRef = 3B4FB6411A3B5EC3007A6DF3 /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
 /* End PBXReferenceProxy section */
@@ -305,6 +297,14 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		3B4FB65A1A3B6082007A6DF3 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = HJSExtension;
+			targetProxy = 3B4FB6591A3B6082007A6DF3 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
 
 /* Begin XCBuildConfiguration section */
 		3BAE2D7F19DE1640003E6982 /* Debug */ = {
