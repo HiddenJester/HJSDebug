@@ -24,3 +24,14 @@ public func CGSizeInset(size: CGSize, dx: CGFloat, dy: CGFloat) -> CGSize {
 	return CGSizeMake(size.width - dx, size.height - dy)
 }
 
+extension NSLayoutConstraint {
+	public func constraintWithNewConstant(newConstant: CGFloat) -> NSLayoutConstraint {
+		return NSLayoutConstraint(item: self.firstItem,
+			attribute: self.firstAttribute,
+			relatedBy: self.relation,
+			toItem: self.secondItem,
+			attribute: self.secondAttribute,
+			multiplier: self.multiplier,
+			constant: newConstant)
+	}
+}
