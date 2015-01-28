@@ -18,6 +18,8 @@ static NSString * debugBreakEnabledKey = @"debugBreakEnabled";
 
 static HJSDebugCenter * defaultCenter;
 
+const unsigned long long defaultMaxLogSize = 300 * 1024;
+
 @implementation HJSDebugCenter {
 	// Runtime storage of the settings plist
 	NSMutableDictionary * _settings;
@@ -64,14 +66,14 @@ static HJSDebugCenter * defaultCenter;
 		configURL = [configURL URLByAppendingPathComponent:configFilename];
 	}
 
-	return [HJSDebugCenter defaultCenterWithConfigURL:configURL logURL:logURL];
+	return [HJSDebugCenter defaultCenterWithConfigURL:configURL logURL:logURL maxLogSize:defaultMaxLogSize];
 }
 
-+ (HJSDebugCenter *)defaultCenterWithConfigURL:(NSURL *)configURL logURL:(NSURL *)logURL {
++ (HJSDebugCenter *)defaultCenterWithConfigURL:(NSURL *)configURL logURL:(NSURL *)logURL maxLogSize:(unsigned long long)maxLogSize {
 	static dispatch_once_t onceToken;
 
 	dispatch_once(&onceToken, ^{
-		defaultCenter = [[HJSDebugCenter alloc] initWithConfigURL:configURL logURL:logURL];
+		defaultCenter = [[HJSDebugCenter alloc] initWithConfigURL:configURL logURL:logURL maxLogSize:maxLogSize];
 	});
 	return defaultCenter;
 }
@@ -339,7 +341,7 @@ static HJSDebugCenter * defaultCenter;
 	return [HJSDebugCenter defaultCenter];
 }
 
-- (id)initWithConfigURL:(NSURL *)configURL logURL:(NSURL *)logURL {
+- (id)initWithConfigURL:(NSURL *)configURL logURL:(NSURL *)logURL maxLogSize:(unsigned long long)maxLogSize {
 	NSError * __autoreleasing error;
 
 	if (defaultCenter) {
@@ -350,14 +352,40 @@ static HJSDebugCenter * defaultCenter;
 
     self = [super init];
     if (self) {
+		_settingsFileURL = configURL;
+		// Doesn't really give back an error. Either we get data or we get nil. NOTE that means _settings isn't
+		// loaded for certain until the if (!_settings) below.
+		_settings = [[NSDictionary dictionaryWithContentsOfURL:_settingsFileURL] mutableCopy];
+
 		//set up the aslClient
 		_aslClient = asl_open(NULL, NULL, ASL_OPT_NO_DELAY | ASL_OPT_STDERR);
 
-		// Put the log file in the application's cache folder
 		_logFileURL = logURL;
 
-		[[NSFileManager defaultManager] createFileAtPath:_logFileURL.path contents:nil attributes:nil];
-		_logFile = [NSFileHandle fileHandleForWritingToURL:_logFileURL error:&error];
+		NSFileManager * manager = [NSFileManager defaultManager];
+
+		// Check to see if the logfile already exists, assume we need to create (or overwrite) the file
+		BOOL createFile = YES;
+		if ([manager fileExistsAtPath:_logFileURL.path]) {
+			// If the file exists, determine whether it is is below the size threshold
+			NSDictionary * attribs = [manager attributesOfItemAtPath:_logFileURL.path error:&error];
+			if (!attribs) {
+				[self logError:error];
+			}
+			else {
+				if ([attribs fileSize] < maxLogSize) {
+					createFile = NO;
+				}
+			}
+		}
+		if (createFile) {
+			[manager createFileAtPath:_logFileURL.path contents:nil attributes:nil];
+		}
+
+		// OK, by now we either have decided we can append to the file or we've created one.
+		_logFile = [NSFileHandle fileHandleForUpdatingURL:_logFileURL error:&error];
+		[_logFile readDataToEndOfFile]; // Skip to the end of the file
+
 		if (!_logFile) {
 			[self logError:error];
 		} else {
@@ -365,9 +393,6 @@ static HJSDebugCenter * defaultCenter;
 		}
 		[self logFormattedString:@"Logging to %@", _logFileURL];
 
-		_settingsFileURL = configURL;
-		// Doesn't really give back an error. Either we get data or we get nil.
-		_settings = [[NSDictionary dictionaryWithContentsOfURL:_settingsFileURL] mutableCopy];
 
 		// If we didn't load settings from the specified file make fresh ones
 		if (!_settings) {

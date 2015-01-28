@@ -18,6 +18,9 @@ typedef NS_ENUM(NSInteger, HJSLogLevel) {
 	HJSLogLevelDebug = 7				// ASL_LEVEL_DEBUG
 };
 
+/// Can be passed as maxLogSize to defaultCenterWithConfigURL
+extern const unsigned long long defaultMaxLogSize;
+
 @interface HJSDebugCenter : NSObject
 
 @property (nonatomic) HJSLogLevel logLevel;
@@ -25,8 +28,12 @@ typedef NS_ENUM(NSInteger, HJSLogLevel) {
 @property (nonatomic) BOOL debugBreakEnabled;
 
 /// If defaultCenter has already been created this returns it. Otherwise it creates defaultCenter to use the specified
-/// URLs for both the log and the config file and returns the fresh center.
-+ (HJSDebugCenter *)defaultCenterWithConfigURL:(NSURL *)configURL logURL:(NSURL *)logURL;
+/// URLs for both the log and the config file and returns the fresh center. maxLogSize sets the threshold where the old
+/// log will be discarded. If the logfile is less than maxLogSize bytes this center will append to that file.
+/// defaultMaxLogSize can be passed in for maxLogSize.
++ (HJSDebugCenter *)defaultCenterWithConfigURL:(NSURL *)configURL
+										logURL:(NSURL *)logURL
+									maxLogSize:(unsigned long long)maxLogSize;
 
 /// If defaultCenter has already been created this returns it. Otherwise it creates defaultCenter with default
 /// URLs for both the log and the config file and returns the fresh center.
@@ -92,7 +99,7 @@ typedef NS_ENUM(NSInteger, HJSLogLevel) {
 - (BOOL)presentControlPanelFromViewController:(UIViewController*)presenter;
 
 #pragma mark Lifecycle Methods
-- (id)initWithConfigURL:(NSURL *)configURL logURL:(NSURL *)logURL;
+- (id)initWithConfigURL:(NSURL *)configURL logURL:(NSURL *)logURL maxLogSize:(unsigned long long)maxLogSize;
 
 // Call when the app is terminating. This will close the log file and release ASL resources
 - (void)terminateLogging;

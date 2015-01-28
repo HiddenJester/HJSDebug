@@ -6,8 +6,7 @@
 @import CoreData;
 
 #import "HJSCoreDataCenter.h"
-
-#import "HJSExtension.h"
+#import "HJSDebugCenter.h"
 
 NSString * HJSCoreDataCenterResetNotificationKey = @"coreDataResetNotification";
 
