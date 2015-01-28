@@ -19,8 +19,8 @@
 #endif
 
 	HJSDebugCenter * debug = [HJSDebugCenter existingCenter];
-	_logText.text = debug.logContents;
-	_adHocSwitch.on = debug.adHocDebugging;
+	_logText.text = [[NSString alloc] initWithData:debug.logContents encoding:NSUTF8StringEncoding];
+ 	_adHocSwitch.on = debug.adHocDebugging;
 	_breakEnabledSwitch.on = debug.debugBreakEnabled;
 	switch (debug.logLevel) {
 		case HJSLogLevelCritical:

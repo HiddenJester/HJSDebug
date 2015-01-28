@@ -82,7 +82,7 @@ extern const unsigned long long defaultMaxLogSize;
 
 - (BOOL)canSendMail;
 
-- (NSString *)logContents;
+- (NSData *)logContents;
 
 #pragma mark Configuration Methods
 

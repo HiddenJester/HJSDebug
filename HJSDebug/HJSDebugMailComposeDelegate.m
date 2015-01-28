@@ -8,7 +8,9 @@
 
 @implementation HJSDebugMailComposeDelegate
 
-- (void)mailComposeController:(MFMailComposeViewController *)controller didFinishWithResult:(MFMailComposeResult)result error:(NSError *)error {
+- (void)mailComposeController:(MFMailComposeViewController *)controller
+		  didFinishWithResult:(MFMailComposeResult)result
+						error:(NSError *)error {
 	NSString * mailResult;
 	
 	switch (result) {

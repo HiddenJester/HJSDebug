@@ -255,10 +255,8 @@ const unsigned long long defaultMaxLogSize = 300 * 1024;
 	[mailController setSubject:subject];
 	[mailController setToRecipients:@[@"bugs@hiddenjester.com"]];
 	
-	NSString * body = [NSString stringWithFormat:@"%@\n\n=== LOG FILE BEGINS ===\n%@=== LOG FILE ENDS ===",
-					   explanation,
-					   [self logContents]];
-	[mailController setMessageBody:body isHTML:NO];
+	[mailController setMessageBody:explanation isHTML:NO];
+	[mailController addAttachmentData:[self logContents] mimeType:@"plain/text" fileName:_logFileURL.lastPathComponent];
 
 	[presenter presentViewController:mailController animated:YES completion:^{
 		if (presenter.presentedViewController != mailController) {
@@ -273,10 +271,10 @@ const unsigned long long defaultMaxLogSize = 300 * 1024;
 	return [MFMailComposeViewController canSendMail];
 }
 
-- (NSString *)logContents {
+- (NSData *)logContents {
 	NSError * __autoreleasing error;
-	NSString * log = [NSString stringWithContentsOfFile:_logFileURL.path encoding:NSUTF8StringEncoding error:&error];
-	if (error) {
+	NSData * log = [NSData dataWithContentsOfFile:_logFileURL.path options:NSDataReadingUncached error: &error];
+	if (!log) {
 		[self logError:error];
 	}
 	return log;
