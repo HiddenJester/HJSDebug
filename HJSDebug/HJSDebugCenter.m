@@ -30,6 +30,9 @@ const unsigned long long defaultMaxLogSize = 300 * 1024;
 	NSFileHandle * _logFile;
 	NSURL * _logFileURL;
 
+	// Monitored logs
+	NSMutableDictionary * _monitoredLogs;
+
 	HJSDebugMailComposeDelegate * _mailComposeDelegate;
 }
 
@@ -230,6 +233,8 @@ const unsigned long long defaultMaxLogSize = 300 * 1024;
 - (BOOL)presentMailLogWithExplanation:(NSString *)explanation
 							  subject:(NSString *)subject
 				   fromViewController:(UIViewController *)presenter {
+	static NSString * mimeType = @"plain/text";
+
 	if (!presenter) {
 		[self logAtLevel:HJSLogLevelCritical
 			formatString:@"Must provide presenter to present ControlPanel."];
@@ -256,7 +261,13 @@ const unsigned long long defaultMaxLogSize = 300 * 1024;
 	[mailController setToRecipients:@[@"bugs@hiddenjester.com"]];
 	
 	[mailController setMessageBody:explanation isHTML:NO];
-	[mailController addAttachmentData:[self logContents] mimeType:@"plain/text" fileName:_logFileURL.lastPathComponent];
+	[mailController addAttachmentData:self.mainLogAsData mimeType:mimeType fileName:_logFileURL.lastPathComponent];
+	[_monitoredLogs enumerateKeysAndObjectsUsingBlock:^(NSString * key, NSURL * url, BOOL *stop) {
+		NSData * log = [self monitoredLogAsData:key];
+		if (log) {
+			[mailController addAttachmentData:log mimeType:mimeType fileName:url.lastPathComponent];
+		}
+	}];
 
 	[presenter presentViewController:mailController animated:YES completion:^{
 		if (presenter.presentedViewController != mailController) {
@@ -271,13 +282,52 @@ const unsigned long long defaultMaxLogSize = 300 * 1024;
 	return [MFMailComposeViewController canSendMail];
 }
 
-- (NSData *)logContents {
+#pragma mark Log monitoring Methods
+- (BOOL)monitorLog:(NSURL *)logURL asKey:(NSString *)logKey {
+	if ([[NSFileManager defaultManager] fileExistsAtPath:logURL.path]) {
+		[_monitoredLogs setObject:logURL forKey:logKey];
+		return YES;
+	}
+	return NO;
+}
+
+- (void)removeMonitoredLog:(NSString *)logKey {
+	[_monitoredLogs removeObjectForKey:logKey];
+}
+
+- (NSArray *)monitoredLogKeys {
+	return _monitoredLogs.allKeys;
+}
+
+- (NSData *)mainLogAsData {
 	NSError * __autoreleasing error;
 	NSData * log = [NSData dataWithContentsOfFile:_logFileURL.path options:NSDataReadingUncached error: &error];
 	if (!log) {
 		[self logError:error];
 	}
 	return log;
+}
+
+- (NSString *)mainLogAsString {
+	return [[NSString alloc] initWithData:self.mainLogAsData encoding:NSUTF8StringEncoding];
+}
+
+- (NSData *)monitoredLogAsData:(NSString *)logKey {
+	NSURL * logURL = [_monitoredLogs objectForKey:logKey];
+
+	if (logURL) {
+		NSError * __autoreleasing error;
+		NSData * log = [NSData dataWithContentsOfFile:logURL.path options:NSDataReadingUncached error: &error];
+		if (!log) {
+			[self logError:error];
+		}
+		return log;
+	}
+	return nil;
+}
+
+- (NSString *)monitoredLogAsString:(NSString *)logKey {
+	return [[NSString alloc] initWithData:[self monitoredLogAsData:logKey] encoding:NSUTF8StringEncoding];
 }
 
 # pragma mark Configuration Methods
@@ -364,6 +414,7 @@ const unsigned long long defaultMaxLogSize = 300 * 1024;
 
 		// Check to see if the logfile already exists, assume we need to create (or overwrite) the file
 		BOOL createFile = YES;
+		unsigned long long fileSize = 0; // If we decide to reset the log file, store the old size here.
 		if ([manager fileExistsAtPath:_logFileURL.path]) {
 			// If the file exists, determine whether it is is below the size threshold
 			NSDictionary * attribs = [manager attributesOfItemAtPath:_logFileURL.path error:&error];
@@ -373,6 +424,9 @@ const unsigned long long defaultMaxLogSize = 300 * 1024;
 			else {
 				if ([attribs fileSize] < maxLogSize) {
 					createFile = NO;
+				}
+				else {
+					fileSize = [attribs fileSize];
 				}
 			}
 		}
@@ -389,8 +443,11 @@ const unsigned long long defaultMaxLogSize = 300 * 1024;
 		} else {
 			asl_add_log_file(_aslClient, _logFile.fileDescriptor);
 		}
-		[self logFormattedString:@"Logging to %@", _logFileURL];
 
+		[self logFormattedString:@"Logging to %@", _logFileURL];
+		if (fileSize > 0) {
+			[self logFormattedString:@"Discarded old log file of %llu bytes", fileSize];
+		}
 
 		// If we didn't load settings from the specified file make fresh ones
 		if (!_settings) {
@@ -404,11 +461,14 @@ const unsigned long long defaultMaxLogSize = 300 * 1024;
 
 		[self logStartupInfo];
 		[self logMessage:@"HJSDebugCenter initialized"];
+
+		_monitoredLogs = [NSMutableDictionary new];
     }
     return self;
 }
 
 - (void)terminateLogging {
+	[self logMessage:@"Logging terminated"];
 	if (_logFile) {
 		asl_remove_log_file(_aslClient, _logFile.fileDescriptor);
 		[_logFile closeFile];

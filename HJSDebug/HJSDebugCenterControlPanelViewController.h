@@ -13,11 +13,13 @@
 @property (weak, nonatomic) IBOutlet UISwitch * breakEnabledSwitch;
 @property (nonatomic, weak) IBOutlet UISegmentedControl * loglevelSegmentedController;
 @property (nonatomic, weak) IBOutlet UITextView * logText;
+@property (weak, nonatomic) IBOutlet UISegmentedControl *logSelector;
 
 - (IBAction)mailLog:(id)sender;
 - (IBAction)toggleAdHoc:(id)sender;
 - (IBAction)changeLogLevel:(id)sender;
 - (IBAction)dismissSelf:(id)sender;
 - (IBAction)toggleBreakEnabled:(id)sender;
+- (IBAction)changeLog:(id)sender;
 
 @end

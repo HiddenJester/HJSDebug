@@ -19,7 +19,6 @@
 #endif
 
 	HJSDebugCenter * debug = [HJSDebugCenter existingCenter];
-	_logText.text = [[NSString alloc] initWithData:debug.logContents encoding:NSUTF8StringEncoding];
  	_adHocSwitch.on = debug.adHocDebugging;
 	_breakEnabledSwitch.on = debug.debugBreakEnabled;
 	switch (debug.logLevel) {
@@ -40,6 +39,18 @@
 			_loglevelSegmentedController.selectedSegmentIndex = 2;
 			break;
 	}
+
+	int index = 0;
+	[_logSelector removeAllSegments];
+	[_logSelector insertSegmentWithTitle:@"App" atIndex:index animated:NO];
+	++index;
+
+	for (NSString * key in debug.monitoredLogKeys) {
+		[_logSelector insertSegmentWithTitle:key atIndex:index animated:NO];
+		++index;
+	}
+	_logSelector.selectedSegmentIndex = 0;
+	[self changeLog:self];
 }
 
 - (IBAction)mailLog:(id)sender {
@@ -62,6 +73,22 @@
 	HJSDebugCenter * debug = [HJSDebugCenter existingCenter];
 	debug.debugBreakEnabled = _breakEnabledSwitch.on;
 	[debug saveSettings];
+}
+
+- (IBAction)changeLog:(id)sender {
+	HJSDebugCenter * debug = [HJSDebugCenter existingCenter];
+
+	if (_logSelector.selectedSegmentIndex == 0) {
+		_logText.text = debug.mainLogAsString;
+	}
+	else {
+		NSString * key = [_logSelector titleForSegmentAtIndex:_logSelector.selectedSegmentIndex];
+		_logText.text = [debug monitoredLogAsString:key];
+	}
+
+	[_logText scrollRangeToVisible:NSMakeRange([_logText.text length], 0)];
+	[_logText setScrollEnabled:NO];
+	[_logText setScrollEnabled:YES];
 }
 
 - (IBAction)changeLogLevel:(id)sender {

@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.iPad.XIB" version="3.0" toolsVersion="6221" systemVersion="14B25" targetRuntime="iOS.CocoaTouch.iPad" propertyAccessControl="none" useAutolayout="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.iPad.XIB" version="3.0" toolsVersion="6724" systemVersion="14C109" targetRuntime="iOS.CocoaTouch.iPad" propertyAccessControl="none" useAutolayout="YES">
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6213"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6711"/>
     </dependencies>
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="HJSDebugCenterControlPanelViewController">
@@ -10,6 +10,7 @@
                 <outlet property="adHocSwitch" destination="SKW-OH-nJP" id="6sq-H1-Twn"/>
                 <outlet property="breakEnabledLabel" destination="w9w-SF-A1e" id="2nh-BA-gaR"/>
                 <outlet property="breakEnabledSwitch" destination="Pjj-2J-dBm" id="RFU-ho-uXy"/>
+                <outlet property="logSelector" destination="EMi-Ko-OW8" id="tGL-fy-m70"/>
                 <outlet property="logText" destination="lJz-fv-Eyf" id="RCq-Kv-xfc"/>
                 <outlet property="loglevelSegmentedController" destination="12F-M6-Gqb" id="Zpd-ZG-w7u"/>
             </connections>
@@ -55,8 +56,18 @@
                         <action selector="changeLogLevel:" destination="-1" eventType="valueChanged" id="pjO-pc-Gpd"/>
                     </connections>
                 </segmentedControl>
+                <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="EMi-Ko-OW8" userLabel="Log Selector">
+                    <rect key="frame" x="131" y="146" width="139" height="29"/>
+                    <segments>
+                        <segment title="App"/>
+                        <segment title="Alternate"/>
+                    </segments>
+                    <connections>
+                        <action selector="changeLog:" destination="-1" eventType="valueChanged" id="sQg-ZZ-pj3"/>
+                    </connections>
+                </segmentedControl>
                 <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" showsHorizontalScrollIndicator="NO" editable="NO" translatesAutoresizingMaskIntoConstraints="NO" id="lJz-fv-Eyf">
-                    <rect key="frame" x="20" y="158" width="360" height="190"/>
+                    <rect key="frame" x="20" y="182" width="360" height="166"/>
                     <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                     <string key="text">Lorem ipsum dolor sit er elit lamet, consectetaur cillium adipisicing pecu, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Nam liber te conscient to factor tum poen legum odioque civiuda.</string>
                     <fontDescription key="fontDescription" style="UICTFontTextStyleCaption1"/>
@@ -110,12 +121,14 @@
                 <constraint firstItem="12F-M6-Gqb" firstAttribute="top" secondItem="Pjj-2J-dBm" secondAttribute="bottom" constant="20" id="Nyv-Z6-TtV"/>
                 <constraint firstItem="lJz-fv-Eyf" firstAttribute="width" secondItem="Fbe-Km-jBx" secondAttribute="width" id="T7f-ky-J8M"/>
                 <constraint firstItem="SKW-OH-nJP" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" constant="20" id="Y3z-yz-CRY"/>
-                <constraint firstItem="lJz-fv-Eyf" firstAttribute="top" secondItem="12F-M6-Gqb" secondAttribute="bottom" constant="20" id="hIV-B0-MOM"/>
+                <constraint firstAttribute="centerX" secondItem="EMi-Ko-OW8" secondAttribute="centerX" id="cWB-vl-21h"/>
                 <constraint firstAttribute="trailing" secondItem="Pjj-2J-dBm" secondAttribute="trailing" constant="20" symbolic="YES" id="iMY-SN-aIh"/>
                 <constraint firstItem="jJJ-FV-0Lq" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="iN0-l3-epB" secondAttribute="leading" constant="20" symbolic="YES" id="nvK-vQ-xKT"/>
                 <constraint firstAttribute="centerX" secondItem="Fbe-Km-jBx" secondAttribute="centerX" id="pyv-Ix-QVq"/>
                 <constraint firstItem="Pjj-2J-dBm" firstAttribute="leading" secondItem="w9w-SF-A1e" secondAttribute="trailing" constant="8" symbolic="YES" id="rGO-sk-kJ1"/>
                 <constraint firstItem="Fbe-Km-jBx" firstAttribute="top" secondItem="lJz-fv-Eyf" secondAttribute="bottom" id="tNF-rt-ac6"/>
+                <constraint firstItem="EMi-Ko-OW8" firstAttribute="top" secondItem="12F-M6-Gqb" secondAttribute="bottom" constant="8" symbolic="YES" id="ua2-lZ-VMV"/>
+                <constraint firstItem="lJz-fv-Eyf" firstAttribute="top" secondItem="EMi-Ko-OW8" secondAttribute="bottom" constant="8" symbolic="YES" id="whp-76-nYP"/>
                 <constraint firstAttribute="centerX" secondItem="12F-M6-Gqb" secondAttribute="centerX" id="xTx-RT-CTG"/>
             </constraints>
             <nil key="simulatedStatusBarMetrics"/>
