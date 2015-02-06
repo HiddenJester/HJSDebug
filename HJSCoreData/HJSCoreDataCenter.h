@@ -100,4 +100,15 @@ extern NSString * HJSCoreDataCenterResetNotificationKey;
  */
 - (void)immediateSave; // Mostly a debugging aid, but can be useful to force a save RIGHT NOW
 
+/**
+ This is mostly a debugging aid, so you can verify you correctly handle the HJSCoreDataCenterResetNotificationKey.
+	Calling this reset the entire Core Data stack, which will recreate itself as needed. This function is called
+	internally when an error arises during a save in an attempt to recover normal operation. The "normal" reason I 
+	see resets has to do with the merge policy: see the comment in context for more info about that.
+
+ @warning THIS DOES NOT SAVE any pending changes. It can be called during error conditions arising from a save so it
+	does not call save. If you want to save first be sure to call immediateSave prior to resetStack.
+ */
+- (void)resetStack;
+
 @end

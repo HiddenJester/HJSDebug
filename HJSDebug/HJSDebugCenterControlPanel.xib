@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.iPad.XIB" version="3.0" toolsVersion="6724" systemVersion="14C109" targetRuntime="iOS.CocoaTouch.iPad" propertyAccessControl="none" useAutolayout="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.iPad.XIB" version="3.0" toolsVersion="6750" systemVersion="14C109" targetRuntime="iOS.CocoaTouch.iPad" propertyAccessControl="none" useAutolayout="YES">
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6711"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6735"/>
     </dependencies>
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="HJSDebugCenterControlPanelViewController">
@@ -10,9 +10,12 @@
                 <outlet property="adHocSwitch" destination="SKW-OH-nJP" id="6sq-H1-Twn"/>
                 <outlet property="breakEnabledLabel" destination="w9w-SF-A1e" id="2nh-BA-gaR"/>
                 <outlet property="breakEnabledSwitch" destination="Pjj-2J-dBm" id="RFU-ho-uXy"/>
+                <outlet property="dismissButton" destination="ZFt-xG-ZzA" id="smI-Wg-3Tm"/>
                 <outlet property="logSelector" destination="EMi-Ko-OW8" id="tGL-fy-m70"/>
                 <outlet property="logText" destination="lJz-fv-Eyf" id="RCq-Kv-xfc"/>
                 <outlet property="loglevelSegmentedController" destination="12F-M6-Gqb" id="Zpd-ZG-w7u"/>
+                <outlet property="mailLogButton" destination="dqk-dK-MWa" id="SSh-fS-dVc"/>
+                <outlet property="resetCoreDataButton" destination="aBT-pb-Sg3" id="Lnx-dd-zQS"/>
             </connections>
         </placeholder>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
@@ -21,7 +24,7 @@
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
                 <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="Ad-Hoc Debugging:" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="jJJ-FV-0Lq">
-                    <rect key="frame" x="176" y="26" width="147" height="20"/>
+                    <rect key="frame" x="176" y="26" width="147" height="19.5"/>
                     <fontDescription key="fontDescription" style="UICTFontTextStyleHeadline"/>
                     <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                     <nil key="highlightedColor"/>
@@ -33,7 +36,7 @@
                     </connections>
                 </switch>
                 <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalCompressionResistancePriority="749" text="Break Enabled:" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="w9w-SF-A1e" userLabel="Break Enabled:">
-                    <rect key="frame" x="210" y="65" width="113" height="20"/>
+                    <rect key="frame" x="210" y="65" width="113" height="19.5"/>
                     <fontDescription key="fontDescription" style="UICTFontTextStyleHeadline"/>
                     <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                     <nil key="highlightedColor"/>
@@ -86,6 +89,15 @@
                                 <action selector="mailLog:" destination="-1" eventType="touchUpInside" id="obJ-RI-23G"/>
                             </connections>
                         </button>
+                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="aBT-pb-Sg3">
+                            <rect key="frame" x="147" y="1" width="66" height="30"/>
+                            <state key="normal" title="Reset CD">
+                                <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                            </state>
+                            <connections>
+                                <action selector="resetCoreData:" destination="-1" eventType="touchUpInside" id="SpY-X4-wS5"/>
+                            </connections>
+                        </button>
                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ZFt-xG-ZzA">
                             <rect key="frame" x="283" y="0.0" width="57" height="32"/>
                             <fontDescription key="fontDescription" style="UICTFontTextStyleBody"/>
@@ -100,11 +112,15 @@
                     <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     <constraints>
                         <constraint firstAttribute="trailing" secondItem="ZFt-xG-ZzA" secondAttribute="trailing" constant="20" symbolic="YES" id="0AF-wL-8YM"/>
+                        <constraint firstItem="aBT-pb-Sg3" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="dqk-dK-MWa" secondAttribute="trailing" constant="8" symbolic="YES" id="GqO-aI-lLL"/>
                         <constraint firstItem="dqk-dK-MWa" firstAttribute="top" secondItem="Fbe-Km-jBx" secondAttribute="top" id="KWB-f0-5cQ"/>
+                        <constraint firstItem="ZFt-xG-ZzA" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="aBT-pb-Sg3" secondAttribute="trailing" constant="8" symbolic="YES" id="Mcm-59-Dl3"/>
                         <constraint firstItem="dqk-dK-MWa" firstAttribute="leading" secondItem="Fbe-Km-jBx" secondAttribute="leading" constant="20" symbolic="YES" id="WYs-7b-ZQh"/>
+                        <constraint firstAttribute="centerX" secondItem="aBT-pb-Sg3" secondAttribute="centerX" id="ZZz-UB-Trk"/>
                         <constraint firstItem="ZFt-xG-ZzA" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="dqk-dK-MWa" secondAttribute="trailing" constant="8" symbolic="YES" id="enO-Lq-5RU"/>
                         <constraint firstItem="ZFt-xG-ZzA" firstAttribute="centerY" secondItem="dqk-dK-MWa" secondAttribute="centerY" id="rIF-5D-X22"/>
                         <constraint firstAttribute="bottom" secondItem="dqk-dK-MWa" secondAttribute="bottom" id="tbP-e6-l4e"/>
+                        <constraint firstItem="dqk-dK-MWa" firstAttribute="centerY" secondItem="aBT-pb-Sg3" secondAttribute="centerY" id="zj1-Dd-Au6"/>
                     </constraints>
                 </view>
             </subviews>

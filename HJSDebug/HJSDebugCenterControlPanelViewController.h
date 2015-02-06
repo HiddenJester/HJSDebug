@@ -14,12 +14,8 @@
 @property (nonatomic, weak) IBOutlet UISegmentedControl * loglevelSegmentedController;
 @property (nonatomic, weak) IBOutlet UITextView * logText;
 @property (weak, nonatomic) IBOutlet UISegmentedControl *logSelector;
-
-- (IBAction)mailLog:(id)sender;
-- (IBAction)toggleAdHoc:(id)sender;
-- (IBAction)changeLogLevel:(id)sender;
-- (IBAction)dismissSelf:(id)sender;
-- (IBAction)toggleBreakEnabled:(id)sender;
-- (IBAction)changeLog:(id)sender;
+@property (weak, nonatomic) IBOutlet UIButton *mailLogButton;
+@property (weak, nonatomic) IBOutlet UIButton *resetCoreDataButton;
+@property (weak, nonatomic) IBOutlet UIButton *dismissButton;
 
 @end

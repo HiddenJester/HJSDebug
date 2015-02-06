@@ -65,6 +65,18 @@ static HJSCoreDataCenter * defaultCenter;
 	[self save];
 }
 
+- (void)resetStack {
+	[[HJSDebugCenter existingCenter] logAtLevel:HJSLogLevelWarning
+										message:@"HJSCoreData: Resetting the core data stack."];
+	_savePending = NO;
+	_managedObjectContext = nil;
+	_persistentStoreCoordinator = nil;
+	_managedObjectModel = nil;
+	[[NSNotificationCenter defaultCenter] postNotificationName:HJSCoreDataCenterResetNotificationKey
+														object:self
+													  userInfo:nil];
+}
+
 #pragma mark Lifecycle
 
 - (id)init {
@@ -103,7 +115,8 @@ static HJSCoreDataCenter * defaultCenter;
 		if (debug.adHocDebugging) {
 			// If we're running in an extension there's nothing to do here but if we're in the full HJSKit we need to
 			// try to present an alert asking the user to email the log as soon as possible. presentAlert is added
-			// as a category in the full HJSKit so this selector is present in HJSKit, but not in HJSExtension.
+			// as a category in the full HJSKit (see HJSCoreDataCenter+PresentErrors) so this selector is present in
+			// HJSKit, but not in HJSExtension.
 			SEL presentAlert = NSSelectorFromString(@"presentAlert");
 			if ([self respondsToSelector:presentAlert]) {
 				// Reassure ARC we aren't leaking anything by building a NSInvocation
@@ -116,18 +129,6 @@ static HJSCoreDataCenter * defaultCenter;
 		}
 	}
 	_savePending = NO;
-}
-
-- (void)resetStack {
-	[[HJSDebugCenter existingCenter] logAtLevel:HJSLogLevelWarning
-									   message:@"HJSCoreData: Resetting the core data stack."];
-	_savePending = NO;
-	_managedObjectContext = nil;
-	_persistentStoreCoordinator = nil;
-	_managedObjectModel = nil;
-	[[NSNotificationCenter defaultCenter] postNotificationName:HJSCoreDataCenterResetNotificationKey
-														object:self
-													  userInfo:nil];
 }
 
 - (NSManagedObjectModel *)managedObjectModel

@@ -5,9 +5,9 @@
 #import "HJSDebugCenterControlPanelViewController.h"
 
 #import "HJSDebugCenter.h"
+#import "HJSCoreDataCenter.h" // Needed for reset stack
 
 @implementation HJSDebugCenterControlPanelViewController
-
 - (void)viewWillAppear:(BOOL)animated {
 	[super viewWillAppear:animated];
 
@@ -16,7 +16,18 @@
 	_adHocSwitch.hidden = YES;
 	_breakEnabledLabel.hidden = YES;
 	_breakEnabledSwitch.hidden = YES;
+	_resetCoreDataButton.hidden = YES;
 #endif
+
+	// The buttons at the bottom get cramped on an iPhone. Let them shrink font size instead of
+	// clipping with an ellipsis.
+	CGFloat minimumScale = 10.0 / _resetCoreDataButton.titleLabel.font.pointSize;
+	_resetCoreDataButton.titleLabel.adjustsFontSizeToFitWidth = YES;
+	_resetCoreDataButton.titleLabel.minimumScaleFactor = minimumScale;
+	_mailLogButton.titleLabel.adjustsFontSizeToFitWidth = YES;
+	_mailLogButton.titleLabel.minimumScaleFactor = minimumScale;
+	_dismissButton.titleLabel.adjustsFontSizeToFitWidth = YES;
+	_dismissButton.titleLabel.minimumScaleFactor = minimumScale;
 
 	HJSDebugCenter * debug = [HJSDebugCenter existingCenter];
  	_adHocSwitch.on = debug.adHocDebugging;
@@ -114,6 +125,10 @@
 	}
 
 	[debug saveSettings];
+}
+- (IBAction)resetCoreData:(id)sender {
+	HJSCoreDataCenter * coreData = [HJSCoreDataCenter defaultCenter];
+	[coreData resetStack];
 }
 
 - (IBAction)dismissSelf:(id)sender {
