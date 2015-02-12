@@ -540,12 +540,16 @@ const unsigned long long defaultMaxLogSize = 300 * 1024;
 		[self logMessage:@"Ad-hoc debugging is off."];
 	}
 #if DEBUG
+	[self logMessage:@"DEBUG is defined in build."];
 	if (self.debugBreakEnabled) {
 		[self logMessage:@"Debug Break is enabled."];
 	}
 	else {
 		[self logMessage:@"Debug Break is off in the options."];
 	}
+#endif
+#if BETA
+	[self logMessage:@"BETA is defined in build."];
 #endif
 
 	[self logMessage:@"=========================="];
