@@ -8,7 +8,7 @@
 #import "HJSCoreDataCenter.h"
 #import "HJSDebugCenter.h"
 
-NSString * HJSCoreDataCenterResetNotificationKey = @"coreDataResetNotification";
+NSString * HJSCoreDataCenterCoreDataResetNotificationKey = @"coreDataResetNotification";
 
 static NSString * defaultEmailHeader =
 @"A serious error accessing your data has happened and your data cannot be recovered. Please send this email to the developer and we'll make every effort to work with you to recover your data. You might be able to use the app by deleting and reinstalling it but be aware that will delete your data forever.";
@@ -72,7 +72,7 @@ static HJSCoreDataCenter * defaultCenter;
 	_managedObjectContext = nil;
 	_persistentStoreCoordinator = nil;
 	_managedObjectModel = nil;
-	[[NSNotificationCenter defaultCenter] postNotificationName:HJSCoreDataCenterResetNotificationKey
+	[[NSNotificationCenter defaultCenter] postNotificationName:HJSCoreDataCenterCoreDataResetNotificationKey
 														object:self
 													  userInfo:nil];
 }

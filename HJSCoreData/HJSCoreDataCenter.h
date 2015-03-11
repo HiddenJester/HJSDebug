@@ -7,7 +7,7 @@
 	policy has kicked in and done something weird. But if you need to reload your model objects on a reset this
 	notification is the way to  do so.
  */
-extern NSString * HJSCoreDataCenterResetNotificationKey;
+extern NSString * HJSCoreDataCenterCoreDataResetNotificationKey;
 
 /**
  This wraps an entire Core Data stack, complete with the ability to restart the stack in the event
@@ -101,7 +101,7 @@ extern NSString * HJSCoreDataCenterResetNotificationKey;
 - (void)immediateSave; // Mostly a debugging aid, but can be useful to force a save RIGHT NOW
 
 /**
- This is mostly a debugging aid, so you can verify you correctly handle the HJSCoreDataCenterResetNotificationKey.
+ This is mostly a debugging aid, so you can verify you correctly handle HJSCoreDataCenterCoreDataResetNotificationKey.
 	Calling this reset the entire Core Data stack, which will recreate itself as needed. This function is called
 	internally when an error arises during a save in an attempt to recover normal operation. The "normal" reason I 
 	see resets has to do with the merge policy: see the comment in context for more info about that.
