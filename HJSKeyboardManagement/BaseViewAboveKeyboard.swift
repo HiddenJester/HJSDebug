@@ -121,6 +121,7 @@ they should call super as well.
 	deinit {
 		zeroAdjustments()
 		debug.logAtLevel(.Debug, message: "BaseViewAboveKeyboard deinit called.")
+		// Can't use cleanupOptionalObserver because keyboardObserver is not optional.
 		NSNotificationCenter.defaultCenter().removeObserver(keyboardObserver)
 	}
 

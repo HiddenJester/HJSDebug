@@ -35,3 +35,15 @@ public func CGSizeInset(size: CGSize, dx: CGFloat, dy: CGFloat) -> CGSize {
 //			constant: newConstant)
 //	}
 //}
+
+/// Simple function that takes an optional NSNotificationCenter observer object, removes it from the default center,
+/// and then nils the optional reference.
+public func cleanupOptionalObserver(inout observerRef: NSObjectProtocol?,  logNilValue: Bool = true) {
+	if let observer = observerRef {
+		NSNotificationCenter.defaultCenter().removeObserver(observer)
+		observerRef = nil
+	}
+	else if logNilValue {
+		debug.logAtLevel(.Critical, message: "Should have had an observer here.")
+	}
+}
