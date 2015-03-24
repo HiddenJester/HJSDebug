@@ -77,6 +77,10 @@ static HJSCoreDataCenter * defaultCenter;
 													  userInfo:nil];
 }
 
+- (BOOL)contextCreated {
+	return _managedObjectContext != nil;
+}
+
 #pragma mark Lifecycle
 
 - (id)init {

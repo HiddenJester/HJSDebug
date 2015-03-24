@@ -111,4 +111,11 @@ extern NSString * HJSCoreDataCenterCoreDataResetNotificationKey;
  */
 - (void)resetStack;
 
+/**
+ This method lets you know if the context is already created.
+ 
+ @result YES if context has been created, NO otherwise
+ */
+- (BOOL)contextCreated;
+
 @end
