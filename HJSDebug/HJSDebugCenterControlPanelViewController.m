@@ -5,20 +5,34 @@
 #import "HJSDebugCenterControlPanelViewController.h"
 
 #import "HJSDebugCenter.h"
+#import "HJSCoreDataCenter.h" // Needed for reset stack
 
 @implementation HJSDebugCenterControlPanelViewController
-
 - (void)viewWillAppear:(BOOL)animated {
 	[super viewWillAppear:animated];
 
 #if BETA
 	_adHocLabel.hidden = YES;
 	_adHocSwitch.hidden = YES;
+	_breakEnabledLabel.hidden = YES;
+	_breakEnabledSwitch.hidden = YES;
+	_resetCoreDataButton.hidden = YES;
 #endif
 
-	_logText.text = [[HJSDebugCenter defaultCenter] logContents];
-	_adHocSwitch.on = [HJSDebugCenter defaultCenter].adHocDebugging;
-	switch ([HJSDebugCenter defaultCenter].logLevel) {
+	// The buttons at the bottom get cramped on an iPhone. Let them shrink font size instead of
+	// clipping with an ellipsis.
+	CGFloat minimumScale = 10.0 / _resetCoreDataButton.titleLabel.font.pointSize;
+	_resetCoreDataButton.titleLabel.adjustsFontSizeToFitWidth = YES;
+	_resetCoreDataButton.titleLabel.minimumScaleFactor = minimumScale;
+	_mailLogButton.titleLabel.adjustsFontSizeToFitWidth = YES;
+	_mailLogButton.titleLabel.minimumScaleFactor = minimumScale;
+	_dismissButton.titleLabel.adjustsFontSizeToFitWidth = YES;
+	_dismissButton.titleLabel.minimumScaleFactor = minimumScale;
+
+	HJSDebugCenter * debug = [HJSDebugCenter existingCenter];
+ 	_adHocSwitch.on = debug.adHocDebugging;
+	_breakEnabledSwitch.on = debug.debugBreakEnabled;
+	switch (debug.logLevel) {
 		case HJSLogLevelCritical:
 			_loglevelSegmentedController.selectedSegmentIndex = 0;
 			break;
@@ -36,12 +50,24 @@
 			_loglevelSegmentedController.selectedSegmentIndex = 2;
 			break;
 	}
+
+	int index = 0;
+	[_logSelector removeAllSegments];
+	[_logSelector insertSegmentWithTitle:@"App" atIndex:index animated:NO];
+	++index;
+
+	for (NSString * key in debug.monitoredLogKeys) {
+		[_logSelector insertSegmentWithTitle:key atIndex:index animated:NO];
+		++index;
+	}
+	_logSelector.selectedSegmentIndex = 0;
+	[self changeLog:self];
 }
 
 - (IBAction)mailLog:(id)sender {
 	UIViewController * presenter = self.presentingViewController;
 	[self dismissViewControllerAnimated:YES completion:^{
-		[[HJSDebugCenter defaultCenter]
+		[[HJSDebugCenter existingCenter]
 		 presentMailLogWithExplanation:@"This log was requested via the debug control panel."
 		 subject:@"Debug log"
 		 fromViewController:presenter];
@@ -49,32 +75,60 @@
 }
 
 - (IBAction)toggleAdHoc:(id)sender {
-	[[HJSDebugCenter defaultCenter] setAdHocDebugging:_adHocSwitch.on];
-	[[HJSDebugCenter defaultCenter] saveSettings];
+	HJSDebugCenter * debug = [HJSDebugCenter existingCenter];
+	debug.adHocDebugging =  _adHocSwitch.on;
+	[debug saveSettings];
+}
+
+- (IBAction)toggleBreakEnabled:(id)sender {
+	HJSDebugCenter * debug = [HJSDebugCenter existingCenter];
+	debug.debugBreakEnabled = _breakEnabledSwitch.on;
+	[debug saveSettings];
+}
+
+- (IBAction)changeLog:(id)sender {
+	HJSDebugCenter * debug = [HJSDebugCenter existingCenter];
+
+	if (_logSelector.selectedSegmentIndex == 0) {
+		_logText.text = debug.mainLogAsString;
+	}
+	else {
+		NSString * key = [_logSelector titleForSegmentAtIndex:_logSelector.selectedSegmentIndex];
+		_logText.text = [debug monitoredLogAsString:key];
+	}
+
+	[_logText scrollRangeToVisible:NSMakeRange([_logText.text length], 0)];
+	[_logText setScrollEnabled:NO];
+	[_logText setScrollEnabled:YES];
 }
 
 - (IBAction)changeLogLevel:(id)sender {
-	HJSLogLevel level;
+	HJSDebugCenter * debug = [HJSDebugCenter existingCenter];
+
 	switch (_loglevelSegmentedController.selectedSegmentIndex) {
 		case 0:
-			level = HJSLogLevelCritical;
+			debug.logLevel = HJSLogLevelCritical;
 			break;
 			
 		case 1:
-			level = HJSLogLevelWarning;
+			debug.logLevel = HJSLogLevelWarning;
 			break;
 
 		case 3:
-			level = HJSLogLevelDebug;
+			debug.logLevel = HJSLogLevelDebug;
 			break;
 			
 		case 2:
 		default:
-			level = HJSLogLevelInfo;
+			debug.logLevel = HJSLogLevelInfo;
 			break;
 	}
-	[[HJSDebugCenter defaultCenter] setLogLevel:level];
-	[[HJSDebugCenter defaultCenter] saveSettings];
+
+	[debug saveSettings];
+}
+- (IBAction)resetCoreData:(id)sender {
+	HJSCoreDataCenter * coreData = [HJSCoreDataCenter defaultCenter];
+	[coreData resetStack];
 }
 
 - (IBAction)dismissSelf:(id)sender {

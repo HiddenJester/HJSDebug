@@ -2,16 +2,20 @@
 //
 //
 
-#import "HJSKit/HJSKit.h"
+@import UIKit;
+@import CoreData;
 
+#import "HJSCoreDataCenter.h"
+#import "HJSDebugCenter.h"
 
-NSString * HJSCoreDataCenterResetNotificationKey = @"coreDataResetNotification";
+NSString * HJSCoreDataCenterCoreDataResetNotificationKey = @"coreDataResetNotification";
 
 static NSString * defaultEmailHeader =
-	@"A serious error accessing your data has happened and your data cannot be recovered. Please send this email to the developer and we'll make every effort to work with you to recover your data. You might be able to use the app by deleting and reinstalling it but be aware that will delete your data forever.";
+@"A serious error accessing your data has happened and your data cannot be recovered. Please send this email to the developer and we'll make every effort to work with you to recover your data. You might be able to use the app by deleting and reinstalling it but be aware that will delete your data forever.";
 static NSString * defaultEmailSubject = @"HiddenJester Software Data Error";
 static NSString * defaultNoEmailAlertMessage =
-	@"A serious issue accessing your data has happened and your data cannot be recovered.You might be able to use the app by deleting and reinstalling it but be aware that will delete your data forever. Please contact the developer by emailing bugs@hiddenjester.com and we'll make every effort to work with you to recover your data.";
+@"A serious issue accessing your data has happened and your data cannot be recovered.You might be able to use the app by deleting and reinstalling it but be aware that will delete your data forever. Please contact the developer by emailing bugs@hiddenjester.com and we'll make every effort to work with you to recover your data.";
+
 
 static HJSCoreDataCenter * defaultCenter;
 
@@ -61,29 +65,29 @@ static HJSCoreDataCenter * defaultCenter;
 	[self save];
 }
 
-- (void)presentErrorEmailFromViewController:(UIViewController *)presenter {
-	HJSDebugCenter * debugCenter = [HJSDebugCenter defaultCenter];
-	if ([debugCenter canSendMail]) {
-		[debugCenter presentMailLogWithExplanation:_errorEmailHeader
-										   subject:_errorEmailSubject
-								fromViewController:presenter];
-	}
-	else {
-		UIAlertView * alert = [[UIAlertView alloc] initWithTitle:@"Data Error"
-														 message:_errorNoEmailAlertMessage
-														delegate:nil
-											   cancelButtonTitle:@"Dismiss"
-											   otherButtonTitles:nil];
-		[alert show];
-	}
+- (void)resetStack {
+	[[HJSDebugCenter existingCenter] logAtLevel:HJSLogLevelWarning
+										message:@"HJSCoreData: Resetting the core data stack."];
+	_savePending = NO;
+	_managedObjectContext = nil;
+	_persistentStoreCoordinator = nil;
+	_managedObjectModel = nil;
+	[[NSNotificationCenter defaultCenter] postNotificationName:HJSCoreDataCenterCoreDataResetNotificationKey
+														object:self
+													  userInfo:nil];
+}
+
+- (BOOL)contextCreated {
+	return _managedObjectContext != nil;
 }
 
 #pragma mark Lifecycle
 
 - (id)init {
 	if (defaultCenter) {
-		[[HJSDebugCenter defaultCenter] logAtLevel:HJSLogLevelCritical
-			formatString:@"Don't create HJSCoreDataCenter objects, use HJSCoreDataCenter defaultCenter instead."];
+		[[HJSDebugCenter existingCenter]
+		 logAtLevel:HJSLogLevelCritical
+			message:@"HJSCoreData: Don't create HJSCoreDataCenter objects, use [HJSCoreDataCenter defaultCenter]."];
 		return nil;
 	}
 	
@@ -100,62 +104,60 @@ static HJSCoreDataCenter * defaultCenter;
 
 - (void)save {
 	NSError * __autoreleasing error = nil;
-	HJSDebugCenter * debug = [HJSDebugCenter defaultCenter];
+	HJSDebugCenter * debug = [HJSDebugCenter existingCenter];
 
 	[[self context] processPendingChanges];
 	if (![[self context] hasChanges]) {
-		[debug logAtLevel:HJSLogLevelWarning formatString:@"Core Data save called with no changes pending."];
+		[debug logAtLevel:HJSLogLevelWarning message:@"HJSCoreData: Core Data save called with no changes pending."];
 	}
 	if ([[self context] save:&error]) {
-		[debug logMessage:@"Data saved successfully"];
+		[debug logMessage:@"HJSCoreData: Data saved successfully"];
 	} else {
 		[debug logError:error];
 		[self resetStack];
 
 		if (debug.adHocDebugging) {
-			NSString * errorMessage = @"Please use the debug function to email the log as soon as possible.";
-			UIAlertView * alert = [[UIAlertView alloc] initWithTitle:@"Data Error"
-															 message:errorMessage
-															delegate:nil
-												   cancelButtonTitle:@"Dismiss"
-												   otherButtonTitles:nil];
-			[alert show];
+			// If we're running in an extension there's nothing to do here but if we're in the full HJSKit we need to
+			// try to present an alert asking the user to email the log as soon as possible. presentAlert is added
+			// as a category in the full HJSKit (see HJSCoreDataCenter+PresentErrors) so this selector is present in
+			// HJSKit, but not in HJSExtension.
+			SEL presentAlert = NSSelectorFromString(@"presentAlert");
+			if ([self respondsToSelector:presentAlert]) {
+				// Reassure ARC we aren't leaking anything by building a NSInvocation
+				NSMethodSignature * methodSig = [[self class] instanceMethodSignatureForSelector:presentAlert];
+				NSInvocation * invocation = [NSInvocation invocationWithMethodSignature:methodSig];
+				[invocation setSelector:presentAlert];
+				[invocation setTarget:self];
+				[invocation invoke];
+			}
 		}
 	}
 	_savePending = NO;
 }
 
-- (void)resetStack {
-	[[HJSDebugCenter defaultCenter] logAtLevel:HJSLogLevelWarning formatString:@"Resetting the core data stack."];
-	_savePending = NO;
-	_managedObjectContext = nil;
-	_persistentStoreCoordinator = nil;
-	_managedObjectModel = nil;
-	[[NSNotificationCenter defaultCenter] postNotificationName:HJSCoreDataCenterResetNotificationKey object:self userInfo:nil];
-}
-
 - (NSManagedObjectModel *)managedObjectModel
 {
 	if (!_managedObjectModel) {
-		if (!_modelDirName) {
-			[[HJSDebugCenter defaultCenter] logAtLevel:HJSLogLevelCritical
-										  formatString:@"modelDirName has to be set before the managedObjectModel can be created"];
+		if (!_modelDirURL) {
+			[[HJSDebugCenter existingCenter]
+			 logAtLevel:HJSLogLevelCritical
+			 message:@"HJSCoreData: modelDirURL has to be set before the managedObjectModel can be created"];
 			return nil;
 		}
-		NSURL * modelURL = [[NSBundle mainBundle] URLForResource:_modelDirName withExtension:@"momd"];
-		_managedObjectModel = [[NSManagedObjectModel alloc] initWithContentsOfURL:modelURL];
+		[[HJSDebugCenter existingCenter] logFormattedString:@"HJSCoreData: Opening the model dir at %@", _modelDirURL];
+		_managedObjectModel = [[NSManagedObjectModel alloc] initWithContentsOfURL:_modelDirURL];
 	}
     return _managedObjectModel;
 }
 
 - (NSPersistentStoreCoordinator *)persistentStoreCoordinator {
 	if (!_persistentStoreCoordinator) {
-		if (!_databaseName) {
-			[[HJSDebugCenter defaultCenter] logAtLevel:HJSLogLevelCritical
-										  formatString:@"databaseName has to be set before the persistentStoreCoordinator can be created"];
+		if (!_storeURL) {
+			[[HJSDebugCenter existingCenter]
+			 logAtLevel:HJSLogLevelCritical
+			 message:@"HJSCoreData: storeURL has to be set before the persistentStoreCoordinator can be created"];
 			return nil;
 		}
-		NSURL * storeURL = [[self applicationDocumentsDirectory] URLByAppendingPathComponent:_databaseName];
 		NSError * __autoreleasing error = nil;
 		NSDictionary * options = [NSDictionary dictionaryWithObjectsAndKeys:
 								  [NSNumber numberWithBool:YES], NSMigratePersistentStoresAutomaticallyOption,
@@ -164,23 +166,19 @@ static HJSCoreDataCenter * defaultCenter;
 		
 		_persistentStoreCoordinator = [[NSPersistentStoreCoordinator alloc]
 									  initWithManagedObjectModel:[self managedObjectModel]];
+		[[HJSDebugCenter existingCenter] logFormattedString:@"HJSCoreData: Opening the persistent store at %@",
+		 _storeURL];
 		NSPersistentStore * store = [_persistentStoreCoordinator addPersistentStoreWithType:NSSQLiteStoreType
 																			  configuration:nil
-																						URL:storeURL
+																						URL:_storeURL
 																					options:options
 																					  error:&error];
 		if (!store) {
-			[[HJSDebugCenter defaultCenter] logError:error];
+			[[HJSDebugCenter existingCenter] logError:error];
 		} // Couldn't open the store!
 	}
     
     return _persistentStoreCoordinator;
-}
-
-// Returns the URL to the application's Documents directory.
-- (NSURL *)applicationDocumentsDirectory
-{
-    return [[[NSFileManager defaultManager] URLsForDirectory:NSDocumentDirectory inDomains:NSUserDomainMask] lastObject];
 }
 
 @end

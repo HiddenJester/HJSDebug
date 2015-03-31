@@ -7,14 +7,14 @@
 	policy has kicked in and done something weird. But if you need to reload your model objects on a reset this
 	notification is the way to  do so.
  */
-extern NSString * HJSCoreDataCenterResetNotificationKey;
+extern NSString * HJSCoreDataCenterCoreDataResetNotificationKey;
 
 /**
  This wraps an entire Core Data stack, complete with the ability to restart the stack in the event
 	of a data error. This is a singleton object, the proper way to get a center is via the class call
 	defaultCenter. [HJSCoreDataCenter defaultCenter]
 
- @warning You must set defaultCenter.modelDirName and defaultCenter.databaseName before you do anything that
+ @warning You must set defaultCenter.modelDirURL and defaultCenter.databaseName before you do anything that
 	will actually create the Core Data objects.
 
  HJSCoreDataCenter attempts to recover from certain types of merge errors and that can cause the stack to reset
@@ -30,38 +30,42 @@ extern NSString * HJSCoreDataCenterResetNotificationKey;
 @interface HJSCoreDataCenter : NSObject
 
 /**
- This is the string used to build the URL for the momD folder. We'll look for <modelDirName>.momd in the main
-	bundle and use that to get the NSManagedObjectModel.
+ This is the URL for the momD folder. We'll get the NSManagedObjectModel from here.
 
  Set it BEFORE you do anything that requires the managedObjectModel or you'll get an assert.
  */
-@property (nonatomic) NSString * modelDirName;
+@property (nonatomic) NSURL * modelDirURL;
 
 /**
- This is the string used to build the URL for the persistent store folder. We'll look for <databaseName> in the
-	application documents directory. Note that this means it should be fully qualifed, ie. "name.sqlite"
-
+ This is the NSURL for the persistent store. This should be fully qualified, be it in the application
+	documents directory, or an app group, or some other locale.
  Set it BEFORE you do anything that requires the persistentStoreCoordinator or you'll get an assert.
  */
-@property (nonatomic) NSString * databaseName;
+@property (nonatomic) NSURL * storeURL;
 
 /**
- When reportDataError is called it will attempt to create an email for the user to send to us containing the
-	log. errorEmailHeader will be put in the body of the proposed message above the log. There is a default
-	message provided if this isn't customized.
+ When presentErrorEmailFromViewController is called it will attempt to create an email for the user to send to us 
+	containing the log. errorEmailHeader will be put in the body of the proposed message above the log. There is a
+	default message provided if this isn't customized. Note that presentErrorEmailFromViewController isn't in
+	HJSExtension, only in the full kit, but it's easier to just have the properties here because the category providing
+	presentErrorEmailFromViewController doesn't have ivars.
  */
 @property (nonatomic) NSString * errorEmailHeader;
 
 /**
- When reportDataError is called it will attempt to create an email for the user to send to us containing the
-	log. errorEmailSubject will be put in the subject of the proposed message. There is a default
-	message provided if this isn't customized.
+ When presentErrorEmailFromViewController is called it will attempt to create an email for the user to send to us 
+	containing the log. errorEmailSubject will be put in the subject of the proposed message. There is a default
+	message provided if this isn't customized. Note that presentErrorEmailFromViewController isn't in
+	HJSExtension, only in the full kit, but it's easier to just have the properties here because the category providing
+	presentErrorEmailFromViewController doesn't have ivars.
  */
 @property (nonatomic) NSString * errorEmailSubject;
 
 /**
- When reportDataError is called if mail cannot be sent then an alert dialog will be displayed containing
-	errorNoEmailAlertMessage. There is a default message provided if this isn't customized.
+ When presentErrorEmailFromViewController is called if mail cannot be sent then an alert dialog will be displayed
+	containing errorNoEmailAlertMessage. There is a default message provided if this isn't customized. Note that
+	presentErrorEmailFromViewController isn't in HJSExtension, only in the full kit, but it's easier to just have the 
+	properties here because the category providing presentErrorEmailFromViewController doesn't have ivars.
  */
 @property (nonatomic) NSString * errorNoEmailAlertMessage;
 
@@ -73,7 +77,7 @@ extern NSString * HJSCoreDataCenterResetNotificationKey;
 + (instancetype)defaultCenter;
 
 /**
- @warning You really need to configure modelDirName and databaseName before calling context.
+ @warning You really need to configure modelDirURL and databaseName before calling context.
 
  @result a NSManagedObjectContext that is configured and ready for use.
  */
@@ -84,7 +88,7 @@ extern NSString * HJSCoreDataCenterResetNotificationKey;
 	is put on the mainQueue for later execution. This makes coalescing multiple requests easy. Just call requestSave
 	after every data change and big sweeping changes will still only trigger a single Core Data save.
 
- @result No return value but at some point in the future a Core Data save will happen on the main operation queue.
+ There is no return value but at some point in the future a Core Data save will happen on the main operation queue.
  */
 - (void)requestSave;
 
@@ -92,18 +96,26 @@ extern NSString * HJSCoreDataCenterResetNotificationKey;
  This is mostly a debugging aid. It triggers an immediate save. Note that this does not remove the future save if
 	requestSave is called.
 
- @result Core Data immediately saves.
+ There is no return value but Core Data immediately saves.
  */
 - (void)immediateSave; // Mostly a debugging aid, but can be useful to force a save RIGHT NOW
 
 /**
- This is a convenience method that will attempt to send an email containing the log. If mail cannot be sent it will
-	present a modal alert dialog alerting the user a data error has occurred.
- 
- @param presenter A View Controller that will present the mail dialog.
+ This is mostly a debugging aid, so you can verify you correctly handle HJSCoreDataCenterCoreDataResetNotificationKey.
+	Calling this reset the entire Core Data stack, which will recreate itself as needed. This function is called
+	internally when an error arises during a save in an attempt to recover normal operation. The "normal" reason I 
+	see resets has to do with the merge policy: see the comment in context for more info about that.
 
- @result The user is either presented an email to send or an alert dialog informing them there has been an error.
+ @warning THIS DOES NOT SAVE any pending changes. It can be called during error conditions arising from a save so it
+	does not call save. If you want to save first be sure to call immediateSave prior to resetStack.
  */
-- (void)presentErrorEmailFromViewController:(UIViewController *)presenter;
+- (void)resetStack;
+
+/**
+ This method lets you know if the context is already created.
+ 
+ @result YES if context has been created, NO otherwise
+ */
+- (BOOL)contextCreated;
 
 @end

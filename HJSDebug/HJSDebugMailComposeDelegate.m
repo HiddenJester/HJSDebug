@@ -8,7 +8,9 @@
 
 @implementation HJSDebugMailComposeDelegate
 
-- (void)mailComposeController:(MFMailComposeViewController *)controller didFinishWithResult:(MFMailComposeResult)result error:(NSError *)error {
+- (void)mailComposeController:(MFMailComposeViewController *)controller
+		  didFinishWithResult:(MFMailComposeResult)result
+						error:(NSError *)error {
 	NSString * mailResult;
 	
 	switch (result) {
@@ -32,9 +34,12 @@
 			mailResult = @"unknown";
 			break;
 	}
-	[[HJSDebugCenter defaultCenter] logAtLevel:HJSLogLevelDebug formatString:@"Mail log send attempted, the result was %@", mailResult];
+
+	HJSDebugCenter * debug = [HJSDebugCenter existingCenter];
+
+	[debug logAtLevel:HJSLogLevelDebug formatString:@"Mail log send attempted, the result was %@", mailResult];
 	if (error) {
-		[[HJSDebugCenter defaultCenter] logError:error];
+		[debug logError:error];
 	}
 	[controller dismissViewControllerAnimated:YES completion:NULL];
 }
