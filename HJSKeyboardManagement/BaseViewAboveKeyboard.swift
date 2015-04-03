@@ -54,7 +54,7 @@ they should call super as well.
 	var animOptions: UIViewAnimationOptions = .TransitionNone
 
 	/// The UIKeyboardWillChangeFrameNotification observer
-	private let keyboardObserver : NSObjectProtocol!
+	private var keyboardObserver : NSObjectProtocol?
 
 	// MARK: Functions to override
 	/**
@@ -76,7 +76,7 @@ they should call super as well.
 	}
 
 	func hasInvalidState() -> Bool {
-		if adjustee? == nil || keyboardRect.size.height == 0 {
+		if adjustee == nil || keyboardRect.size.height == 0 {
 			debug.logMessage("BaseViewAboveKeyboard can't do any work.")
 			return true
 		}
@@ -85,13 +85,13 @@ they should call super as well.
 
 	//Convenience functions for calling the blocks
 	func callAdjustmentBlock() {
-		if let block = adjustmentBlock? {
+		if let block = adjustmentBlock {
 			block()
 		}
 	}
 
 	func callCompletionBlock() {
-		if let block = completionBlock? {
+		if let block = completionBlock {
 			block()
 		}
 	}
@@ -122,14 +122,14 @@ they should call super as well.
 		zeroAdjustments()
 		debug.logAtLevel(.Debug, message: "BaseViewAboveKeyboard deinit called.")
 		// Can't use cleanupOptionalObserver because keyboardObserver is not optional.
-		NSNotificationCenter.defaultCenter().removeObserver(keyboardObserver)
+		cleanupOptionalObserver(&keyboardObserver)
 	}
 
 	// MARK: Internals
 	private func processKeyboardWillChangeFrame(note: NSNotification) {
 		// Bail if we're not configured to do anything useful. Can't call hasInvalidState because it's OK
 		// to not have a keyboardRect here.
-		if adjustee? == nil {
+		if adjustee == nil {
 			return
 		}
 

@@ -98,7 +98,7 @@ _keyboardWatcher.targetView = _detailField;
 	/// Clear out currentAdjustment. If it still had a value left animate it away.
 	override func zeroAdjustments() {
 		if currentAdjustment < 0.0 {
-			if let view = adjustee? {
+			if let view = adjustee {
 				UIView.animateWithDuration(animDuration,
 					delay: 0,
 					options: animOptions,
@@ -126,7 +126,7 @@ _keyboardWatcher.targetView = _detailField;
 		// No point if we don't have targetView or if targetView isn't a child of adjustee.
 		// Note the second test can safely unwrap targetView because if it was
 		// nil then the first test would have triggered and we'd short-circuit
-		if  targetView? == nil || !targetView!.isDescendantOfView(adjustee!) {
+		if  targetView == nil || !targetView!.isDescendantOfView(adjustee!) {
 			debug.logMessage("SlideViewAboveKeyboard is installed but has no work to do.")
 			return true
 		}

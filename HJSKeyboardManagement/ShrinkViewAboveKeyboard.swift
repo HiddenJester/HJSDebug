@@ -92,7 +92,7 @@ _keyboardWatcher.targetView = _detailField;
 	/// Clear out currentAdjustment. If it still had a value left animate it away.
 	override func zeroAdjustments() {
 		if currentAdjustment < 0.0 {
-			if let view = adjustee? {
+			if let view = adjustee {
 				UIView.animateWithDuration(animDuration,
 					delay: 0,
 					options: animOptions,
