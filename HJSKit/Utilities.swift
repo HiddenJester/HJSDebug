@@ -8,6 +8,8 @@
 
 import Foundation
 
+import HJSDebug
+
 /// Handy to keep around. Use existingCenter because we're part of HJSKit and shouldn't create a new center.
 let debug = HJSDebugCenter.existingCenter()
 

@@ -5,7 +5,6 @@
 #import "HJSDebugCenterControlPanelViewController.h"
 
 #import "HJSDebugCenter.h"
-#import "HJSCoreDataCenter.h" // Needed for reset stack
 
 @implementation HJSDebugCenterControlPanelViewController
 - (void)viewWillAppear:(BOOL)animated {
@@ -127,8 +126,8 @@
 	[debug saveSettings];
 }
 - (IBAction)resetCoreData:(id)sender {
-	HJSCoreDataCenter * coreData = [HJSCoreDataCenter defaultCenter];
-	[coreData resetStack];
+//	HJSCoreDataCenter * coreData = [HJSCoreDataCenter defaultCenter];
+//	[coreData resetStack];
 }
 
 - (IBAction)dismissSelf:(id)sender {

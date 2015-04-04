@@ -524,15 +524,12 @@ const unsigned long long defaultMaxLogSize = 300 * 1024;
 	 [mainBundleInfo objectForKey:@"CFBundleShortVersionString"],
 	 [mainBundleInfo objectForKey:@"CFBundleVersion"]
 	 ];
-#if HJS_FRAMEWORK_BUILD
 	NSDictionary * frameworkBundleInfo = [[NSBundle bundleForClass:self.class] infoDictionary];
-	[self logFormattedString:@"HJSExtension version: %@, build: %@",
+	[self logFormattedString:@"HJSDebug version: %@, build: %@",
 	 [frameworkBundleInfo objectForKey:@"CFBundleShortVersionString"],
 	 [frameworkBundleInfo objectForKey:@"CFBundleVersion"]
 	 ];
-#else
-	[self logMessage:@"HJSKit not built from framework and has no separate version number."];
-#endif
+
 	if (self.adHocDebugging) {
 		[self logMessage:@"Ad-hoc debugging is on."];
 	}

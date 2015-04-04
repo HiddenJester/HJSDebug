@@ -16,10 +16,3 @@ FOUNDATION_EXPORT const unsigned char HJSExtensionVersionString[];
 
 // In this header, you should import all the public headers of your framework using statements like #import <HJSExtension/PublicHeader.h>
 #import "HJSCoreDataCenter.h"
-#import "HJSDebugCenter.h"
-
-//pragma mark Foundation & UIKit categories
-#import "NSString+NSCharacterSetTesting.h"
-#import "UIColor+iOS7Colors.h"
-#import "UISplitViewController+QuickAccess.h"
-

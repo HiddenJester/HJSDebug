@@ -6,6 +6,8 @@
 //  Copyright (c) 2014 HiddenJester Software. All rights reserved.
 //
 
+@import HJSDebug;
+
 #import "HJSKit.h"
 #import "HJSCoreDataCenter+PresentErrors.h"
 
