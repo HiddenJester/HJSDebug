@@ -7,15 +7,15 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		3BD9D8581AD0A6C400F508AD /* UIColor+iOS7Colors.h in Headers */ = {isa = PBXBuildFile; fileRef = 3BD9D8561AD0A6C400F508AD /* UIColor+iOS7Colors.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		3BD9D8591AD0A6C400F508AD /* UIColor+iOS7Colors.m in Sources */ = {isa = PBXBuildFile; fileRef = 3BD9D8571AD0A6C400F508AD /* UIColor+iOS7Colors.m */; };
+		3BD9D85C1AD0A6DB00F508AD /* NSString+NSCharacterSetTesting.h in Headers */ = {isa = PBXBuildFile; fileRef = 3BD9D85A1AD0A6DB00F508AD /* NSString+NSCharacterSetTesting.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		3BD9D85D1AD0A6DB00F508AD /* NSString+NSCharacterSetTesting.m in Sources */ = {isa = PBXBuildFile; fileRef = 3BD9D85B1AD0A6DB00F508AD /* NSString+NSCharacterSetTesting.m */; };
+		3BD9D8601AD0A6F400F508AD /* UISplitViewController+QuickAccess.h in Headers */ = {isa = PBXBuildFile; fileRef = 3BD9D85E1AD0A6F400F508AD /* UISplitViewController+QuickAccess.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		3BD9D8611AD0A6F400F508AD /* UISplitViewController+QuickAccess.m in Sources */ = {isa = PBXBuildFile; fileRef = 3BD9D85F1AD0A6F400F508AD /* UISplitViewController+QuickAccess.m */; };
 		3BE23C861AD0460D00DD844B /* HJSUtils.h in Headers */ = {isa = PBXBuildFile; fileRef = 3BE23C851AD0460D00DD844B /* HJSUtils.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		3BE23C8C1AD0460D00DD844B /* HJSUtils.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3BE23C801AD0460D00DD844B /* HJSUtils.framework */; };
 		3BE23C931AD0460D00DD844B /* HJSUtilsTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 3BE23C921AD0460D00DD844B /* HJSUtilsTests.m */; };
-		3BE23CA71AD0470000DD844B /* UIColor+iOS7Colors.h in Headers */ = {isa = PBXBuildFile; fileRef = 3BE23CA51AD0470000DD844B /* UIColor+iOS7Colors.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		3BE23CA81AD0470000DD844B /* UIColor+iOS7Colors.m in Sources */ = {isa = PBXBuildFile; fileRef = 3BE23CA61AD0470000DD844B /* UIColor+iOS7Colors.m */; };
-		3BE23CAB1AD0471400DD844B /* NSString+NSCharacterSetTesting.h in Headers */ = {isa = PBXBuildFile; fileRef = 3BE23CA91AD0471400DD844B /* NSString+NSCharacterSetTesting.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		3BE23CAC1AD0471400DD844B /* NSString+NSCharacterSetTesting.m in Sources */ = {isa = PBXBuildFile; fileRef = 3BE23CAA1AD0471400DD844B /* NSString+NSCharacterSetTesting.m */; };
-		3BE23CAF1AD0472700DD844B /* UISplitViewController+QuickAccess.h in Headers */ = {isa = PBXBuildFile; fileRef = 3BE23CAD1AD0472700DD844B /* UISplitViewController+QuickAccess.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		3BE23CB01AD0472700DD844B /* UISplitViewController+QuickAccess.m in Sources */ = {isa = PBXBuildFile; fileRef = 3BE23CAE1AD0472700DD844B /* UISplitViewController+QuickAccess.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -29,18 +29,18 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		3BD9D8561AD0A6C400F508AD /* UIColor+iOS7Colors.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "UIColor+iOS7Colors.h"; path = "iOS7Colors/iOS7Colors/UIColor+iOS7Colors.h"; sourceTree = SOURCE_ROOT; };
+		3BD9D8571AD0A6C400F508AD /* UIColor+iOS7Colors.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "UIColor+iOS7Colors.m"; path = "iOS7Colors/iOS7Colors/UIColor+iOS7Colors.m"; sourceTree = SOURCE_ROOT; };
+		3BD9D85A1AD0A6DB00F508AD /* NSString+NSCharacterSetTesting.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "NSString+NSCharacterSetTesting.h"; path = "NSString-NSCharacterSetTesting/NSString+NSCharacterSetTesting.h"; sourceTree = SOURCE_ROOT; };
+		3BD9D85B1AD0A6DB00F508AD /* NSString+NSCharacterSetTesting.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "NSString+NSCharacterSetTesting.m"; path = "NSString-NSCharacterSetTesting/NSString+NSCharacterSetTesting.m"; sourceTree = SOURCE_ROOT; };
+		3BD9D85E1AD0A6F400F508AD /* UISplitViewController+QuickAccess.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "UISplitViewController+QuickAccess.h"; path = "UISplitViewController+QuickAccess/UISplitViewController+QuickAccess.h"; sourceTree = SOURCE_ROOT; };
+		3BD9D85F1AD0A6F400F508AD /* UISplitViewController+QuickAccess.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "UISplitViewController+QuickAccess.m"; path = "UISplitViewController+QuickAccess/UISplitViewController+QuickAccess.m"; sourceTree = SOURCE_ROOT; };
 		3BE23C801AD0460D00DD844B /* HJSUtils.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = HJSUtils.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		3BE23C841AD0460D00DD844B /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		3BE23C851AD0460D00DD844B /* HJSUtils.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = HJSUtils.h; sourceTree = "<group>"; };
 		3BE23C8B1AD0460D00DD844B /* HJSUtilsTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = HJSUtilsTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		3BE23C911AD0460D00DD844B /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		3BE23C921AD0460D00DD844B /* HJSUtilsTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = HJSUtilsTests.m; sourceTree = "<group>"; };
-		3BE23CA51AD0470000DD844B /* UIColor+iOS7Colors.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "UIColor+iOS7Colors.h"; path = "iOS7Colors/iOS7Colors/UIColor+iOS7Colors.h"; sourceTree = "<group>"; };
-		3BE23CA61AD0470000DD844B /* UIColor+iOS7Colors.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "UIColor+iOS7Colors.m"; path = "iOS7Colors/iOS7Colors/UIColor+iOS7Colors.m"; sourceTree = "<group>"; };
-		3BE23CA91AD0471400DD844B /* NSString+NSCharacterSetTesting.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "NSString+NSCharacterSetTesting.h"; path = "NSString-NSCharacterSetTesting/NSString+NSCharacterSetTesting.h"; sourceTree = "<group>"; };
-		3BE23CAA1AD0471400DD844B /* NSString+NSCharacterSetTesting.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "NSString+NSCharacterSetTesting.m"; path = "NSString-NSCharacterSetTesting/NSString+NSCharacterSetTesting.m"; sourceTree = "<group>"; };
-		3BE23CAD1AD0472700DD844B /* UISplitViewController+QuickAccess.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "UISplitViewController+QuickAccess.h"; path = "UISplitViewController+QuickAccess/UISplitViewController+QuickAccess.h"; sourceTree = "<group>"; };
-		3BE23CAE1AD0472700DD844B /* UISplitViewController+QuickAccess.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "UISplitViewController+QuickAccess.m"; path = "UISplitViewController+QuickAccess/UISplitViewController+QuickAccess.m"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -83,12 +83,12 @@
 		3BE23C821AD0460D00DD844B /* HJSUtils */ = {
 			isa = PBXGroup;
 			children = (
-				3BE23CAD1AD0472700DD844B /* UISplitViewController+QuickAccess.h */,
-				3BE23CAE1AD0472700DD844B /* UISplitViewController+QuickAccess.m */,
-				3BE23CA91AD0471400DD844B /* NSString+NSCharacterSetTesting.h */,
-				3BE23CAA1AD0471400DD844B /* NSString+NSCharacterSetTesting.m */,
-				3BE23CA51AD0470000DD844B /* UIColor+iOS7Colors.h */,
-				3BE23CA61AD0470000DD844B /* UIColor+iOS7Colors.m */,
+				3BD9D85E1AD0A6F400F508AD /* UISplitViewController+QuickAccess.h */,
+				3BD9D85F1AD0A6F400F508AD /* UISplitViewController+QuickAccess.m */,
+				3BD9D85A1AD0A6DB00F508AD /* NSString+NSCharacterSetTesting.h */,
+				3BD9D85B1AD0A6DB00F508AD /* NSString+NSCharacterSetTesting.m */,
+				3BD9D8561AD0A6C400F508AD /* UIColor+iOS7Colors.h */,
+				3BD9D8571AD0A6C400F508AD /* UIColor+iOS7Colors.m */,
 				3BE23C851AD0460D00DD844B /* HJSUtils.h */,
 				3BE23C831AD0460D00DD844B /* Supporting Files */,
 			);
@@ -127,10 +127,10 @@
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				3BE23CAF1AD0472700DD844B /* UISplitViewController+QuickAccess.h in Headers */,
-				3BE23CA71AD0470000DD844B /* UIColor+iOS7Colors.h in Headers */,
+				3BD9D8601AD0A6F400F508AD /* UISplitViewController+QuickAccess.h in Headers */,
+				3BD9D8581AD0A6C400F508AD /* UIColor+iOS7Colors.h in Headers */,
 				3BE23C861AD0460D00DD844B /* HJSUtils.h in Headers */,
-				3BE23CAB1AD0471400DD844B /* NSString+NSCharacterSetTesting.h in Headers */,
+				3BD9D85C1AD0A6DB00F508AD /* NSString+NSCharacterSetTesting.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -247,9 +247,9 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				3BE23CAC1AD0471400DD844B /* NSString+NSCharacterSetTesting.m in Sources */,
-				3BE23CB01AD0472700DD844B /* UISplitViewController+QuickAccess.m in Sources */,
-				3BE23CA81AD0470000DD844B /* UIColor+iOS7Colors.m in Sources */,
+				3BD9D85D1AD0A6DB00F508AD /* NSString+NSCharacterSetTesting.m in Sources */,
+				3BD9D8611AD0A6F400F508AD /* UISplitViewController+QuickAccess.m in Sources */,
+				3BD9D8591AD0A6C400F508AD /* UIColor+iOS7Colors.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
