@@ -4,3 +4,6 @@
 [submodule "HJSUtils/NSString-NSCharacterSetTesting"]
 	path = HJSUtils/NSString-NSCharacterSetTesting
 	url = /Users/tsanders/code/GitHubRepos/NSString-NSCharacterSetTesting.git
+[submodule "HJSUtils/UISplitViewController+QuickAccess"]
+	path = HJSUtils/UISplitViewController+QuickAccess
+	url = /Users/tsanders/code/GitHubRepos/UISplitViewController+QuickAccess.git/
