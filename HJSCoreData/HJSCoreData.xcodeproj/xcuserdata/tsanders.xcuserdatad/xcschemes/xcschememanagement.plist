@@ -4,20 +4,20 @@
 <dict>
 	<key>SchemeUserState</key>
 	<dict>
-		<key>HJSDebug.xcscheme</key>
+		<key>HJSCoreData.xcscheme</key>
 		<dict>
 			<key>orderHint</key>
-			<integer>6</integer>
+			<integer>7</integer>
 		</dict>
 	</dict>
 	<key>SuppressBuildableAutocreation</key>
 	<dict>
-		<key>3BE23D011AD04F7800DD844B</key>
+		<key>3BD9D89A1AD0A86600F508AD</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>3BE23D0C1AD04F7800DD844B</key>
+		<key>3BD9D8A51AD0A86600F508AD</key>
 		<dict>
 			<key>primary</key>
 			<true/>

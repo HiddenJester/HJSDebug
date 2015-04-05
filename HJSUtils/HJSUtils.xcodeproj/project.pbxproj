@@ -13,6 +13,7 @@
 		3BD9D85D1AD0A6DB00F508AD /* NSString+NSCharacterSetTesting.m in Sources */ = {isa = PBXBuildFile; fileRef = 3BD9D85B1AD0A6DB00F508AD /* NSString+NSCharacterSetTesting.m */; };
 		3BD9D8601AD0A6F400F508AD /* UISplitViewController+QuickAccess.h in Headers */ = {isa = PBXBuildFile; fileRef = 3BD9D85E1AD0A6F400F508AD /* UISplitViewController+QuickAccess.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		3BD9D8611AD0A6F400F508AD /* UISplitViewController+QuickAccess.m in Sources */ = {isa = PBXBuildFile; fileRef = 3BD9D85F1AD0A6F400F508AD /* UISplitViewController+QuickAccess.m */; };
+		3BD9D8D01AD0BE8F00F508AD /* Utilities.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3BD9D8CF1AD0BE8F00F508AD /* Utilities.swift */; };
 		3BE23C861AD0460D00DD844B /* HJSUtils.h in Headers */ = {isa = PBXBuildFile; fileRef = 3BE23C851AD0460D00DD844B /* HJSUtils.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		3BE23C8C1AD0460D00DD844B /* HJSUtils.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3BE23C801AD0460D00DD844B /* HJSUtils.framework */; };
 		3BE23C931AD0460D00DD844B /* HJSUtilsTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 3BE23C921AD0460D00DD844B /* HJSUtilsTests.m */; };
@@ -35,6 +36,7 @@
 		3BD9D85B1AD0A6DB00F508AD /* NSString+NSCharacterSetTesting.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "NSString+NSCharacterSetTesting.m"; path = "NSString-NSCharacterSetTesting/NSString+NSCharacterSetTesting.m"; sourceTree = SOURCE_ROOT; };
 		3BD9D85E1AD0A6F400F508AD /* UISplitViewController+QuickAccess.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "UISplitViewController+QuickAccess.h"; path = "UISplitViewController+QuickAccess/UISplitViewController+QuickAccess.h"; sourceTree = SOURCE_ROOT; };
 		3BD9D85F1AD0A6F400F508AD /* UISplitViewController+QuickAccess.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "UISplitViewController+QuickAccess.m"; path = "UISplitViewController+QuickAccess/UISplitViewController+QuickAccess.m"; sourceTree = SOURCE_ROOT; };
+		3BD9D8CF1AD0BE8F00F508AD /* Utilities.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Utilities.swift; sourceTree = "<group>"; };
 		3BE23C801AD0460D00DD844B /* HJSUtils.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = HJSUtils.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		3BE23C841AD0460D00DD844B /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		3BE23C851AD0460D00DD844B /* HJSUtils.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = HJSUtils.h; sourceTree = "<group>"; };
@@ -83,6 +85,7 @@
 		3BE23C821AD0460D00DD844B /* HJSUtils */ = {
 			isa = PBXGroup;
 			children = (
+				3BD9D8CF1AD0BE8F00F508AD /* Utilities.swift */,
 				3BD9D85E1AD0A6F400F508AD /* UISplitViewController+QuickAccess.h */,
 				3BD9D85F1AD0A6F400F508AD /* UISplitViewController+QuickAccess.m */,
 				3BD9D85A1AD0A6DB00F508AD /* NSString+NSCharacterSetTesting.h */,
@@ -249,6 +252,7 @@
 			files = (
 				3BD9D85D1AD0A6DB00F508AD /* NSString+NSCharacterSetTesting.m in Sources */,
 				3BD9D8611AD0A6F400F508AD /* UISplitViewController+QuickAccess.m in Sources */,
+				3BD9D8D01AD0BE8F00F508AD /* Utilities.swift in Sources */,
 				3BD9D8591AD0A6C400F508AD /* UIColor+iOS7Colors.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -315,6 +319,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				APPLICATION_EXTENSION_API_ONLY = YES;
+				CLANG_ENABLE_MODULES = YES;
 				DEFINES_MODULE = YES;
 				DYLIB_COMPATIBILITY_VERSION = 1;
 				DYLIB_CURRENT_VERSION = 1;
@@ -323,6 +328,7 @@
 				INFOPLIST_FILE = HJSUtils/Info.plist;
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				OTHER_SWIFT_FLAGS = "-DBETA";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
 			};
@@ -429,6 +435,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				APPLICATION_EXTENSION_API_ONLY = YES;
+				CLANG_ENABLE_MODULES = YES;
 				DEFINES_MODULE = YES;
 				DYLIB_COMPATIBILITY_VERSION = 1;
 				DYLIB_CURRENT_VERSION = 1;
@@ -437,8 +444,10 @@
 				INFOPLIST_FILE = HJSUtils/Info.plist;
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				OTHER_SWIFT_FLAGS = "-DDEBUG";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 			};
 			name = Debug;
 		};
@@ -446,6 +455,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				APPLICATION_EXTENSION_API_ONLY = YES;
+				CLANG_ENABLE_MODULES = YES;
 				DEFINES_MODULE = YES;
 				DYLIB_COMPATIBILITY_VERSION = 1;
 				DYLIB_CURRENT_VERSION = 1;
@@ -454,6 +464,7 @@
 				INFOPLIST_FILE = HJSUtils/Info.plist;
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				OTHER_SWIFT_FLAGS = "";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
 			};
