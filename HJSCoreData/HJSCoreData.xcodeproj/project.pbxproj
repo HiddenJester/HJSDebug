@@ -12,10 +12,30 @@
 		3BD9D8AE1AD0A86600F508AD /* HJSCoreDataTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 3BD9D8AD1AD0A86600F508AD /* HJSCoreDataTests.m */; };
 		3BD9D8C21AD0A88400F508AD /* HJSCoreDataCenter.h in Headers */ = {isa = PBXBuildFile; fileRef = 3BD9D8C01AD0A88400F508AD /* HJSCoreDataCenter.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		3BD9D8C31AD0A88400F508AD /* HJSCoreDataCenter.m in Sources */ = {isa = PBXBuildFile; fileRef = 3BD9D8C11AD0A88400F508AD /* HJSCoreDataCenter.m */; };
-		3BD9D8CC1AD0A97200F508AD /* HJSDebug.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3BD9D8CB1AD0A97200F508AD /* HJSDebug.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
+		3BA565171AD198200070367B /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 3BA565121AD198200070367B /* HJSDebug.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 3BE23D021AD04F7800DD844B;
+			remoteInfo = HJSDebug;
+		};
+		3BA565191AD198200070367B /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 3BA565121AD198200070367B /* HJSDebug.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 3BE23D0D1AD04F7800DD844B;
+			remoteInfo = HJSDebugTests;
+		};
+		3BA5651F1AD1989A0070367B /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 3BA565121AD198200070367B /* HJSDebug.xcodeproj */;
+			proxyType = 1;
+			remoteGlobalIDString = 3BE23D011AD04F7800DD844B;
+			remoteInfo = HJSDebug;
+		};
 		3BD9D8A81AD0A86600F508AD /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 3BD9D8921AD0A86600F508AD /* Project object */;
@@ -26,6 +46,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		3BA565121AD198200070367B /* HJSDebug.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = HJSDebug.xcodeproj; path = ../HJSDebug/HJSDebug.xcodeproj; sourceTree = "<group>"; };
 		3BD9D89B1AD0A86600F508AD /* HJSCoreData.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = HJSCoreData.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		3BD9D89F1AD0A86600F508AD /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		3BD9D8A01AD0A86600F508AD /* HJSCoreData.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = HJSCoreData.h; sourceTree = "<group>"; };
@@ -34,7 +55,6 @@
 		3BD9D8AD1AD0A86600F508AD /* HJSCoreDataTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = HJSCoreDataTests.m; sourceTree = "<group>"; };
 		3BD9D8C01AD0A88400F508AD /* HJSCoreDataCenter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HJSCoreDataCenter.h; sourceTree = "<group>"; };
 		3BD9D8C11AD0A88400F508AD /* HJSCoreDataCenter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HJSCoreDataCenter.m; sourceTree = "<group>"; };
-		3BD9D8CB1AD0A97200F508AD /* HJSDebug.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = HJSDebug.framework; path = "../HJSDebug/build/Debug-iphoneos/HJSDebug.framework"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -42,7 +62,6 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				3BD9D8CC1AD0A97200F508AD /* HJSDebug.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -57,13 +76,30 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		3BA565131AD198200070367B /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				3BA565181AD198200070367B /* HJSDebug.framework */,
+				3BA5651A1AD198200070367B /* HJSDebugTests.xctest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		3BA5651B1AD198250070367B /* HJSKit Dependencies */ = {
+			isa = PBXGroup;
+			children = (
+				3BA565121AD198200070367B /* HJSDebug.xcodeproj */,
+			);
+			name = "HJSKit Dependencies";
+			sourceTree = "<group>";
+		};
 		3BD9D8911AD0A86600F508AD = {
 			isa = PBXGroup;
 			children = (
-				3BD9D8CB1AD0A97200F508AD /* HJSDebug.framework */,
 				3BD9D89D1AD0A86600F508AD /* HJSCoreData */,
 				3BD9D8AA1AD0A86600F508AD /* HJSCoreDataTests */,
 				3BD9D89C1AD0A86600F508AD /* Products */,
+				3BA5651B1AD198250070367B /* HJSKit Dependencies */,
 			);
 			sourceTree = "<group>";
 		};
@@ -140,6 +176,7 @@
 			buildRules = (
 			);
 			dependencies = (
+				3BA565201AD1989A0070367B /* PBXTargetDependency */,
 			);
 			name = HJSCoreData;
 			productName = HJSCoreData;
@@ -191,6 +228,12 @@
 			mainGroup = 3BD9D8911AD0A86600F508AD;
 			productRefGroup = 3BD9D89C1AD0A86600F508AD /* Products */;
 			projectDirPath = "";
+			projectReferences = (
+				{
+					ProductGroup = 3BA565131AD198200070367B /* Products */;
+					ProjectRef = 3BA565121AD198200070367B /* HJSDebug.xcodeproj */;
+				},
+			);
 			projectRoot = "";
 			targets = (
 				3BD9D89A1AD0A86600F508AD /* HJSCoreData */,
@@ -198,6 +241,23 @@
 			);
 		};
 /* End PBXProject section */
+
+/* Begin PBXReferenceProxy section */
+		3BA565181AD198200070367B /* HJSDebug.framework */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.framework;
+			path = HJSDebug.framework;
+			remoteRef = 3BA565171AD198200070367B /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		3BA5651A1AD198200070367B /* HJSDebugTests.xctest */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.cfbundle;
+			path = HJSDebugTests.xctest;
+			remoteRef = 3BA565191AD198200070367B /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+/* End PBXReferenceProxy section */
 
 /* Begin PBXResourcesBuildPhase section */
 		3BD9D8991AD0A86600F508AD /* Resources */ = {
@@ -252,6 +312,11 @@
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
+		3BA565201AD1989A0070367B /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = HJSDebug;
+			targetProxy = 3BA5651F1AD1989A0070367B /* PBXContainerItemProxy */;
+		};
 		3BD9D8A91AD0A86600F508AD /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			target = 3BD9D89A1AD0A86600F508AD /* HJSCoreData */;
@@ -295,7 +360,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 8.2;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				MTL_ENABLE_DEBUG_INFO = YES;
 				ONLY_ACTIVE_ARCH = YES;
 				SDKROOT = iphoneos;
@@ -334,7 +399,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 8.2;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				SDKROOT = iphoneos;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -439,7 +504,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 8.2;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				SDKROOT = iphoneos;
 				TARGETED_DEVICE_FAMILY = "1,2";

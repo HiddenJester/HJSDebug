@@ -11,7 +11,7 @@
 import UIKit
 
 import HJSDebug
-import HJSUtils
+import HJSUtils			// Uses cleanupOptionalObserver
 
 let debug = HJSDebugCenter.existingCenter()
 

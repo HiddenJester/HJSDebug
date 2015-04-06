@@ -20,6 +20,27 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
+		3BA564F21AD195E10070367B /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 3BA564ED1AD195E10070367B /* HJSDebug.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 3BE23D021AD04F7800DD844B;
+			remoteInfo = HJSDebug;
+		};
+		3BA564F41AD195E10070367B /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 3BA564ED1AD195E10070367B /* HJSDebug.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 3BE23D0D1AD04F7800DD844B;
+			remoteInfo = HJSDebugTests;
+		};
+		3BA564F61AD195F70070367B /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 3BA564ED1AD195E10070367B /* HJSDebug.xcodeproj */;
+			proxyType = 1;
+			remoteGlobalIDString = 3BE23D011AD04F7800DD844B;
+			remoteInfo = HJSDebug;
+		};
 		3BE23C8D1AD0460D00DD844B /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 3BE23C771AD0460D00DD844B /* Project object */;
@@ -30,6 +51,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		3BA564ED1AD195E10070367B /* HJSDebug.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = HJSDebug.xcodeproj; path = ../HJSDebug/HJSDebug.xcodeproj; sourceTree = "<group>"; };
 		3BD9D8561AD0A6C400F508AD /* UIColor+iOS7Colors.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "UIColor+iOS7Colors.h"; path = "iOS7Colors/iOS7Colors/UIColor+iOS7Colors.h"; sourceTree = SOURCE_ROOT; };
 		3BD9D8571AD0A6C400F508AD /* UIColor+iOS7Colors.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "UIColor+iOS7Colors.m"; path = "iOS7Colors/iOS7Colors/UIColor+iOS7Colors.m"; sourceTree = SOURCE_ROOT; };
 		3BD9D85A1AD0A6DB00F508AD /* NSString+NSCharacterSetTesting.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "NSString+NSCharacterSetTesting.h"; path = "NSString-NSCharacterSetTesting/NSString+NSCharacterSetTesting.h"; sourceTree = SOURCE_ROOT; };
@@ -64,12 +86,30 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		3BA564EE1AD195E10070367B /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				3BA564F31AD195E10070367B /* HJSDebug.framework */,
+				3BA564F51AD195E10070367B /* HJSDebugTests.xctest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		3BA5651E1AD198830070367B /* HJSKit Dependencies */ = {
+			isa = PBXGroup;
+			children = (
+				3BA564ED1AD195E10070367B /* HJSDebug.xcodeproj */,
+			);
+			name = "HJSKit Dependencies";
+			sourceTree = "<group>";
+		};
 		3BE23C761AD0460D00DD844B = {
 			isa = PBXGroup;
 			children = (
 				3BE23C821AD0460D00DD844B /* HJSUtils */,
 				3BE23C8F1AD0460D00DD844B /* HJSUtilsTests */,
 				3BE23C811AD0460D00DD844B /* Products */,
+				3BA5651E1AD198830070367B /* HJSKit Dependencies */,
 			);
 			sourceTree = "<group>";
 		};
@@ -153,6 +193,7 @@
 			buildRules = (
 			);
 			dependencies = (
+				3BA564F71AD195F70070367B /* PBXTargetDependency */,
 			);
 			name = HJSUtils;
 			productName = HJSUtils;
@@ -204,6 +245,12 @@
 			mainGroup = 3BE23C761AD0460D00DD844B;
 			productRefGroup = 3BE23C811AD0460D00DD844B /* Products */;
 			projectDirPath = "";
+			projectReferences = (
+				{
+					ProductGroup = 3BA564EE1AD195E10070367B /* Products */;
+					ProjectRef = 3BA564ED1AD195E10070367B /* HJSDebug.xcodeproj */;
+				},
+			);
 			projectRoot = "";
 			targets = (
 				3BE23C7F1AD0460D00DD844B /* HJSUtils */,
@@ -211,6 +258,23 @@
 			);
 		};
 /* End PBXProject section */
+
+/* Begin PBXReferenceProxy section */
+		3BA564F31AD195E10070367B /* HJSDebug.framework */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.framework;
+			path = HJSDebug.framework;
+			remoteRef = 3BA564F21AD195E10070367B /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		3BA564F51AD195E10070367B /* HJSDebugTests.xctest */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.cfbundle;
+			path = HJSDebugTests.xctest;
+			remoteRef = 3BA564F41AD195E10070367B /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+/* End PBXReferenceProxy section */
 
 /* Begin PBXResourcesBuildPhase section */
 		3BE23C7E1AD0460D00DD844B /* Resources */ = {
@@ -268,6 +332,11 @@
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
+		3BA564F71AD195F70070367B /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = HJSDebug;
+			targetProxy = 3BA564F61AD195F70070367B /* PBXContainerItemProxy */;
+		};
 		3BE23C8E1AD0460D00DD844B /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			target = 3BE23C7F1AD0460D00DD844B /* HJSUtils */;
@@ -305,7 +374,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 8.2;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				SDKROOT = iphoneos;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -383,7 +452,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 8.2;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				MTL_ENABLE_DEBUG_INFO = YES;
 				ONLY_ACTIVE_ARCH = YES;
 				SDKROOT = iphoneos;
@@ -422,7 +491,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 8.2;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				SDKROOT = iphoneos;
 				TARGETED_DEVICE_FAMILY = "1,2";
