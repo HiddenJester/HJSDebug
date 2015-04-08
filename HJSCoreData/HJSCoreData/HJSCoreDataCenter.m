@@ -2,10 +2,11 @@
 //
 //
 
-@import UIKit;
 @import CoreData;
+@import UIKit;
 
 @import HJSDebug;
+
 #import "HJSCoreDataCenter.h"
 
 NSString * HJSCoreDataCenterCoreDataResetNotificationKey = @"coreDataResetNotification";

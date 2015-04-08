@@ -6,15 +6,13 @@
 //  Copyright (c) 2015 HIddenJester Software. All rights reserved.
 //
 
-#import <UIKit/UIKit.h>
+@import Foundation;
 
 //! Project version number for HJSDebug.
 FOUNDATION_EXPORT double HJSDebugVersionNumber;
 
 //! Project version string for HJSDebug.
 FOUNDATION_EXPORT const unsigned char HJSDebugVersionString[];
-
-// In this header, you should import all the public headers of your framework using statements like #import <HJSDebug/PublicHeader.h>
 
 #import "HJSDebugCenter.h"
 

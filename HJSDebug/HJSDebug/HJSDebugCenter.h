@@ -2,6 +2,10 @@
 //
 //
 
+@import Foundation;
+
+@class UIViewController;
+
 // Logging sits atop ASL, but I don't want to include ASL.H everywhere, nor do I need
 // all 8 logging levels. So we A ) Objective-C-ify the #defines into a NS_ENUM,
 // and B ) provide a subset of levels. That's why the actual values are discontinuous.

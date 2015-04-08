@@ -2,6 +2,9 @@
 //
 //
 
+@class NSManagedObjectContext;
+@class UIViewController;
+
 /**
  HJSCoreDataCenter will post this notification when it needs to reset the stack. Generally this happens when the merge
 	policy has kicked in and done something weird. But if you need to reload your model objects on a reset this

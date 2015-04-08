@@ -6,16 +6,13 @@
 //  Copyright (c) 2015 HIddenJester Software. All rights reserved.
 //
 
-#import <UIKit/UIKit.h>
+@import Foundation;
 
 //! Project version number for HJSUtils.
 FOUNDATION_EXPORT double HJSUtilsVersionNumber;
 
 //! Project version string for HJSUtils.
 FOUNDATION_EXPORT const unsigned char HJSUtilsVersionString[];
-
-// In this header, you should import all the public headers of your framework using statements like
-// #import <HJSUtils/PublicHeader.h>
 
 //pragma mark Foundation & UIKit categories
 #import "NSString+NSCharacterSetTesting.h"

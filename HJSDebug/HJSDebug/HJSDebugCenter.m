@@ -2,8 +2,6 @@
 //
 //
 
-@import MessageUI;
-
 #import "HJSDebugCenter.h"
 
 #include <asl.h>
