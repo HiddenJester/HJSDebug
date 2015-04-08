@@ -1,6 +1,3 @@
-[submodule "HJSUtils/iOS7Colors"]
-	path = HJSUtils/iOS7Colors
-	url = /Users/tsanders/code/ThirdParty/iOS7Colors.git
 [submodule "HJSUtils/NSString-NSCharacterSetTesting"]
 	path = HJSUtils/NSString-NSCharacterSetTesting
 	url = /Users/tsanders/code/GitHubRepos/NSString-NSCharacterSetTesting.git
