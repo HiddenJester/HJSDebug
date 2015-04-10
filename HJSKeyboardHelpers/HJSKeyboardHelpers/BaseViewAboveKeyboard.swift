@@ -16,25 +16,22 @@ import HJSUtils			// Uses cleanupOptionalObserver
 let debug = HJSDebugCenter.existingCenter()
 
 /**
-:brief: A common base class for managing keyboard view changes.
+A common base class for managing keyboard view changes.
 
-:description:
-Regardless of what action wants to be taken there is a fair amount of common code around moving views when the
-keyboard appears. This common base class takes a view that is to be manipulated and watches the keyboard notification.
-It tracks where the keyboard is in the view's local space and calls an overridable function to do something in
-response.
+Regardless of what action wants to be taken there is a fair amount of common code around moving views when the keyboard
+appears. This common base class takes a view that is to be manipulated and watches the keyboard notification. It tracks
+where the keyboard is in the view's local space and calls an overridable function to do something in response.
 
 This also manages the issue where the keyboardWilChangeFrame notification is supposed to store a
 UIViewAnimationCurve constant but sometimes returns 7, which is really a bitmask of a few bits in
 UIViewAnimationOptions. It checks if the value really is a valid UIViewAnimationCurve. If it isn't, but the
 rawValue was 7 then it will go ahead and log a debug message to that effect and set the curveType to .EaseInEaseOut.
 If the value was some *OTHER* thing it logs a critical message about having an unknown value and sets the curveType
-to .EaseInEaseOut anyway. So curveType will ALWAYS be legal, even if the behavior of this is changed in the future.
+to .EaseInEaseOut anyway. So curveType will ALWAYS be legal, even if the other non-documented values are received
+in the future.
 
 Child classes need to override update() to do whatever adjustments they provide. They should also override
-zeroAdjustments which will be called when the adjustment needs to be entirely removed. They can optionally override
-hasInvalidState which is used to determine whether everything is valid enough to run update, but if they override that
-they should call super as well.
+zeroAdjustments which will be called when the adjustment needs to be entirely removed.
 */
 
 @objc public class BaseViewAboveKeyboard : NSObject {
@@ -45,15 +42,24 @@ they should call super as well.
 	/// This block is called whenever an adjustment animation *finishes*.
 	@objc public var completionBlock: (() -> Void)?
 
+	/// Padding adds a gap between the keyboard and the target view.
 	@objc public var padding = CGFloat(0)
 
+	// All of the following variables are not private so child classes can access them.
 	/// The view is that is adjusted as needed.
-	weak var adjustee : UIView?
-	/// The keyboard rect (in adjustee local space), as it changes
+	weak var adjustee : UIView? {
+		willSet {
+			zeroAdjustments()
+		}
+		didSet {
+			update()
+		}
+	}
+
+	/// The keyboard rect (in adjustee local space), as it changes.
 	var keyboardRect = CGRectZero
 
-
-	/// All of the values for the keyboard animation, cached so we can reuse if the code changes targetView
+	/// All of the values for the keyboard animation, cached so we can reuse if the code changes adjustee.
 	var animDuration = NSTimeInterval(0)
 	var curveType: UIViewAnimationCurve = .Linear
 	var animOptions: UIViewAnimationOptions = .TransitionNone
@@ -64,49 +70,28 @@ they should call super as well.
 	// MARK: Functions to override
 	/**
 	This function does the work of the class. We call it both when a keyboard notification occurs and when
-	targetView is changed. In the latter case we'll make an animation that uses the same values we received
+	adjustee is changed. In the latter case we'll make an animation that uses the same values we received
 	in the last keyboard update.
-	
 
-	:warning: The child classes need to also call adjustmentBlock and completionBlock where appropriate
+	:Warning: The child classes need to also call adjustmentBlock and completionBlock where appropriate.
 	*/
 	func update() {
 		debug.logAtLevel(.Critical,
 			message: "Don't call BaseViewAboveKeyboard functions, override update in the child.")
 	}
 
+	/// This function must be overridden by a child. It should roll off any adjustments made to adjustee.
 	func zeroAdjustments() {
 		debug.logAtLevel(.Critical,
 			message: "Don't call BaseViewAboveKeyboard functions, override zeroAdjustments in the child.")
 	}
 
-	func hasInvalidState() -> Bool {
-		if adjustee == nil || keyboardRect.size.height == 0 {
-			debug.logMessage("BaseViewAboveKeyboard can't do any work.")
-			return true
-		}
-		return false
-	}
-
-	//Convenience functions for calling the blocks
-	func callAdjustmentBlock() {
-		if let block = adjustmentBlock {
-			block()
-		}
-	}
-
-	func callCompletionBlock() {
-		if let block = completionBlock {
-			block()
-		}
-	}
-	
 	// MARK: Lifecycle
 	/**
 	Initializes a new KeepViewAboveKeyboard object.
 
-	:param: view The view that will be adjusted as needed to keep targetView onscreen above the keyboard
-	:returns: A KeepViewAboveKeyboard object.
+	:param: view The view that will be adjusted as needed to keep onscreen above the keyboard
+	:returns: A BaseViewAboveKeyboard object.
 	*/
 	@objc public init(view: UIView) {
 		adjustee = view
@@ -117,29 +102,20 @@ they should call super as well.
 			UIKeyboardWillChangeFrameNotification,
 			object: nil,
 			queue: nil) { [weak self] (note) -> Void in
-				if let blockSelf = self {
-					blockSelf.processKeyboardWillChangeFrame(note)
-				}
+				self?.processKeyboardWillChangeFrame(note)
 		}
 	}
 
 	deinit {
-		zeroAdjustments()
 		debug.logAtLevel(.Debug, message: "BaseViewAboveKeyboard deinit called.")
-		// Can't use cleanupOptionalObserver because keyboardObserver is not optional.
+		zeroAdjustments()
 		cleanupOptionalObserver(&keyboardObserver)
 	}
 
 	// MARK: Internals
 	private func processKeyboardWillChangeFrame(note: NSNotification) {
-		// Bail if we're not configured to do anything useful. Can't call hasInvalidState because it's OK
-		// to not have a keyboardRect here.
-		if adjustee == nil {
-			return
-		}
-
 		// Pull useful info out of the notification and keep for future use.
-		if let userInfo = note.userInfo as? [NSObject : NSValue]{
+		if let adjustee = adjustee, userInfo = note.userInfo as? [NSObject : NSValue] {
 			// Get the duration of the animation.
 			if let noteValue = userInfo[UIKeyboardAnimationDurationUserInfoKey] {
 				noteValue.getValue(&animDuration)
@@ -192,12 +168,12 @@ they should call super as well.
 			// Get where the keyboard will end up.
 			if let noteValue = userInfo[UIKeyboardFrameEndUserInfoKey] {
 				noteValue.getValue(&keyboardRect)
-				// Convert the rect into adjustee local space. hasInvalidState tested for adjustee up above
-				// so the unwrap is safe.
-				keyboardRect = adjustee!.convertRect(keyboardRect, fromView: nil)
+				// Convert the rect into adjustee local space.
+				keyboardRect = adjustee.convertRect(keyboardRect, fromView: nil)
 			}
+
+			update()
 		}
-		update()
 	}
 }
 
