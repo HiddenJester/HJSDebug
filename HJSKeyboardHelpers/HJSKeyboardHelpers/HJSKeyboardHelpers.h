@@ -8,13 +8,8 @@
 
 @import Foundation;
 
-
 //! Project version number for HJSKeyboardHelpers.
 FOUNDATION_EXPORT double HJSKeyboardHelpersVersionNumber;
 
 //! Project version string for HJSKeyboardHelpers.
 FOUNDATION_EXPORT const unsigned char HJSKeyboardHelpersVersionString[];
-
-// In this header, you should import all the public headers of your framework using statements like #import <HJSKeyboardHelpers/PublicHeader.h>
-
-
