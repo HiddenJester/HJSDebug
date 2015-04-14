@@ -36,11 +36,18 @@ Objective C usage (called from a UIViewController):
 
 	// MARK: BaseViewAboveKeyboard overrides
 	override func update() {
+		// If the keyboardRect is height zero (happens during when targetView is set, but the keyboard isn't
+		// onscreen), go ahead and zero any extant adjustments and bail.
+		if keyboardRect.height == 0 {
+			zeroAdjustments()
+			return
+		}
+
 		if let adjustee = adjustee,
 			targetView = targetView,
 			targetSuper = targetView.superview where targetView.isDescendantOfView(adjustee) {
 				// TargetView may not be a direct child of adjustee, just somewhere in the child hierarchy. So in order
-				// to do the math we need to adjust targetView's origin into scrolleeView's local space.
+				// to do the math we need to adjust targetView's origin into adjustee's local space.
 				let targetFrame = targetSuper.convertRect(targetView.frame, toView:adjustee)
 				let targetViewBottomY = targetFrame.origin.y + targetFrame.size.height
 				// Pretend the keyboardRect starts at the top of the padding for the purposes of this math. Note that
@@ -87,9 +94,13 @@ Objective C usage (called from a UIViewController):
 			UIView.animateWithDuration(animDuration,
 				delay: 0,
 				options: animOptions,
-				animations: { [weak self]() -> Void in
+				animations: { () -> Void in
+					// From a purist perspective I'd like to capture self weak ([weak self] here. But if I do that I 
+					// can't call this func from deinit. Since deinit should probably zero out the adjustment we need
+					// to make a strong capture. This is OK, the animation will definitely finish, and then the strong
+					// pointer will go away.
 					adjustee.center = CGPointMake(adjustee.center.x,
-						adjustee.center.y - (self?.currentAdjustment ?? 0));
+						adjustee.center.y - (self.currentAdjustment ?? 0));
 				},
 				completion: nil)
 			currentAdjustment = 0

@@ -70,6 +70,7 @@
 /* Begin PBXFileReference section */
 		3BA564FC1AD1974F0070367B /* HJSDebug.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = HJSDebug.xcodeproj; path = ../HJSDebug/HJSDebug.xcodeproj; sourceTree = "<group>"; };
 		3BA565071AD197C50070367B /* HJSUtils.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = HJSUtils.xcodeproj; path = ../HJSUtils/HJSUtils.xcodeproj; sourceTree = "<group>"; };
+		3BCFE8B91ADDC74B004E46CA /* Notes.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = Notes.md; sourceTree = "<group>"; };
 		3BD9D8DB1AD0C15A00F508AD /* HJSKeyboardHelpers.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = HJSKeyboardHelpers.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		3BD9D8DF1AD0C15A00F508AD /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		3BD9D8E01AD0C15A00F508AD /* HJSKeyboardHelpers.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = HJSKeyboardHelpers.h; sourceTree = "<group>"; };
@@ -130,6 +131,7 @@
 		3BD9D8D11AD0C15A00F508AD = {
 			isa = PBXGroup;
 			children = (
+				3BCFE8B91ADDC74B004E46CA /* Notes.md */,
 				3BD9D8DD1AD0C15A00F508AD /* HJSKeyboardHelpers */,
 				3BD9D8EA1AD0C15B00F508AD /* HJSKeyboardHelpersTests */,
 				3BD9D8DC1AD0C15A00F508AD /* Products */,
@@ -483,7 +485,7 @@
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				OTHER_SWIFT_FLAGS = "-DDEBUG";
+				OTHER_SWIFT_FLAGS = "-DDEBUG -Xfrontend -serialize-debugging-options";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
@@ -503,7 +505,7 @@
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				OTHER_SWIFT_FLAGS = "-DSWIFT";
+				OTHER_SWIFT_FLAGS = "";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
 			};
@@ -592,6 +594,7 @@
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				OTHER_SWIFT_FLAGS = "-Xfrontend -serialize-debugging-options -DBETA";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
 			};
