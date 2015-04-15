@@ -24,6 +24,9 @@ typedef NS_ENUM(NSInteger, HJSLogLevel) {
 /// Can be passed as maxLogSize to defaultCenterWithConfigURL
 extern const unsigned long long defaultMaxLogSize;
 
+/// KVO string for observing when debugBreak is enabled
+extern NSString * debugBreakEnabledKey;
+
 @interface HJSDebugCenter : NSObject
 
 @property (nonatomic) HJSLogLevel logLevel;

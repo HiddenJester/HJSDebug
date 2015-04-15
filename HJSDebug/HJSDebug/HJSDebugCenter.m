@@ -12,7 +12,8 @@
 
 static NSString * loggingLevelKey = @"LoggingLevel";
 static NSString * adHocDebuggingKey = @"adHocDebugging";
-static NSString * debugBreakEnabledKey = @"debugBreakEnabled";
+
+NSString * debugBreakEnabledKey = @"debugBreakEnabled";
 
 static HJSDebugCenter * defaultCenter;
 

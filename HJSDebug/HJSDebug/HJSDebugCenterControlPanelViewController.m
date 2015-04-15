@@ -60,6 +60,9 @@
 		++index;
 	}
 	_logSelector.selectedSegmentIndex = 0;
+	if (index == 1) { // If we only have one log in the control go ahead and hide it.
+		_logSelector.hidden = YES;
+	}
 	[self changeLog:self];
 }
 
