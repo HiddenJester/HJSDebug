@@ -225,7 +225,7 @@
 			isa = PBXProject;
 			attributes = {
 				LastUpgradeCheck = 0620;
-				ORGANIZATIONNAME = "HIddenJester Software";
+				ORGANIZATIONNAME = "HiddenJester Software";
 				TargetAttributes = {
 					3BE23C7F1AD0460D00DD844B = {
 						CreatedOnToolsVersion = 6.2;
