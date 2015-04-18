@@ -3,10 +3,9 @@
 //  HJSExtension
 //
 //  Created by Timothy Sanders on 2014-12-07.
-//  Copyright (c) 2014 HIddenJester Software. All rights reserved.
-// This work is licensed under the Creative Commons Attribution-ShareAlike 4.0
-// International License. To view a copy of this license, visit
-// http://creativecommons.org/licenses/by-sa/4.0/deed.en_US.//
+//  Copyright (c) 2014 HiddenJester Software.
+//	This work is licensed under a Creative Commons Attribution-NonCommercial-ShareAlike 4.0 International License.
+//	See http://creativecommons.org/licenses/by-nc-sa/4.0/
 
 import UIKit
 
@@ -19,8 +18,9 @@ let debug = HJSDebugCenter.existingCenter()
 A common base class for managing keyboard view changes.
 
 Regardless of what action wants to be taken there is a fair amount of common code around moving views when the keyboard
-appears. This common base class takes a view that is to be manipulated and watches the keyboard notification. It tracks
-where the keyboard is in the view's local space and calls an overridable function to do something in response.
+appears. This common base class takes a view (adjustee) that is to be manipulated and watches the keyboard
+notification. It tracks where the keyboard is in the view's local space and calls an overridable function to do
+something in response.
 
 This also manages the issue where the keyboardWilChangeFrame notification is supposed to store a
 UIViewAnimationCurve constant but sometimes returns 7, which is really a bitmask of a few bits in
@@ -45,9 +45,12 @@ zeroAdjustments which will be called when the adjustment needs to be entirely re
 	/// Padding adds a gap between the keyboard and the target view.
 	@objc public var padding = CGFloat(0)
 
-	// All of the following variables are not private so child classes can access them.
-	/// The view is that is adjusted as needed.
-	weak var adjustee : UIView? {
+	// MARK: Internal variables
+	// All of the following variables are not private so child classes can access them. But they also aren't public
+	// so they aren't visible outside of HJSKeyboardHelpers.
+
+	/// The view is that is adjusted as needed. Note that this is weak therefore it must be optional.
+	@objc weak var adjustee : UIView? {
 		willSet {
 			zeroAdjustments()
 		}
@@ -80,8 +83,12 @@ zeroAdjustments which will be called when the adjustment needs to be entirely re
 			message: "Don't call BaseViewAboveKeyboard functions, override update in the child.")
 	}
 
-	/// This function must be overridden by a child. It should roll off any adjustments made to adjustee.
-	func zeroAdjustments() {
+	/**
+	This function must be overridden by a child. It should roll off any adjustments made to adjustee.
+
+	:Warning: The child classes need to also call adjustmentBlock and completionBlock where appropriate.
+	*/
+	 func zeroAdjustments() {
 		debug.logAtLevel(.Critical,
 			message: "Don't call BaseViewAboveKeyboard functions, override zeroAdjustments in the child.")
 	}
@@ -114,6 +121,7 @@ zeroAdjustments which will be called when the adjustment needs to be entirely re
 
 	// MARK: Internals
 	private func processKeyboardWillChangeFrame(note: NSNotification) {
+		debug.logAtLevel(.Debug, message: "---Keyboard Will Change Frame notification.---")
 		// Pull useful info out of the notification and keep for future use.
 		if let adjustee = adjustee, userInfo = note.userInfo as? [NSObject : NSValue] {
 			// Get the duration of the animation.
@@ -170,6 +178,7 @@ zeroAdjustments which will be called when the adjustment needs to be entirely re
 				noteValue.getValue(&keyboardRect)
 				// Convert the rect into adjustee local space.
 				keyboardRect = adjustee.convertRect(keyboardRect, fromView: nil)
+				debug.logAtLevel(.Debug, message: "KeyboardRect: \(keyboardRect)")
 			}
 
 			update()

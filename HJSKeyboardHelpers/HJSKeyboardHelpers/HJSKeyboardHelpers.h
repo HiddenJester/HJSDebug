@@ -2,9 +2,9 @@
 //  HJSKeyboardHelpers.h
 //  HJSKeyboardHelpers
 //
-//  Created by Timothy Sanders on 2015-04-04.
-//  Copyright (c) 2015 HIddenJester Software. All rights reserved.
-//
+//  Copyright (c) 2014 HiddenJester Software.
+//	This work is licensed under a Creative Commons Attribution-NonCommercial-ShareAlike 4.0 International License.
+//	See http://creativecommons.org/licenses/by-nc-sa/4.0/
 
 @import Foundation;
 
