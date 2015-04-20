@@ -466,6 +466,10 @@ const unsigned long long defaultMaxLogSize = 300 * 1024;
     return self;
 }
 
+- (void)dealloc {
+	[self logMessage:@"HJSDebugCenter dealloc called."];
+}
+
 - (void)terminateLogging {
 	[self logMessage:@"Logging terminated"];
 	if (_logFile) {

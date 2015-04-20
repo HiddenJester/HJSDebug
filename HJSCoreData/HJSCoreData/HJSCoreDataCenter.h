@@ -3,6 +3,7 @@
 //
 
 @class NSManagedObjectContext;
+@class NSPersistentStoreCoordinator;
 @class UIViewController;
 
 /**
@@ -87,6 +88,15 @@ extern NSString * HJSCoreDataCenterCoreDataResetNotificationKey;
 - (NSManagedObjectContext *)context;
 
 /**
+ The coordinator that will be used by context.
+
+ @warning You really need to configure modelDirURL and databaseName before calling coordinator.
+
+ @result a NSPersistentStoreCoordinator that is configured and ready for use.
+ */
+- (NSPersistentStoreCoordinator *)coordinator;
+
+/**
  If a save has been requested but not yet executed this does nothing. When a save is requested the save operation
 	is put on the mainQueue for later execution. This makes coalescing multiple requests easy. Just call requestSave
 	after every data change and big sweeping changes will still only trigger a single Core Data save.
@@ -96,12 +106,12 @@ extern NSString * HJSCoreDataCenterCoreDataResetNotificationKey;
 - (void)requestSave;
 
 /**
- This is mostly a debugging aid. It triggers an immediate save. Note that this does not remove the future save if
-	requestSave is called.
+ Unlike requestSave this triggers an immediate save. Note that a save from requestSave is pending it is not removed by
+ this call but will still happen in the future.
 
  There is no return value but Core Data immediately saves.
  */
-- (void)immediateSave; // Mostly a debugging aid, but can be useful to force a save RIGHT NOW
+- (void)immediateSave;
 
 /**
  This is mostly a debugging aid, so you can verify you correctly handle HJSCoreDataCenterCoreDataResetNotificationKey.

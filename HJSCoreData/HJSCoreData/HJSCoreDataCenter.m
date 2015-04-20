@@ -38,7 +38,7 @@ static HJSCoreDataCenter * defaultCenter;
 
 - (NSManagedObjectContext *)context {
 	if (!_managedObjectContext) {
-		NSPersistentStoreCoordinator *coordinator = [self persistentStoreCoordinator];
+		NSPersistentStoreCoordinator *coordinator = [self coordinator];
 		if (coordinator != nil) {
 			_managedObjectContext = [[NSManagedObjectContext alloc] initWithConcurrencyType:NSMainQueueConcurrencyType];
 			[_managedObjectContext setPersistentStoreCoordinator:coordinator];
@@ -51,6 +51,37 @@ static HJSCoreDataCenter * defaultCenter;
 	}
 
     return _managedObjectContext;
+}
+
+- (NSPersistentStoreCoordinator *)coordinator {
+	if (!_persistentStoreCoordinator) {
+		if (!_storeURL) {
+			[[HJSDebugCenter existingCenter]
+			 logAtLevel:HJSLogLevelCritical
+			 message:@"HJSCoreData: storeURL has to be set before the persistentStoreCoordinator can be created"];
+			return nil;
+		}
+		NSError * __autoreleasing error = nil;
+		NSDictionary * options = [NSDictionary dictionaryWithObjectsAndKeys:
+								  [NSNumber numberWithBool:YES], NSMigratePersistentStoresAutomaticallyOption,
+								  [NSNumber numberWithBool:YES], NSInferMappingModelAutomaticallyOption,
+								  nil];
+
+		_persistentStoreCoordinator = [[NSPersistentStoreCoordinator alloc]
+									   initWithManagedObjectModel:[self managedObjectModel]];
+		[[HJSDebugCenter existingCenter] logFormattedString:@"HJSCoreData: Opening the persistent store at %@",
+		 _storeURL];
+		NSPersistentStore * store = [_persistentStoreCoordinator addPersistentStoreWithType:NSSQLiteStoreType
+																			  configuration:nil
+																						URL:_storeURL
+																					options:options
+																					  error:&error];
+		if (!store) {
+			[[HJSDebugCenter existingCenter] logError:error];
+		} // Couldn't open the store!
+	}
+
+	return _persistentStoreCoordinator;
 }
 
 - (void)requestSave {
@@ -117,6 +148,10 @@ static HJSCoreDataCenter * defaultCenter;
 	return self;
 }
 
+- (void)dealloc {
+	[[HJSDebugCenter existingCenter] logMessage:@"HJSCoreDataCenter dealloc called."];
+}
+
 #pragma mark Internals
 
 - (void)save {
@@ -150,37 +185,5 @@ static HJSCoreDataCenter * defaultCenter;
 	}
     return _managedObjectModel;
 }
-
-- (NSPersistentStoreCoordinator *)persistentStoreCoordinator {
-	if (!_persistentStoreCoordinator) {
-		if (!_storeURL) {
-			[[HJSDebugCenter existingCenter]
-			 logAtLevel:HJSLogLevelCritical
-			 message:@"HJSCoreData: storeURL has to be set before the persistentStoreCoordinator can be created"];
-			return nil;
-		}
-		NSError * __autoreleasing error = nil;
-		NSDictionary * options = [NSDictionary dictionaryWithObjectsAndKeys:
-								  [NSNumber numberWithBool:YES], NSMigratePersistentStoresAutomaticallyOption,
-								  [NSNumber numberWithBool:YES], NSInferMappingModelAutomaticallyOption,
-								  nil];
-		
-		_persistentStoreCoordinator = [[NSPersistentStoreCoordinator alloc]
-									  initWithManagedObjectModel:[self managedObjectModel]];
-		[[HJSDebugCenter existingCenter] logFormattedString:@"HJSCoreData: Opening the persistent store at %@",
-		 _storeURL];
-		NSPersistentStore * store = [_persistentStoreCoordinator addPersistentStoreWithType:NSSQLiteStoreType
-																			  configuration:nil
-																						URL:_storeURL
-																					options:options
-																					  error:&error];
-		if (!store) {
-			[[HJSDebugCenter existingCenter] logError:error];
-		} // Couldn't open the store!
-	}
-    
-    return _persistentStoreCoordinator;
-}
-
 
 @end
