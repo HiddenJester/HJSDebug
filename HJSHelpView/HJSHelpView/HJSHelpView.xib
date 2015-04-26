@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="7702" systemVersion="14D136" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="7701"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="HJSHelpView" customModule="HJSHelpView" customModuleProvider="target">
+            <connections>
+                <outlet property="delegate" destination="3i3-kP-fnF" id="xrG-u7-YTN"/>
+            </connections>
+        </placeholder>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view contentMode="scaleToFill" id="iN0-l3-epB">
+            <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <toolbar opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="9z3-Wv-wUR">
+                    <rect key="frame" x="0.0" y="0.0" width="600" height="44"/>
+                    <items>
+                        <barButtonItem image="Back" id="Qx1-0E-oEC" userLabel="Back Button">
+                            <connections>
+                                <action selector="backTapped:" destination="3i3-kP-fnF" id="ioh-lD-lG5"/>
+                            </connections>
+                        </barButtonItem>
+                        <barButtonItem title="Rate App" id="YrG-Dz-GkG">
+                            <connections>
+                                <action selector="rateApp:" destination="3i3-kP-fnF" id="EXI-Tc-CaK"/>
+                            </connections>
+                        </barButtonItem>
+                        <barButtonItem style="plain" systemItem="flexibleSpace" id="lv1-0v-CTJ"/>
+                        <barButtonItem title="Credits" id="GaK-Ao-a5r">
+                            <connections>
+                                <action selector="openCredits:" destination="3i3-kP-fnF" id="9At-vd-ioS"/>
+                            </connections>
+                        </barButtonItem>
+                        <barButtonItem image="Forward" id="sI7-Ef-WkS" userLabel="Forward Button">
+                            <connections>
+                                <action selector="forwardTapped:" destination="3i3-kP-fnF" id="7sY-uI-ONX"/>
+                            </connections>
+                        </barButtonItem>
+                    </items>
+                </toolbar>
+                <webView contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="7ML-A5-hoA">
+                    <rect key="frame" x="0.0" y="44" width="600" height="556"/>
+                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                    <connections>
+                        <outlet property="delegate" destination="3i3-kP-fnF" id="spw-Im-0ho"/>
+                    </connections>
+                </webView>
+            </subviews>
+            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+            <constraints>
+                <constraint firstItem="9z3-Wv-wUR" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" id="D0d-dM-RKD"/>
+                <constraint firstAttribute="trailing" secondItem="7ML-A5-hoA" secondAttribute="trailing" id="PPj-QQ-UOp"/>
+                <constraint firstAttribute="bottom" secondItem="7ML-A5-hoA" secondAttribute="bottom" id="Q84-KT-MlB"/>
+                <constraint firstAttribute="trailing" secondItem="9z3-Wv-wUR" secondAttribute="trailing" id="YIM-qs-CUZ"/>
+                <constraint firstItem="7ML-A5-hoA" firstAttribute="centerX" secondItem="9z3-Wv-wUR" secondAttribute="centerX" id="iLa-qc-ftE"/>
+                <constraint firstItem="7ML-A5-hoA" firstAttribute="top" secondItem="9z3-Wv-wUR" secondAttribute="bottom" id="pXt-E7-Unt"/>
+                <constraint firstItem="9z3-Wv-wUR" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" id="vQ6-1v-JFo"/>
+                <constraint firstItem="7ML-A5-hoA" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" id="z7B-RB-lvn"/>
+            </constraints>
+            <nil key="simulatedStatusBarMetrics"/>
+            <nil key="simulatedTopBarMetrics"/>
+            <nil key="simulatedBottomBarMetrics"/>
+            <variation key="default">
+                <mask key="constraints">
+                    <exclude reference="iLa-qc-ftE"/>
+                </mask>
+            </variation>
+        </view>
+        <customObject id="3i3-kP-fnF" customClass="HJSHelpViewDelegate" customModule="HJSHelpView" customModuleProvider="target">
+            <connections>
+                <outlet property="backButton" destination="Qx1-0E-oEC" id="eMm-xw-xbT"/>
+                <outlet property="creditsButton" destination="GaK-Ao-a5r" id="4tA-NG-b6v"/>
+                <outlet property="forwardButton" destination="sI7-Ef-WkS" id="mW9-39-kYZ"/>
+                <outlet property="rateButton" destination="YrG-Dz-GkG" id="ruq-hu-Bel"/>
+                <outlet property="toolbar" destination="9z3-Wv-wUR" id="ewp-c4-opy"/>
+                <outlet property="webView" destination="7ML-A5-hoA" id="Hbg-eW-M6Y"/>
+            </connections>
+        </customObject>
+    </objects>
+    <resources>
+        <image name="Back" width="16" height="16"/>
+        <image name="Forward" width="16" height="16"/>
+    </resources>
+</document>
