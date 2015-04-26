@@ -15,16 +15,21 @@ private let debug = HJSDebugCenter.existingCenter()
 //@IBDesignable
 @objc public class HJSHelpView : UIView {
 	// This isn't a weak pointer, we really own the delegate we fished out of the nib.
-	@IBOutlet var delegate: HJSHelpViewDelegate!
-
-	public var pageName: String {
-		get { return delegate.pageName }
-		set { delegate.pageName = newValue }
-	}
+	@IBOutlet public private(set) var delegate: HJSHelpViewDelegate!
 
 	required public init(coder aDecoder: NSCoder) {
 		super.init(coder: aDecoder)
 
+		addXib()
+	}
+
+	override init(frame: CGRect) {
+		super.init(frame: frame)
+
+		addXib()
+	}
+
+	private func addXib() {
 		let bundle = NSBundle(forClass: self.dynamicType)
 		let nibName = "HJSHelpView"
 		// loadNibNamed throws an exception so make sure the nib file (with URLForResource) is here before proceeding

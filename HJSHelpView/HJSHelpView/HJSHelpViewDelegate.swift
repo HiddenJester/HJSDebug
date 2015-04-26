@@ -21,7 +21,7 @@ enum HelpViewTransition {
 	case NewEntry
 }
 
-public class HJSHelpViewDelegate :  NSObject, UIWebViewDelegate {
+@objc public class HJSHelpViewDelegate :  NSObject, UIWebViewDelegate {
 	@IBOutlet weak private(set) var toolbar: UIToolbar!
 	@IBOutlet weak private(set) var backButton: UIBarButtonItem!
 	@IBOutlet weak private(set) var forwardButton: UIBarButtonItem!
@@ -29,13 +29,7 @@ public class HJSHelpViewDelegate :  NSObject, UIWebViewDelegate {
 	@IBOutlet weak private(set) var rateButton: UIBarButtonItem!
 	@IBOutlet weak private(set) var webView: UIWebView!
 
-	private var pages = Array<String>()
-	private var currentPage = 0
-	private var currentTransition = HelpViewTransition.None
-
-	private var processingPageLoad = false
-
-	var pageName: String = "" {
+	public var pageName = "" {
 		willSet {
 			if pageName != newValue && currentTransition == .None {
 				currentTransition = .InitialLoad
@@ -46,6 +40,28 @@ public class HJSHelpViewDelegate :  NSObject, UIWebViewDelegate {
 				loadPage()
 			}
 		}
+	}
+
+	/// The title displayed on the Rate App button.
+	public var rateButtonTitle: String? {
+		get { return rateButton.title }
+		set { rateButton.title = newValue }
+	}
+
+	/// Set this to app ID as a string to properly set the URL used by the rate button.
+	public var appIDString = "" { didSet { updateRateURL() } }
+
+	private var pages = Array<String>()
+	private var currentPage = 0
+	private var currentTransition = HelpViewTransition.None
+	private var processingPageLoad = false
+
+	/// The URL used by the rateApp button. The default value opens the HiddenJester Software page in the app store.
+	private var rateURL = NSURL(string: "itms://itunes.apple.com/us/artist/hiddenjester-software/id513157752")
+
+	public func configureRateButtonName(name: String, withNewURL newURL: NSURL) {
+		rateButton.title = name
+		rateURL = newURL
 	}
 
 	@IBAction func backTapped(sender: AnyObject) {
@@ -64,13 +80,12 @@ public class HJSHelpViewDelegate :  NSObject, UIWebViewDelegate {
 	}
 
 	@IBAction func rateApp(sender: AnyObject) {
-		// TIMTODO: Genericize the URL
-		if let URL = NSURL(string: "itms-apps://itunes.apple.com/WebObjects/MZStore.woa/wa/viewContentsUserReviews?type=Purple+Software&id=915191563") {
-			debug.logAtLevel(.Debug, message: "Opening iTunes URL for app rating.")
+		if let URL = rateURL {
+			debug.logAtLevel(.Debug, message: "Opening iTunes URL \(URL.absoluteString)")
 			UIApplication.sharedApplication().openURL(URL)
 		}
 		else {
-			debug.logAtLevel(.Critical, message: "Couldn't create the rate app URL!")
+			debug.logAtLevel(.Critical, message: "Rate App URL not configured!")
 		}
 	}
 
@@ -194,5 +209,25 @@ public class HJSHelpViewDelegate :  NSObject, UIWebViewDelegate {
 	deinit {
 		debug.logMessage("HelpViewDelegate deinit")
 		webView.delegate = nil
+	}
+
+
+	/**
+	See https://stackoverflow.com/a/2337601/4834941 for a writeup on how to create these URL's that is current as of
+	iOS 8. The crux of that is a reference to Apple's QA 1629:
+	https://developer.apple.com/library/ios/qa/qa1629 (Note that you should replace http:// with itms://
+	in those links to avoid the redirect through Safari.)
+ 
+	This URL is created using the technique listed here:
+	http://stackoverflow.com/a/23037620/4834941 with the itms:// for http:// replacement.
+	
+	:NOTE:
+	2015-04-26 I tried all of the appstore.com links as specified in TN1633:
+	https://developer.apple.com/library/ios/qa/qa1633 but I can't make them work on hardware at all, even just typing
+	them into Safari doesn't work properly.
+	*/
+	private func updateRateURL() {
+		let URLstring = "itms://itunes.apple.com/WebObjects/MZStore.woa/wa/viewContentsUserReviews?id=\(appIDString)&pageNumber=0&sortOrdering=2&type=Purple+Software&mt=8"
+		rateURL = NSURL(string: URLstring)
 	}
 }
