@@ -27,6 +27,7 @@ enum HelpViewTransition {
 	@IBOutlet weak private(set) var forwardButton: UIBarButtonItem!
 	@IBOutlet weak private(set) var creditsButton: UIBarButtonItem!
 	@IBOutlet weak private(set) var rateButton: UIBarButtonItem!
+	@IBOutlet weak var buttonSpacer: UIBarButtonItem!
 	@IBOutlet weak private(set) var webView: UIWebView!
 
 	public var pageName = "" {
@@ -59,9 +60,11 @@ enum HelpViewTransition {
 	/// The URL used by the rateApp button. The default value opens the HiddenJester Software page in the app store.
 	private var rateURL = NSURL(string: "itms://itunes.apple.com/us/artist/hiddenjester-software/id513157752")
 
-	public func configureRateButtonName(name: String, withNewURL newURL: NSURL) {
-		rateButton.title = name
-		rateURL = newURL
+	public func addButton(newButton: UIBarButtonItem) {
+		if var items = toolbar.items as? [UIBarButtonItem], index = find(items, buttonSpacer) {
+			items.insert(newButton, atIndex: index)
+			toolbar.items = items
+		}
 	}
 
 	@IBAction func backTapped(sender: AnyObject) {

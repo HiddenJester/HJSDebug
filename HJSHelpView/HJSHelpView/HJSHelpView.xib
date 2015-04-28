@@ -27,6 +27,7 @@
                                 <action selector="rateApp:" destination="3i3-kP-fnF" id="EXI-Tc-CaK"/>
                             </connections>
                         </barButtonItem>
+                        <barButtonItem style="plain" systemItem="flexibleSpace" id="rwk-N4-FBS"/>
                         <barButtonItem style="plain" systemItem="flexibleSpace" id="lv1-0v-CTJ"/>
                         <barButtonItem title="Credits" id="GaK-Ao-a5r">
                             <connections>
@@ -71,6 +72,7 @@
         <customObject id="3i3-kP-fnF" customClass="HJSHelpViewDelegate" customModule="HJSHelpView" customModuleProvider="target">
             <connections>
                 <outlet property="backButton" destination="Qx1-0E-oEC" id="eMm-xw-xbT"/>
+                <outlet property="buttonSpacer" destination="lv1-0v-CTJ" id="em0-G2-bko"/>
                 <outlet property="creditsButton" destination="GaK-Ao-a5r" id="4tA-NG-b6v"/>
                 <outlet property="forwardButton" destination="sI7-Ef-WkS" id="mW9-39-kYZ"/>
                 <outlet property="rateButton" destination="YrG-Dz-GkG" id="ruq-hu-Bel"/>
