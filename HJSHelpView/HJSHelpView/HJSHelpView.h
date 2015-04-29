@@ -3,10 +3,11 @@
 //  HJSHelpView
 //
 //  Created by Timothy Sanders on 2015-04-24.
-//  Copyright (c) 2015 HIddenJester Software. All rights reserved.
-//
+//  Copyright (c) 2015 HiddenJester Software.
+//	This work is licensed under a Creative Commons Attribution-NonCommercial-ShareAlike 4.0 International License.
+//	See http://creativecommons.org/licenses/by-nc-sa/4.0/
 
-#import <UIKit/UIKit.h>
+@import UIKit;
 
 //! Project version number for HJSHelpView.
 FOUNDATION_EXPORT double HJSHelpViewVersionNumber;
@@ -14,6 +15,5 @@ FOUNDATION_EXPORT double HJSHelpViewVersionNumber;
 //! Project version string for HJSHelpView.
 FOUNDATION_EXPORT const unsigned char HJSHelpViewVersionString[];
 
-// In this header, you should import all the public headers of your framework using statements like #import <HJSHelpView/PublicHeader.h>
 
 

@@ -3,8 +3,9 @@
 //  HJSHelpView
 //
 //  Created by Timothy Sanders on 2015-04-24.
-//  Copyright (c) 2015 HIddenJester Software. All rights reserved.
-//
+//  Copyright (c) 2015 HiddenJester Software.
+//	This work is licensed under a Creative Commons Attribution-NonCommercial-ShareAlike 4.0 International License.
+//	See http://creativecommons.org/licenses/by-nc-sa/4.0/
 
 import UIKit
 
@@ -15,6 +16,7 @@ private let debug = HJSDebugCenter.existingCenter()
 //@IBDesignable
 @objc public class HJSHelpView : UIView {
 	// This isn't a weak pointer, we really own the delegate we fished out of the nib.
+	/// The HJSHelpViewDelegate that manages this help view. This is loaded from the nib when needed.
 	@IBOutlet public private(set) var delegate: HJSHelpViewDelegate!
 
 	required public init(coder aDecoder: NSCoder) {
@@ -29,6 +31,7 @@ private let debug = HJSDebugCenter.existingCenter()
 		addXib()
 	}
 
+	/// Code to load the nib from the framework, create the needed constraints, and add the view as a subview.
 	private func addXib() {
 		let bundle = NSBundle(forClass: self.dynamicType)
 		let nibName = "HJSHelpView"
