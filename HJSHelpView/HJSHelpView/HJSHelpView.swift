@@ -13,7 +13,13 @@ import HJSDebug
 
 private let debug = HJSDebugCenter.existingCenter()
 
-//@IBDesignable
+/**
+HJSHelpView loads html files from a folder named HTML in the app bundle and displays them in a UIWebView. A toolbar
+provides forward/back navigation in a stack, links are properly loaded (non-file URLs are shelled out to Mail or
+Safari or whatever should handle them.) The toolbar also has a button to open a Credits page, a button to open
+the Reviews tab in the App Store, and the ability to insert buttons at runtime. See HJSHelpViewDelegate for most of
+these functions, and access the delegate via the delegate property.
+*/
 @objc public class HJSHelpView : UIView {
 	// This isn't a weak pointer, we really own the delegate we fished out of the nib.
 	/// The HJSHelpViewDelegate that manages this help view. This is loaded from the nib when needed.

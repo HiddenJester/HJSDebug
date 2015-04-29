@@ -23,6 +23,11 @@ enum HelpViewTransition {
 	case Insert				// Similar to NewEntry, but triggered by code. (The credits button uses Insert.)
 }
 
+/**
+HJSHelpView loads html files from a folder named HTML in the app bundle and displays them in a UIWebView. The delegate
+manages the stack of pages and the IBAction for the toolbar. Set pageName to "foo" to display "foo.html" in the 
+HJSHelpView.
+*/
 @objc public class HJSHelpViewDelegate :  NSObject, UIWebViewDelegate {
 	// MARK: IBOutlets, set from the nib
 	@IBOutlet weak private(set) var toolbar: UIToolbar!
