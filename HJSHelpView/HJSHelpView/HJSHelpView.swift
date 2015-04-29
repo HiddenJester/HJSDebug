@@ -20,7 +20,7 @@ Safari or whatever should handle them.) The toolbar also has a button to open a 
 the Reviews tab in the App Store, and the ability to insert buttons at runtime. See HJSHelpViewDelegate for most of
 these functions, and access the delegate via the delegate property.
 */
-@objc public class HJSHelpView : UIView {
+@IBDesignable @objc public class HJSHelpView : UIView {
 	// This isn't a weak pointer, we really own the delegate we fished out of the nib.
 	/// The HJSHelpViewDelegate that manages this help view. This is loaded from the nib when needed.
 	@IBOutlet public private(set) var delegate: HJSHelpViewDelegate!
