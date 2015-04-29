@@ -59,6 +59,7 @@
 		3BBC15C71AEBEF2300969467 /* HJSDebug.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = HJSDebug.xcodeproj; path = ../HJSDebug/HJSDebug.xcodeproj; sourceTree = "<group>"; };
 		3BBC15DB1AEC00F200969467 /* HJSHelpViewMedia.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = HJSHelpViewMedia.xcassets; sourceTree = SOURCE_ROOT; };
 		3BBC15DD1AEC187500969467 /* HJSHelpViewDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HJSHelpViewDelegate.swift; sourceTree = "<group>"; };
+		3BE270631AF0AAD1003928EC /* setbuildversion.sh */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.sh; name = setbuildversion.sh; path = ../setbuildversion.sh; sourceTree = SOURCE_ROOT; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -83,6 +84,7 @@
 		3B569FD51AEAFAB600347D6B = {
 			isa = PBXGroup;
 			children = (
+				3BE270631AF0AAD1003928EC /* setbuildversion.sh */,
 				3B569FE11AEAFAB600347D6B /* HJSHelpView */,
 				3B569FEE1AEAFAB600347D6B /* HJSHelpViewTests */,
 				3B569FE01AEAFAB600347D6B /* Products */,
@@ -176,6 +178,7 @@
 				3B569FDB1AEAFAB600347D6B /* Frameworks */,
 				3B569FDC1AEAFAB600347D6B /* Headers */,
 				3B569FDD1AEAFAB600347D6B /* Resources */,
+				3BE270621AF0A9E0003928EC /* ShellScript */,
 			);
 			buildRules = (
 			);
@@ -281,6 +284,22 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		3BE270621AF0A9E0003928EC /* ShellScript */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = ../setbuildversion.sh;
+		};
+/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		3B569FDA1AEAFAB600347D6B /* Sources */ = {

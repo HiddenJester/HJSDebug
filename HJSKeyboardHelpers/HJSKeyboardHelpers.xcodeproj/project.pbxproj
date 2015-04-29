@@ -80,6 +80,7 @@
 		3BD9D9001AD0C17400F508AD /* BaseViewAboveKeyboard.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BaseViewAboveKeyboard.swift; sourceTree = "<group>"; };
 		3BD9D9011AD0C17400F508AD /* ShrinkViewAboveKeyboard.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ShrinkViewAboveKeyboard.swift; sourceTree = "<group>"; };
 		3BD9D9021AD0C17400F508AD /* SlideViewAboveKeyboard.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SlideViewAboveKeyboard.swift; sourceTree = "<group>"; };
+		3BE2706C1AF0AC8E003928EC /* setbuildversion.sh */ = {isa = PBXFileReference; lastKnownFileType = text.script.sh; name = setbuildversion.sh; path = ../setbuildversion.sh; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -131,6 +132,7 @@
 		3BD9D8D11AD0C15A00F508AD = {
 			isa = PBXGroup;
 			children = (
+				3BE2706C1AF0AC8E003928EC /* setbuildversion.sh */,
 				3BCFE8B91ADDC74B004E46CA /* Notes.md */,
 				3BD9D8DD1AD0C15A00F508AD /* HJSKeyboardHelpers */,
 				3BD9D8EA1AD0C15B00F508AD /* HJSKeyboardHelpersTests */,
@@ -343,7 +345,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "#\n# Set the build number to the current git commit count.\n# If we're using the Dev scheme, then we'll suffix the build\n# number with the current branch name, to make collisions\n# far less likely across feature branches.\n# Copied from http://blog.jaredsinclair.com/post/97193356620/the-best-of-all-possible-xcode-automated-build which was based on\n#   http://w3facility.info/question/how-do-i-force-xcode-to-rebuild-the-info-plist-file-in-my-project-every-time-i-build-the-project/\n#\ngit=`sh /etc/profile; which git`\nappBuild=`\"$git\" rev-list --all |wc -l`\nif [ $CONFIGURATION = \"Debug\" ]; then\nbranchName=`\"$git\" rev-parse --abbrev-ref HEAD`\n/usr/libexec/PlistBuddy -c \"Set :CFBundleVersion $appBuild-$branchName\" \"${TARGET_BUILD_DIR}/${INFOPLIST_PATH}\"\nelse\n/usr/libexec/PlistBuddy -c \"Set :CFBundleVersion $appBuild\" \"${TARGET_BUILD_DIR}/${INFOPLIST_PATH}\"\nfi\necho \"Updated ${TARGET_BUILD_DIR}/${INFOPLIST_PATH}\"";
+			shellScript = ../setbuildversion.sh;
 		};
 /* End PBXShellScriptBuildPhase section */
 

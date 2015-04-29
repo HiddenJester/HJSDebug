@@ -43,6 +43,7 @@
 		3BE23D2C1AD0502400DD844B /* HJSDebugCenterControlPanelViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HJSDebugCenterControlPanelViewController.m; sourceTree = "<group>"; };
 		3BE23D2D1AD0502400DD844B /* HJSDebugMailComposeDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HJSDebugMailComposeDelegate.h; sourceTree = "<group>"; };
 		3BE23D2E1AD0502400DD844B /* HJSDebugMailComposeDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HJSDebugMailComposeDelegate.m; sourceTree = "<group>"; };
+		3BE270681AF0AC10003928EC /* setbuildversion.sh */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.sh; name = setbuildversion.sh; path = ../setbuildversion.sh; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -67,6 +68,7 @@
 		3BE23CF81AD04F7800DD844B = {
 			isa = PBXGroup;
 			children = (
+				3BE270681AF0AC10003928EC /* setbuildversion.sh */,
 				3BE23D041AD04F7800DD844B /* HJSDebug */,
 				3BE23D111AD04F7800DD844B /* HJSDebugTests */,
 				3BE23D031AD04F7800DD844B /* Products */,
@@ -242,7 +244,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "#\n# Set the build number to the current git commit count.\n# If we're using the Dev scheme, then we'll suffix the build\n# number with the current branch name, to make collisions\n# far less likely across feature branches.\n# Copied from http://blog.jaredsinclair.com/post/97193356620/the-best-of-all-possible-xcode-automated-build which was based on\n#   http://w3facility.info/question/how-do-i-force-xcode-to-rebuild-the-info-plist-file-in-my-project-every-time-i-build-the-project/\n#\ngit=`sh /etc/profile; which git`\nappBuild=`\"$git\" rev-list --all |wc -l`\nif [ $CONFIGURATION = \"Debug\" ]; then\nbranchName=`\"$git\" rev-parse --abbrev-ref HEAD`\n/usr/libexec/PlistBuddy -c \"Set :CFBundleVersion $appBuild-$branchName\" \"${TARGET_BUILD_DIR}/${INFOPLIST_PATH}\"\nelse\n/usr/libexec/PlistBuddy -c \"Set :CFBundleVersion $appBuild\" \"${TARGET_BUILD_DIR}/${INFOPLIST_PATH}\"\nfi\necho \"Updated ${TARGET_BUILD_DIR}/${INFOPLIST_PATH}\"";
+			shellScript = ../setbuildversion.sh;
 		};
 /* End PBXShellScriptBuildPhase section */
 
