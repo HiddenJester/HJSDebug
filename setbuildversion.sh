@@ -1,4 +1,6 @@
-# Copied from http://blog.jaredsinclair.com/post/97193356620/the-best-of-all-possible-xcode-automated-build which was based on
+#!/bin/sh
+# Copied from http://blog.jaredsinclair.com/post/97193356620/the-best-of-all-possible-xcode-automated-build
+
 #
 # Set the build number to the current git commit count.
 # If we're using the Dev scheme, then we'll suffix the build
