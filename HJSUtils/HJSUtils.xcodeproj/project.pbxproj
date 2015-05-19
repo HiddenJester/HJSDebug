@@ -51,6 +51,8 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		3B3216751B0AA9560066CCBD /* README.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; name = README.md; path = "NSString-NSCharacterSetTesting/README.md"; sourceTree = SOURCE_ROOT; };
+		3B32167A1B0AAD160066CCBD /* README.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; name = README.md; path = "UISplitViewController+QuickAccess/README.md"; sourceTree = SOURCE_ROOT; };
 		3BA564ED1AD195E10070367B /* HJSDebug.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = HJSDebug.xcodeproj; path = ../HJSDebug/HJSDebug.xcodeproj; sourceTree = "<group>"; };
 		3BD9D8561AD0A6C400F508AD /* UIColor+iOS7Colors.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "UIColor+iOS7Colors.h"; path = "iOS7Colors/iOS7Colors/UIColor+iOS7Colors.h"; sourceTree = SOURCE_ROOT; };
 		3BD9D8571AD0A6C400F508AD /* UIColor+iOS7Colors.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "UIColor+iOS7Colors.m"; path = "iOS7Colors/iOS7Colors/UIColor+iOS7Colors.m"; sourceTree = SOURCE_ROOT; };
@@ -87,6 +89,26 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		3B3216781B0AA95B0066CCBD /* NSString+NSCharacterSetTesting */ = {
+			isa = PBXGroup;
+			children = (
+				3B3216751B0AA9560066CCBD /* README.md */,
+				3BD9D85A1AD0A6DB00F508AD /* NSString+NSCharacterSetTesting.h */,
+				3BD9D85B1AD0A6DB00F508AD /* NSString+NSCharacterSetTesting.m */,
+			);
+			name = "NSString+NSCharacterSetTesting";
+			sourceTree = "<group>";
+		};
+		3B3216791B0AACFD0066CCBD /* UISplitViewController+QuickAccess */ = {
+			isa = PBXGroup;
+			children = (
+				3B32167A1B0AAD160066CCBD /* README.md */,
+				3BD9D85E1AD0A6F400F508AD /* UISplitViewController+QuickAccess.h */,
+				3BD9D85F1AD0A6F400F508AD /* UISplitViewController+QuickAccess.m */,
+			);
+			name = "UISplitViewController+QuickAccess";
+			sourceTree = "<group>";
+		};
 		3BA564EE1AD195E10070367B /* Products */ = {
 			isa = PBXGroup;
 			children = (
@@ -127,11 +149,9 @@
 		3BE23C821AD0460D00DD844B /* HJSUtils */ = {
 			isa = PBXGroup;
 			children = (
+				3B3216781B0AA95B0066CCBD /* NSString+NSCharacterSetTesting */,
 				3BD9D8CF1AD0BE8F00F508AD /* Utilities.swift */,
-				3BD9D85E1AD0A6F400F508AD /* UISplitViewController+QuickAccess.h */,
-				3BD9D85F1AD0A6F400F508AD /* UISplitViewController+QuickAccess.m */,
-				3BD9D85A1AD0A6DB00F508AD /* NSString+NSCharacterSetTesting.h */,
-				3BD9D85B1AD0A6DB00F508AD /* NSString+NSCharacterSetTesting.m */,
+				3B3216791B0AACFD0066CCBD /* UISplitViewController+QuickAccess */,
 				3BD9D8561AD0A6C400F508AD /* UIColor+iOS7Colors.h */,
 				3BD9D8571AD0A6C400F508AD /* UIColor+iOS7Colors.m */,
 				3BE23C851AD0460D00DD844B /* HJSUtils.h */,
