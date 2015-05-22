@@ -89,6 +89,15 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		3B098DD21B0FAB9900F8DEC8 /* UIColor+iOS7Colors */ = {
+			isa = PBXGroup;
+			children = (
+				3BD9D8561AD0A6C400F508AD /* UIColor+iOS7Colors.h */,
+				3BD9D8571AD0A6C400F508AD /* UIColor+iOS7Colors.m */,
+			);
+			name = "UIColor+iOS7Colors";
+			sourceTree = "<group>";
+		};
 		3B3216781B0AA95B0066CCBD /* NSString+NSCharacterSetTesting */ = {
 			isa = PBXGroup;
 			children = (
@@ -152,8 +161,7 @@
 				3B3216781B0AA95B0066CCBD /* NSString+NSCharacterSetTesting */,
 				3BD9D8CF1AD0BE8F00F508AD /* Utilities.swift */,
 				3B3216791B0AACFD0066CCBD /* UISplitViewController+QuickAccess */,
-				3BD9D8561AD0A6C400F508AD /* UIColor+iOS7Colors.h */,
-				3BD9D8571AD0A6C400F508AD /* UIColor+iOS7Colors.m */,
+				3B098DD21B0FAB9900F8DEC8 /* UIColor+iOS7Colors */,
 				3BE23C851AD0460D00DD844B /* HJSUtils.h */,
 				3BE23C831AD0460D00DD844B /* Supporting Files */,
 			);
