@@ -4,6 +4,3 @@
 [submodule "HJSUtils/UISplitViewController+QuickAccess"]
 	path = HJSUtils/UISplitViewController+QuickAccess
 	url = /Users/tsanders/code/GitHubRepos/UISplitViewController+QuickAccess.git/
-[submodule "HJSUtils/iOS7Colors"]
-	path = HJSUtils/iOS7Colors
-	url = /Users/tsanders/Transporter/code/ThirdParty/iOS7Colors.git
