@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		3B0B87871B1103D400828310 /* UIColor+WatchKitColors.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B0B87701B1103D400828310 /* UIColor+WatchKitColors.swift */; };
 		3BD9D8581AD0A6C400F508AD /* UIColor+iOS7Colors.h in Headers */ = {isa = PBXBuildFile; fileRef = 3BD9D8561AD0A6C400F508AD /* UIColor+iOS7Colors.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		3BD9D8591AD0A6C400F508AD /* UIColor+iOS7Colors.m in Sources */ = {isa = PBXBuildFile; fileRef = 3BD9D8571AD0A6C400F508AD /* UIColor+iOS7Colors.m */; };
 		3BD9D85C1AD0A6DB00F508AD /* NSString+NSCharacterSetTesting.h in Headers */ = {isa = PBXBuildFile; fileRef = 3BD9D85A1AD0A6DB00F508AD /* NSString+NSCharacterSetTesting.h */; settings = {ATTRIBUTES = (Public, ); }; };
@@ -51,6 +52,8 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		3B0B87501B1103D400828310 /* README.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
+		3B0B87701B1103D400828310 /* UIColor+WatchKitColors.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIColor+WatchKitColors.swift"; sourceTree = "<group>"; };
 		3B3216751B0AA9560066CCBD /* README.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; name = README.md; path = "NSString-NSCharacterSetTesting/README.md"; sourceTree = SOURCE_ROOT; };
 		3B32167A1B0AAD160066CCBD /* README.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; name = README.md; path = "UISplitViewController+QuickAccess/README.md"; sourceTree = SOURCE_ROOT; };
 		3BA564ED1AD195E10070367B /* HJSDebug.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = HJSDebug.xcodeproj; path = ../HJSDebug/HJSDebug.xcodeproj; sourceTree = "<group>"; };
@@ -97,6 +100,15 @@
 			);
 			name = "UIColor+iOS7Colors";
 			sourceTree = "<group>";
+		};
+		3B0B874E1B1103D400828310 /* UIColor_WatchKitColors */ = {
+			isa = PBXGroup;
+			children = (
+				3B0B87501B1103D400828310 /* README.md */,
+				3B0B87701B1103D400828310 /* UIColor+WatchKitColors.swift */,
+			);
+			path = UIColor_WatchKitColors;
+			sourceTree = SOURCE_ROOT;
 		};
 		3B3216781B0AA95B0066CCBD /* NSString+NSCharacterSetTesting */ = {
 			isa = PBXGroup;
@@ -158,6 +170,7 @@
 		3BE23C821AD0460D00DD844B /* HJSUtils */ = {
 			isa = PBXGroup;
 			children = (
+				3B0B874E1B1103D400828310 /* UIColor_WatchKitColors */,
 				3B3216781B0AA95B0066CCBD /* NSString+NSCharacterSetTesting */,
 				3BD9D8CF1AD0BE8F00F508AD /* Utilities.swift */,
 				3B3216791B0AACFD0066CCBD /* UISplitViewController+QuickAccess */,
@@ -271,6 +284,7 @@
 			hasScannedForEncodings = 0;
 			knownRegions = (
 				en,
+				Base,
 			);
 			mainGroup = 3BE23C761AD0460D00DD844B;
 			productRefGroup = 3BE23C811AD0460D00DD844B /* Products */;
@@ -346,6 +360,7 @@
 			files = (
 				3BD9D85D1AD0A6DB00F508AD /* NSString+NSCharacterSetTesting.m in Sources */,
 				3BD9D8611AD0A6F400F508AD /* UISplitViewController+QuickAccess.m in Sources */,
+				3B0B87871B1103D400828310 /* UIColor+WatchKitColors.swift in Sources */,
 				3BD9D8D01AD0BE8F00F508AD /* Utilities.swift in Sources */,
 				3BD9D8591AD0A6C400F508AD /* UIColor+iOS7Colors.m in Sources */,
 			);

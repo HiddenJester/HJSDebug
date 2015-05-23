@@ -7,3 +7,6 @@
 [submodule "HJSUtils/iOS7Colors"]
 	path = HJSUtils/iOS7Colors
 	url = https://github.com/HiddenJester/iOS7Colors.git
+[submodule "HJSUtils/UIColor_WatchKitColors"]
+	path = HJSUtils/UIColor_WatchKitColors
+	url = https://github.com/HiddenJester/UIColor_WatchKitColors.git
