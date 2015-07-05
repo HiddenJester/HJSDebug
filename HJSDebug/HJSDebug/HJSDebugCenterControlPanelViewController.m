@@ -67,11 +67,19 @@
 }
 
 - (IBAction)mailLog:(id)sender {
+	// Acquire the bundle display name to use in the subject
+	NSDictionary * mainBundleInfo = [[NSBundle mainBundle] infoDictionary];
+	NSString * subject = @"Debug Log";
+	NSString * displayName = [mainBundleInfo objectForKey:@"CFBundleDisplayName"];
+	if (displayName) {
+		subject = [NSString stringWithFormat:@"%@ Debug Log", displayName];
+	}
+
 	UIViewController * presenter = self.presentingViewController;
 	[self dismissViewControllerAnimated:YES completion:^{
 		[[HJSDebugCenter existingCenter]
 		 presentMailLogWithExplanation:@"This log was requested via the debug control panel."
-		 subject:@"Debug log"
+		 subject:subject
 		 fromViewController:presenter];
 	}];
 }

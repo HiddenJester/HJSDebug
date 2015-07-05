@@ -68,7 +68,7 @@ extern NSString * debugBreakEnabledKey;
 /// if one was not available.
 + (HJSDebugCenter *)existingCenter;
 
-// Raise SIGTRAP in debug, NOP in release
+/// Raise SIGTRAP in debug, NOP in release
 - (void)debugBreak;
 
 #pragma mark Logging Methods
