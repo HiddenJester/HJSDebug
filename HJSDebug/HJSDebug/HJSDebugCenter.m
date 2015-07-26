@@ -4,20 +4,25 @@
 
 #import "HJSDebugCenter.h"
 
-#include <asl.h>
-#import "CoreData/CoreDataErrors.h" // Need definition of NSDetailedErrorsKey
+#include <asl.h>					// Logging sits atop ASL
+#include <sys/sysctl.h>				// Need several things for debuggerAttached
+
+@import CoreData.CoreDataErrors;	// Need definition of NSDetailedErrorsKey
 
 #import "HJSDebugMailComposeDelegate.h"
 #import "HJSDebugCenterControlPanelViewController.h"
 
+// MARK: Exported Constants
+NSString * debugBreakEnabledKey = @"debugBreakEnabled";
+const unsigned long long defaultMaxLogSize = 300 * 1024;
+
+
+// MARK: Internal constants
 static NSString * loggingLevelKey = @"LoggingLevel";
 static NSString * adHocDebuggingKey = @"adHocDebugging";
 
-NSString * debugBreakEnabledKey = @"debugBreakEnabled";
-
+/// Our private singleton
 static HJSDebugCenter * defaultCenter;
-
-const unsigned long long defaultMaxLogSize = 300 * 1024;
 
 @implementation HJSDebugCenter {
 	// Runtime storage of the settings plist
@@ -148,16 +153,73 @@ const unsigned long long defaultMaxLogSize = 300 * 1024;
 	return [[_settings objectForKey:debugBreakEnabledKey] boolValue];
 }
 
-# pragma mark Debug only methods
-
-- (void)debugBreak {
+- (BOOL)debuggerAttached {
+	// This code comes from TechNote QA13161: https://developer.apple.com/library/mac/qa/qa1361/_index.html
+	// The code says it should only be used in a debug build so under release builds it always returns NO,
+	// even if there is a debugger attached.
 #if DEBUG
-	if (self.debugBreakEnabled) {
-		raise(SIGTRAP);
+	int                 junk;
+	int                 mib[4];
+	struct kinfo_proc   info;
+	size_t              size;
+
+	// Initialize the flags so that, if sysctl fails for some bizarre
+	// reason, we get a predictable result.
+
+	info.kp_proc.p_flag = 0;
+
+	// Initialize mib, which tells sysctl the info we want, in this case
+	// we're looking for information about a specific process ID.
+
+	mib[0] = CTL_KERN;
+	mib[1] = KERN_PROC;
+	mib[2] = KERN_PROC_PID;
+	mib[3] = getpid();
+
+	// Call sysctl.
+
+	size = sizeof(info);
+	junk = sysctl(mib, sizeof(mib) / sizeof(*mib), &info, &size, NULL, 0);
+	assert(junk == 0);
+
+	// We're being debugged if the P_TRACED flag is set.
+
+	return ( (info.kp_proc.p_flag & P_TRACED) != 0 );
+#else
+	return NO;
+#endif
+}
+
+# pragma mark Debug only methods
+// Public access to debugBreak - which will log if it can't actually break.
+- (void)debugBreak {
+	[self debugBreakWithLoggingEnabled:YES];
+}
+
+// Interal method, used in places where we've already logged something else and don't need to log more about the break.
+- (void)debugBreakNoLogging {
+	[self debugBreakWithLoggingEnabled:NO];
+}
+
+// Internal handler of both debugBreak & debugBreakNoLogging.
+- (void)debugBreakWithLoggingEnabled:(BOOL)loggingEnabled {
+#if DEBUG
+	// First check to see if the debug option is live
+	if (!self.debugBreakEnabled) {
+		if (loggingEnabled) {
+			[self logAtLevel:HJSLogLevelDebug formatString:@"debugBreak called, but is disabled via options."];
+		}
+		return;
 	}
-	else {
-		[self logAtLevel:HJSLogLevelDebug message:@"debugBreak called, but is disabled via options."];
+	// Then see if there is a debugger attached
+	if (!self.debuggerAttached) {
+		if (loggingEnabled) {
+			[self logAtLevel:HJSLogLevelDebug formatString:@"debugBreak called, but no debugger is attached."];
+		}
+		return;
 	}
+	// OK, both tests passed, break!
+	raise(SIGTRAP);
 #endif
 }
 
@@ -222,7 +284,7 @@ const unsigned long long defaultMaxLogSize = 300 * 1024;
 			}
 		}];
 		if (depth == 0) { // We're done logging, time to break
-			[self debugBreak];
+			[self debugBreakNoLogging];
 		}
     }
 }
@@ -486,7 +548,7 @@ const unsigned long long defaultMaxLogSize = 300 * 1024;
 - (void)logMessage:(NSString *)message level:(HJSLogLevel)level skipBreak:(BOOL)skipBreak {
 	asl_log(_aslClient, NULL, level, "%s", [message UTF8String]);
 	if (!skipBreak && level == HJSLogLevelCritical) {
-		[self debugBreak];
+		[self debugBreakNoLogging];
 	}
 }
 
@@ -538,6 +600,12 @@ const unsigned long long defaultMaxLogSize = 300 * 1024;
 	}
 	else {
 		[self logMessage:@"Ad-hoc debugging is off."];
+	}
+	if (self.debuggerAttached) {
+		[self logMessage:@"Debugger is attached."];
+	}
+	else {
+		[self logMessage:@"No debugger is attached, debugBreak will not be active."];
 	}
 #if DEBUG
 	[self logMessage:@"DEBUG is defined in build."];

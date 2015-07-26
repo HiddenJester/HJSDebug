@@ -6,32 +6,43 @@
 
 @class UIViewController;
 
+
 // Logging sits atop ASL, but I don't want to include ASL.H everywhere, nor do I need
 // all 8 logging levels. So we A ) Objective-C-ify the #defines into a NS_ENUM,
 // and B ) provide a subset of levels. That's why the actual values are discontinuous.
 
 // Logging at HJSLogLevelCritical will also call debugBreak so we'll stop right at the log point
 typedef NS_ENUM(NSInteger, HJSLogLevel) {
-	// These log in App Store Builds
+	// By default these log in App Store Builds
 	HJSLogLevelCritical = 2,			// ASL_LEVEL_CRIT
 	HJSLogLevelWarning = 4,				// ASL_LEVEL_WARNING (also NSLog level)
-	// This logs only in ad-hoc builds
+	// By default Info logs in Beta builds
 	HJSLogLevelInfo = 6,				// ASL_LEVEL_INFO
-	// This usually only logs to the debug console, not to the file
+	// Debug level messages always log to the debug console, but by default do not go to the file
 	HJSLogLevelDebug = 7				// ASL_LEVEL_DEBUG
 };
 
 /// Can be passed as maxLogSize to defaultCenterWithConfigURL
-extern const unsigned long long defaultMaxLogSize;
+FOUNDATION_EXPORT const unsigned long long defaultMaxLogSize;
 
 /// KVO string for observing when debugBreak is enabled
-extern NSString * debugBreakEnabledKey;
+FOUNDATION_EXPORT NSString * debugBreakEnabledKey;
 
 @interface HJSDebugCenter : NSObject
 
+/// The current logging level set. Setting this will persist in HJSDebugCenter's own UserDefaults.
 @property (nonatomic) HJSLogLevel logLevel;
+/// This switch can be used at run-time to decide whether to do something. Note that it *IS* available in
+/// release or beta builds. In a builds that do not have BETA defined there is a switch in the Debug
+/// control panel that can turn off adHocDebugging. NOTE: if you use that switch on a release build you
+/// really can't get it back without interfering via debugger. This value is persisted in HJSDebugCenter's
+/// own UserDefaults. I use it to decide whether to add a button to display the Debug control panel to the UI.
 @property (nonatomic) BOOL adHocDebugging;
+/// Setting this to false shuts off the debugBreak trap. (Note that even if this is set to true it debugBreak still
+/// only works if attached to a debugger, and only in DEBUG builds.)
 @property (nonatomic) BOOL debugBreakEnabled;
+/// In a debug build tells whether a debugger is attached currently. Always false in beta or release
+@property (nonatomic, readonly) BOOL debuggerAttached;
 
 /**
  This is the default way to acquire a HJSDebugCenter object. defaultCenter is a singleton where the first call to
@@ -73,12 +84,13 @@ extern NSString * debugBreakEnabledKey;
 
 #pragma mark Logging Methods
 
-/// Logs at HJSLogLevelInfo, so in ad-hoc or debug builds only. This is the drop-in replacement for
+/// Logs at HJSLogLevelInfo, so in beta or debug builds only. This is the drop-in replacement for
 /// NSLog.
 - (void)logFormattedString:(NSString *)formatString, ... NS_FORMAT_FUNCTION(1, 2);
-- (void)logMessage:(NSString *)message;
 /// Almost-drop-in replacement for NSLog but you can specify the logging level.
 - (void)logAtLevel:(HJSLogLevel)level formatString:(NSString *)formatString, ... NS_FORMAT_FUNCTION(2, 3);
+/// Non-variadic logging at HJSLogLevelInfo. More useful in Swift which has built-in string formatting.
+- (void)logMessage:(NSString *)message;
 /// Log without any string formatting. This is available in Swift, where the formatting can happen during the
 /// argument marshalling.
 - (void)logAtLevel:(HJSLogLevel)level message:(NSString *)message;
@@ -128,7 +140,8 @@ extern NSString * debugBreakEnabledKey;
 
 #pragma mark Configuration Methods
 
-/// Updates the stored plist settings file
+/// Updates the stored plist settings file. Note that changing a setting doesn't call saveSettings, so if you want
+/// a permanent change be sure to call saveSettings.
 - (void)saveSettings;
 
 #pragma mark UI Methods
@@ -165,10 +178,6 @@ extern NSString * debugBreakEnabledKey;
 - (BOOL)presentControlPanelFromViewController:(UIViewController*)presenter;
 
 #pragma mark Lifecycle Methods
-/// Should almost always acquire a center by calling defaultCenter or existingCenter. However, this is the designated
-/// initializer that sits under defaultCenter. See the docs for that for argument descriptions.
-- (id)initWithConfigURL:(NSURL *)configURL logURL:(NSURL *)logURL maxLogSize:(unsigned long long)maxLogSize;
-
 /// Call when the app is terminating. This will close the log file and release ASL resources
 - (void)terminateLogging;
 
