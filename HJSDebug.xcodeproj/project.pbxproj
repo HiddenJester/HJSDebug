@@ -43,7 +43,7 @@
 		3BE23D2C1AD0502400DD844B /* HJSDebugCenterControlPanelViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HJSDebugCenterControlPanelViewController.m; sourceTree = "<group>"; };
 		3BE23D2D1AD0502400DD844B /* HJSDebugMailComposeDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HJSDebugMailComposeDelegate.h; sourceTree = "<group>"; };
 		3BE23D2E1AD0502400DD844B /* HJSDebugMailComposeDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HJSDebugMailComposeDelegate.m; sourceTree = "<group>"; };
-		3BE270681AF0AC10003928EC /* setbuildversion.sh */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.sh; name = setbuildversion.sh; path = ../setbuildversion.sh; sourceTree = "<group>"; };
+		3BE270681AF0AC10003928EC /* setbuildversion.sh */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.sh; path = setbuildversion.sh; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -244,7 +244,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = ../setbuildversion.sh;
+			shellScript = ./setbuildversion.sh;
 		};
 /* End PBXShellScriptBuildPhase section */
 
