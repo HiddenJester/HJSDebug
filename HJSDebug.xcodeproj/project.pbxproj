@@ -44,6 +44,7 @@
 		3BE23D2D1AD0502400DD844B /* HJSDebugMailComposeDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HJSDebugMailComposeDelegate.h; sourceTree = "<group>"; };
 		3BE23D2E1AD0502400DD844B /* HJSDebugMailComposeDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HJSDebugMailComposeDelegate.m; sourceTree = "<group>"; };
 		3BE270681AF0AC10003928EC /* setbuildversion.sh */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.sh; path = setbuildversion.sh; sourceTree = "<group>"; };
+		3BF419521B9C840500B220F0 /* Notes.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = Notes.md; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -68,6 +69,7 @@
 		3BE23CF81AD04F7800DD844B = {
 			isa = PBXGroup;
 			children = (
+				3BF419521B9C840500B220F0 /* Notes.md */,
 				3BE270681AF0AC10003928EC /* setbuildversion.sh */,
 				3BE23D041AD04F7800DD844B /* HJSDebug */,
 				3BE23D111AD04F7800DD844B /* HJSDebugTests */,

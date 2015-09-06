@@ -1,0 +1,1 @@
+2015-09-06 - HJSDebug does not currently have any Swift code, so it lacks the Swift Compiler Custom flags and needs the Beta and Debug flags added if we ever add Swift code.
