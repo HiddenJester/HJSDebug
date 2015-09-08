@@ -196,7 +196,7 @@ static HJSDebugCenter * defaultCenter;
 	[self debugBreakWithLoggingEnabled:YES];
 }
 
-// Interal method, used in places where we've already logged something else and don't need to log more about the break.
+// Internal method, used in places where we've already logged something else and don't need to log more about the break.
 - (void)debugBreakNoLogging {
 	[self debugBreakWithLoggingEnabled:NO];
 }

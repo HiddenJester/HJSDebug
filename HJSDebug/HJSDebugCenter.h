@@ -6,7 +6,6 @@
 
 @class UIViewController;
 
-
 // Logging sits atop ASL, but I don't want to include ASL.H everywhere, nor do I need
 // all 8 logging levels. So we A ) Objective-C-ify the #defines into a NS_ENUM,
 // and B ) provide a subset of levels. That's why the actual values are discontinuous.
@@ -22,7 +21,7 @@ typedef NS_ENUM(NSInteger, HJSLogLevel) {
 	HJSLogLevelDebug = 7				// ASL_LEVEL_DEBUG
 };
 
-/// Can be passed as maxLogSize to defaultCenterWithConfigURL
+/// Can be passed as maxLogSize to defaultCenterWithConfigURL. Currently 300K.
 FOUNDATION_EXPORT const unsigned long long defaultMaxLogSize;
 
 /// KVO string for observing when debugBreak is enabled
@@ -32,15 +31,18 @@ FOUNDATION_EXPORT NSString * debugBreakEnabledKey;
 
 /// The current logging level set. Setting this will persist in HJSDebugCenter's own UserDefaults.
 @property (nonatomic) HJSLogLevel logLevel;
+
 /// This switch can be used at run-time to decide whether to do something. Note that it *IS* available in
 /// release or beta builds. In a builds that do not have BETA defined there is a switch in the Debug
 /// control panel that can turn off adHocDebugging. NOTE: if you use that switch on a release build you
 /// really can't get it back without interfering via debugger. This value is persisted in HJSDebugCenter's
 /// own UserDefaults. I use it to decide whether to add a button to display the Debug control panel to the UI.
 @property (nonatomic) BOOL adHocDebugging;
+
 /// Setting this to false shuts off the debugBreak trap. (Note that even if this is set to true it debugBreak still
 /// only works if attached to a debugger, and only in DEBUG builds.)
 @property (nonatomic) BOOL debugBreakEnabled;
+
 /// In a debug build tells whether a debugger is attached currently. Always false in beta or release
 @property (nonatomic, readonly) BOOL debuggerAttached;
 
@@ -75,11 +77,12 @@ FOUNDATION_EXPORT NSString * debugBreakEnabledKey;
 + (HJSDebugCenter *)defaultCenter;
 
 /// This will return an existing defaultCenter but otherwise will simply debugBreak and retun nil. It's mostly useful
-/// for framework components like the CoreData stack who want to use the logger but would consider an error condition
+/// for framework components like the CoreData stack who want to use the logger but would consider it an error condition
 /// if one was not available.
 + (HJSDebugCenter *)existingCenter;
 
-/// Raise SIGTRAP in debug, NOP in release
+/// Raise SIGTRAP in debug if debugBreakEnabled is true & a debugger is attached, NOP in release. If this is a
+/// debug build but one of the conditions fails it will log a message.
 - (void)debugBreak;
 
 #pragma mark Logging Methods
@@ -87,12 +90,15 @@ FOUNDATION_EXPORT NSString * debugBreakEnabledKey;
 /// Logs at HJSLogLevelInfo, so in beta or debug builds only. This is the drop-in replacement for
 /// NSLog.
 - (void)logFormattedString:(NSString *)formatString, ... NS_FORMAT_FUNCTION(1, 2);
+
 /// Almost-drop-in replacement for NSLog but you can specify the logging level.
 - (void)logAtLevel:(HJSLogLevel)level formatString:(NSString *)formatString, ... NS_FORMAT_FUNCTION(2, 3);
+
 /// Non-variadic logging at HJSLogLevelInfo. More useful in Swift which has built-in string formatting.
 - (void)logMessage:(NSString *)message;
-/// Log without any string formatting. This is available in Swift, where the formatting can happen during the
-/// argument marshalling.
+
+/// Log without any string formatting. This is mostly for Swift where the formatting can happen during the
+/// argument marshalling, but can be called from Obj-C if you don't need string expansion.
 - (void)logAtLevel:(HJSLogLevel)level message:(NSString *)message;
 
 /// Recursively unpacks NSErrors and logs them in a reasonably pretty-printed format.
@@ -128,13 +134,15 @@ FOUNDATION_EXPORT NSString * debugBreakEnabledKey;
 /// Returns an array of keys for all the currently-monitored logs.
 - (NSArray *)monitoredLogKeys;
 
-/// Returns the current main logfile as NSData
+/// Returns a snapshot of the main logfile as NSData
 - (NSData *)mainLogAsData;
+
 /// Returns the current main logfile as NSString
 - (NSString *)mainLogAsString;
 
 /// Returns the log specified in logKey as NSData
 - (NSData *)monitoredLogAsData:(NSString *)logKey;
+
 /// Returns the log specified in logKey as NSString
 - (NSString *)monitoredLogAsString:(NSString *)logKey;
 

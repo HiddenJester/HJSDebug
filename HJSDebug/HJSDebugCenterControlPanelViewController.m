@@ -7,6 +7,7 @@
 #import "HJSDebugCenter.h"
 
 @implementation HJSDebugCenterControlPanelViewController
+
 - (void)viewWillAppear:(BOOL)animated {
 	[super viewWillAppear:animated];
 
