@@ -9,7 +9,7 @@
 
 @import CoreData.CoreDataErrors;	// Need definition of NSDetailedErrorsKey
 
-#ifndef TARGET_OS_TV
+#if !TARGET_OS_TV
 	#import "HJSDebugMailComposeDelegate.h"
 	#import "HJSDebugCenterControlPanelViewController.h"
 #endif
@@ -38,7 +38,7 @@ static HJSDebugCenter * defaultCenter;
 
 	// Monitored logs
 	NSMutableDictionary * _monitoredLogs;
-#ifndef TARGET_OS_TV
+#if !TARGET_OS_TV
 	HJSDebugMailComposeDelegate * _mailComposeDelegate;
 #endif
 }
@@ -66,7 +66,7 @@ static HJSDebugCenter * defaultCenter;
 	// Create the config URL
 	//TIMTODO Switch over to iCloud Key/Value storage
 	// https://developer.apple.com/library/prerelease/tvos/documentation/General/Conceptual/iCloudDesignGuide/Chapters/DesigningForKey-ValueDataIniCloud.html#//apple_ref/doc/uid/TP40012094-CH7
-#ifndef TARGET_OS_TV
+#if !TARGET_OS_TV
 	NSURL * configURL = [[NSFileManager defaultManager] URLForDirectory:NSApplicationSupportDirectory
 															   inDomain:NSUserDomainMask
 													  appropriateForURL:nil
@@ -304,7 +304,7 @@ static HJSDebugCenter * defaultCenter;
 }
 
 #pragma mark Mail Log methods
-#ifndef TARGET_OS_TV
+#if !TARGET_OS_TV
 - (BOOL)presentMailLogWithExplanation:(NSString *)explanation
 							  subject:(NSString *)subject
 				   fromViewController:(UIViewController *)presenter {
@@ -421,7 +421,7 @@ static HJSDebugCenter * defaultCenter;
 }
 
 #pragma mark Control Panel methods
-#ifndef  TARGET_OS_TV
+#if !TARGET_OS_TV
 - (BOOL)presentControlPanelFromViewController:(UIViewController*)presenter {
 	if (!presenter) {
 		[self logAtLevel:HJSLogLevelCritical

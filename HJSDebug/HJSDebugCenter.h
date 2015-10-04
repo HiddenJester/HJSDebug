@@ -153,7 +153,7 @@ FOUNDATION_EXPORT NSString * debugBreakEnabledKey;
 - (void)saveSettings;
 
 #pragma mark UI Methods
-#ifndef TARGET_OS_TV
+#if !TARGET_OS_TV
 /**
  Presents a mail containing all monitored logs (as text attachments) and a custom explanation to the user. Customize
  the explanation text so the user can understand why they should send the email.
@@ -176,7 +176,7 @@ FOUNDATION_EXPORT NSString * debugBreakEnabledKey;
 /// Wrapper around both the permissions for mail as well as the actual "is mail available" checks
 - (BOOL)canSendMail;
 
-#ifndef TARGET_OS_TV
+#if !TARGET_OS_TV
 
 /**
  Presents the control panel from the presenter.
