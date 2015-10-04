@@ -9,8 +9,10 @@
 
 @import CoreData.CoreDataErrors;	// Need definition of NSDetailedErrorsKey
 
-#import "HJSDebugMailComposeDelegate.h"
-#import "HJSDebugCenterControlPanelViewController.h"
+#ifndef TARGET_OS_TV
+	#import "HJSDebugMailComposeDelegate.h"
+	#import "HJSDebugCenterControlPanelViewController.h"
+#endif
 
 // MARK: Exported Constants
 NSString * debugBreakEnabledKey = @"debugBreakEnabled";
@@ -36,8 +38,9 @@ static HJSDebugCenter * defaultCenter;
 
 	// Monitored logs
 	NSMutableDictionary * _monitoredLogs;
-
+#ifndef TARGET_OS_TV
 	HJSDebugMailComposeDelegate * _mailComposeDelegate;
+#endif
 }
 
 + (HJSDebugCenter *)defaultCenter {
@@ -61,11 +64,22 @@ static HJSDebugCenter * defaultCenter;
 	}
 
 	// Create the config URL
+	//TIMTODO Switch over to iCloud Key/Value storage
+	// https://developer.apple.com/library/prerelease/tvos/documentation/General/Conceptual/iCloudDesignGuide/Chapters/DesigningForKey-ValueDataIniCloud.html#//apple_ref/doc/uid/TP40012094-CH7
+#ifndef TARGET_OS_TV
 	NSURL * configURL = [[NSFileManager defaultManager] URLForDirectory:NSApplicationSupportDirectory
 															   inDomain:NSUserDomainMask
 													  appropriateForURL:nil
 																 create:YES
 																  error:&error];
+#else
+	NSURL * configURL = [[NSFileManager defaultManager] URLForDirectory:NSCachesDirectory
+															   inDomain:NSUserDomainMask
+													  appropriateForURL:nil
+																 create:YES
+																  error:&error];
+#endif
+	
 	if (error) {
 		// Argh. Can't use defaultCenter here, it doesn't exist yet.
 		NSLog(@"%@", error.description);
@@ -290,7 +304,7 @@ static HJSDebugCenter * defaultCenter;
 }
 
 #pragma mark Mail Log methods
-
+#ifndef TARGET_OS_TV
 - (BOOL)presentMailLogWithExplanation:(NSString *)explanation
 							  subject:(NSString *)subject
 				   fromViewController:(UIViewController *)presenter {
@@ -342,6 +356,11 @@ static HJSDebugCenter * defaultCenter;
 	// Could an option in the future to permanently disable mail
 	return [MFMailComposeViewController canSendMail];
 }
+#else // We *ARE targeting tvOS
+- (BOOL)canSendMail {
+	return NO;
+}
+#endif
 
 #pragma mark Log monitoring Methods
 - (BOOL)monitorLog:(NSURL *)logURL asKey:(NSString *)logKey {
@@ -402,7 +421,7 @@ static HJSDebugCenter * defaultCenter;
 }
 
 #pragma mark Control Panel methods
-
+#ifndef  TARGET_OS_TV
 - (BOOL)presentControlPanelFromViewController:(UIViewController*)presenter {
 	if (!presenter) {
 		[self logAtLevel:HJSLogLevelCritical
@@ -438,6 +457,7 @@ static HJSDebugCenter * defaultCenter;
 	}];
 	return YES;
 }
+#endif
 
 #pragma mark Lifecycle
 - (id)init {

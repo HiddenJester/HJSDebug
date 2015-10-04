@@ -7,6 +7,9 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		3BAC509E1BC161670041F449 /* HJSDebugCenter.m in Sources */ = {isa = PBXBuildFile; fileRef = 3BE23D291AD0502400DD844B /* HJSDebugCenter.m */; };
+		3BAC509F1BC161F60041F449 /* HJSDebug.h in Headers */ = {isa = PBXBuildFile; fileRef = 3BE23D271AD0502400DD844B /* HJSDebug.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		3BAC50A01BC161F60041F449 /* HJSDebugCenter.h in Headers */ = {isa = PBXBuildFile; fileRef = 3BE23D281AD0502400DD844B /* HJSDebugCenter.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		3BE23D0E1AD04F7800DD844B /* HJSDebug.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3BE23D021AD04F7800DD844B /* HJSDebug.framework */; };
 		3BE23D151AD04F7800DD844B /* HJSDebugTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 3BE23D141AD04F7800DD844B /* HJSDebugTests.m */; };
 		3BE23D2F1AD0502400DD844B /* HJSDebug.h in Headers */ = {isa = PBXBuildFile; fileRef = 3BE23D271AD0502400DD844B /* HJSDebug.h */; settings = {ATTRIBUTES = (Public, ); }; };
@@ -30,6 +33,9 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		3BAC50951BC161120041F449 /* HJSDebugtvOS.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = HJSDebugtvOS.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		3BAC50991BC161120041F449 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		3BAC50B71BC163FF0041F449 /* HJSDebugtvOS.modulemap */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = "sourcecode.module-map"; path = HJSDebugtvOS.modulemap; sourceTree = "<group>"; };
 		3BE23D021AD04F7800DD844B /* HJSDebug.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = HJSDebug.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		3BE23D061AD04F7800DD844B /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		3BE23D0D1AD04F7800DD844B /* HJSDebugTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = HJSDebugTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -48,6 +54,13 @@
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
+		3BAC50911BC161120041F449 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		3BE23CFE1AD04F7800DD844B /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
@@ -66,6 +79,15 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		3BAC50961BC161120041F449 /* HJSDebug-tvOS */ = {
+			isa = PBXGroup;
+			children = (
+				3BAC50991BC161120041F449 /* Info.plist */,
+				3BAC50B71BC163FF0041F449 /* HJSDebugtvOS.modulemap */,
+			);
+			path = "HJSDebug-tvOS";
+			sourceTree = "<group>";
+		};
 		3BE23CF81AD04F7800DD844B = {
 			isa = PBXGroup;
 			children = (
@@ -73,6 +95,7 @@
 				3BE270681AF0AC10003928EC /* setbuildversion.sh */,
 				3BE23D041AD04F7800DD844B /* HJSDebug */,
 				3BE23D111AD04F7800DD844B /* HJSDebugTests */,
+				3BAC50961BC161120041F449 /* HJSDebug-tvOS */,
 				3BE23D031AD04F7800DD844B /* Products */,
 			);
 			sourceTree = "<group>";
@@ -82,6 +105,7 @@
 			children = (
 				3BE23D021AD04F7800DD844B /* HJSDebug.framework */,
 				3BE23D0D1AD04F7800DD844B /* HJSDebugTests.xctest */,
+				3BAC50951BC161120041F449 /* HJSDebugtvOS.framework */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -130,6 +154,15 @@
 /* End PBXGroup section */
 
 /* Begin PBXHeadersBuildPhase section */
+		3BAC50921BC161120041F449 /* Headers */ = {
+			isa = PBXHeadersBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				3BAC509F1BC161F60041F449 /* HJSDebug.h in Headers */,
+				3BAC50A01BC161F60041F449 /* HJSDebugCenter.h in Headers */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		3BE23CFF1AD04F7800DD844B /* Headers */ = {
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
@@ -144,6 +177,25 @@
 /* End PBXHeadersBuildPhase section */
 
 /* Begin PBXNativeTarget section */
+		3BAC50941BC161120041F449 /* HJSDebugtvOS */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 3BAC509D1BC161120041F449 /* Build configuration list for PBXNativeTarget "HJSDebugtvOS" */;
+			buildPhases = (
+				3BAC50901BC161120041F449 /* Sources */,
+				3BAC50911BC161120041F449 /* Frameworks */,
+				3BAC50921BC161120041F449 /* Headers */,
+				3BAC50931BC161120041F449 /* Resources */,
+				3BAC50A11BC162170041F449 /* ShellScript */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = HJSDebugtvOS;
+			productName = "HJSDebug-tvOS";
+			productReference = 3BAC50951BC161120041F449 /* HJSDebugtvOS.framework */;
+			productType = "com.apple.product-type.framework";
+		};
 		3BE23D011AD04F7800DD844B /* HJSDebug */ = {
 			isa = PBXNativeTarget;
 			buildConfigurationList = 3BE23D181AD04F7800DD844B /* Build configuration list for PBXNativeTarget "HJSDebug" */;
@@ -187,9 +239,13 @@
 		3BE23CF91AD04F7800DD844B /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
-				LastUpgradeCheck = 0620;
+				LastUpgradeCheck = 0710;
 				ORGANIZATIONNAME = "HiddenJester Software";
 				TargetAttributes = {
+					3BAC50941BC161120041F449 = {
+						CreatedOnToolsVersion = 7.1;
+						DevelopmentTeam = 6LMYPJV5KV;
+					};
 					3BE23D011AD04F7800DD844B = {
 						CreatedOnToolsVersion = 6.2;
 					};
@@ -212,11 +268,19 @@
 			targets = (
 				3BE23D011AD04F7800DD844B /* HJSDebug */,
 				3BE23D0C1AD04F7800DD844B /* HJSDebugTests */,
+				3BAC50941BC161120041F449 /* HJSDebugtvOS */,
 			);
 		};
 /* End PBXProject section */
 
 /* Begin PBXResourcesBuildPhase section */
+		3BAC50931BC161120041F449 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		3BE23D001AD04F7800DD844B /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -235,6 +299,19 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
+		3BAC50A11BC162170041F449 /* ShellScript */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = ./setbuildversion.sh;
+		};
 		3BD9D8421AD055FB00F508AD /* ShellScript */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
@@ -251,6 +328,14 @@
 /* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
+		3BAC50901BC161120041F449 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				3BAC509E1BC161670041F449 /* HJSDebugCenter.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		3BE23CFD1AD04F7800DD844B /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -280,6 +365,77 @@
 /* End PBXTargetDependency section */
 
 /* Begin XCBuildConfiguration section */
+		3BAC509A1BC161120041F449 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				DEFINES_MODULE = YES;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				ENABLE_TESTABILITY = YES;
+				GCC_NO_COMMON_BLOCKS = YES;
+				INFOPLIST_FILE = "HJSDebug-tvOS/Info.plist";
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				MODULEMAP_FILE = "HJSDebug-tvOS/HJSDebugtvOS.modulemap";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.HiddenJester.HJSDebug-tvOS";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = appletvos;
+				SKIP_INSTALL = YES;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				TARGETED_DEVICE_FAMILY = 3;
+				TVOS_DEPLOYMENT_TARGET = 9.0;
+			};
+			name = Debug;
+		};
+		3BAC509B1BC161120041F449 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				DEFINES_MODULE = YES;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				GCC_NO_COMMON_BLOCKS = YES;
+				INFOPLIST_FILE = "HJSDebug-tvOS/Info.plist";
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				MODULEMAP_FILE = "HJSDebug-tvOS/HJSDebugtvOS.modulemap";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.HiddenJester.HJSDebug-tvOS";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = appletvos;
+				SKIP_INSTALL = YES;
+				TARGETED_DEVICE_FAMILY = 3;
+				TVOS_DEPLOYMENT_TARGET = 9.0;
+			};
+			name = Release;
+		};
+		3BAC509C1BC161120041F449 /* Beta */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				DEFINES_MODULE = YES;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				GCC_NO_COMMON_BLOCKS = YES;
+				INFOPLIST_FILE = "HJSDebug-tvOS/Info.plist";
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				MODULEMAP_FILE = "HJSDebug-tvOS/HJSDebugtvOS.modulemap";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.HiddenJester.HJSDebug-tvOS";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = appletvos;
+				SKIP_INSTALL = YES;
+				TARGETED_DEVICE_FAMILY = 3;
+				TVOS_DEPLOYMENT_TARGET = 9.0;
+			};
+			name = Beta;
+		};
 		3BD9D8431AD0561200F508AD /* Beta */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
@@ -332,6 +488,7 @@
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.HiddenJester.$(PRODUCT_NAME:rfc1034identifier)";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
 			};
@@ -346,6 +503,7 @@
 				);
 				INFOPLIST_FILE = HJSDebugTests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.HiddenJester.$(PRODUCT_NAME:rfc1034identifier)";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
 			name = Beta;
@@ -371,6 +529,7 @@
 				COPY_PHASE_STRIP = NO;
 				CURRENT_PROJECT_VERSION = 1;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu99;
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_OPTIMIZATION_LEVEL = 0;
@@ -446,6 +605,7 @@
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.HiddenJester.$(PRODUCT_NAME:rfc1034identifier)";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
 			};
@@ -463,6 +623,7 @@
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.HiddenJester.$(PRODUCT_NAME:rfc1034identifier)";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
 			};
@@ -477,6 +638,7 @@
 				);
 				INFOPLIST_FILE = HJSDebugTests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.HiddenJester.$(PRODUCT_NAME:rfc1034identifier)";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
 			name = Debug;
@@ -490,6 +652,7 @@
 				);
 				INFOPLIST_FILE = HJSDebugTests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.HiddenJester.$(PRODUCT_NAME:rfc1034identifier)";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
 			name = Release;
@@ -497,6 +660,16 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
+		3BAC509D1BC161120041F449 /* Build configuration list for PBXNativeTarget "HJSDebugtvOS" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				3BAC509A1BC161120041F449 /* Debug */,
+				3BAC509B1BC161120041F449 /* Release */,
+				3BAC509C1BC161120041F449 /* Beta */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
 		3BE23CFC1AD04F7800DD844B /* Build configuration list for PBXProject "HJSDebug" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (

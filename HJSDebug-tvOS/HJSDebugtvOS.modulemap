@@ -1,0 +1,8 @@
+framework module HJSDebugtvOS {
+	umbrella header "HJSDebug.h"
+
+//	header "other-header.h"
+
+	export *
+	module * { export * }
+}

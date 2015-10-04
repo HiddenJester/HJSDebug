@@ -153,6 +153,7 @@ FOUNDATION_EXPORT NSString * debugBreakEnabledKey;
 - (void)saveSettings;
 
 #pragma mark UI Methods
+#ifndef TARGET_OS_TV
 /**
  Presents a mail containing all monitored logs (as text attachments) and a custom explanation to the user. Customize
  the explanation text so the user can understand why they should send the email.
@@ -170,9 +171,12 @@ FOUNDATION_EXPORT NSString * debugBreakEnabledKey;
 - (BOOL)presentMailLogWithExplanation:(NSString *)explanation
 							  subject:(NSString *)subject
 				   fromViewController:(UIViewController *)presenter;
+#endif
 
 /// Wrapper around both the permissions for mail as well as the actual "is mail available" checks
 - (BOOL)canSendMail;
+
+#ifndef TARGET_OS_TV
 
 /**
  Presents the control panel from the presenter.
@@ -184,6 +188,7 @@ FOUNDATION_EXPORT NSString * debugBreakEnabledKey;
 		 prevents presentation in iOS 8.)
  */
 - (BOOL)presentControlPanelFromViewController:(UIViewController*)presenter;
+#endif
 
 #pragma mark Lifecycle Methods
 /// Call when the app is terminating. This will close the log file and release ASL resources

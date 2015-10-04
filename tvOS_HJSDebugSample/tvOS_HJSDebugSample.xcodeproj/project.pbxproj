@@ -1,0 +1,380 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		3BAC50791BC160CD0041F449 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3BAC50781BC160CD0041F449 /* AppDelegate.swift */; };
+		3BAC507B1BC160CD0041F449 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3BAC507A1BC160CD0041F449 /* ViewController.swift */; };
+		3BAC507E1BC160CD0041F449 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3BAC507C1BC160CD0041F449 /* Main.storyboard */; };
+		3BAC50801BC160CD0041F449 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 3BAC507F1BC160CD0041F449 /* Assets.xcassets */; };
+		3BAC50BE1BC1674E0041F449 /* HJSDebugtvOS.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3BAC50A61BC162560041F449 /* HJSDebugtvOS.framework */; };
+		3BAC50CD1BC16BF80041F449 /* HJSDebugtvOS.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = 3BAC50A61BC162560041F449 /* HJSDebugtvOS.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		3BAC508C1BC160DF0041F449 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 3BAC50871BC160DF0041F449 /* HJSDebug.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 3BE23D021AD04F7800DD844B;
+			remoteInfo = HJSDebug;
+		};
+		3BAC508E1BC160DF0041F449 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 3BAC50871BC160DF0041F449 /* HJSDebug.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 3BE23D0D1AD04F7800DD844B;
+			remoteInfo = HJSDebugTests;
+		};
+		3BAC50A51BC162560041F449 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 3BAC50871BC160DF0041F449 /* HJSDebug.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 3BAC50951BC161120041F449;
+			remoteInfo = "HJSDebug-tvOS";
+		};
+		3BAC50BC1BC167440041F449 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 3BAC50871BC160DF0041F449 /* HJSDebug.xcodeproj */;
+			proxyType = 1;
+			remoteGlobalIDString = 3BAC50941BC161120041F449;
+			remoteInfo = HJSDebugtvOS;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXCopyFilesBuildPhase section */
+		3BAC50C21BC16BD80041F449 /* CopyFiles */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 10;
+			files = (
+				3BAC50CD1BC16BF80041F449 /* HJSDebugtvOS.framework in CopyFiles */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
+
+/* Begin PBXFileReference section */
+		3BAC50751BC160CD0041F449 /* tvOS_HJSDebugSample.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = tvOS_HJSDebugSample.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		3BAC50781BC160CD0041F449 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
+		3BAC507A1BC160CD0041F449 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
+		3BAC507D1BC160CD0041F449 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
+		3BAC507F1BC160CD0041F449 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		3BAC50811BC160CD0041F449 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		3BAC50871BC160DF0041F449 /* HJSDebug.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = HJSDebug.xcodeproj; path = ../HJSDebug.xcodeproj; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		3BAC50721BC160CD0041F449 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				3BAC50BE1BC1674E0041F449 /* HJSDebugtvOS.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		3BAC506C1BC160CD0041F449 = {
+			isa = PBXGroup;
+			children = (
+				3BAC50871BC160DF0041F449 /* HJSDebug.xcodeproj */,
+				3BAC50771BC160CD0041F449 /* tvOS_HJSDebugSample */,
+				3BAC50761BC160CD0041F449 /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		3BAC50761BC160CD0041F449 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				3BAC50751BC160CD0041F449 /* tvOS_HJSDebugSample.app */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		3BAC50771BC160CD0041F449 /* tvOS_HJSDebugSample */ = {
+			isa = PBXGroup;
+			children = (
+				3BAC50781BC160CD0041F449 /* AppDelegate.swift */,
+				3BAC507A1BC160CD0041F449 /* ViewController.swift */,
+				3BAC507C1BC160CD0041F449 /* Main.storyboard */,
+				3BAC507F1BC160CD0041F449 /* Assets.xcassets */,
+				3BAC50811BC160CD0041F449 /* Info.plist */,
+			);
+			path = tvOS_HJSDebugSample;
+			sourceTree = "<group>";
+		};
+		3BAC50881BC160DF0041F449 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				3BAC508D1BC160DF0041F449 /* HJSDebug.framework */,
+				3BAC508F1BC160DF0041F449 /* HJSDebugTests.xctest */,
+				3BAC50A61BC162560041F449 /* HJSDebugtvOS.framework */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		3BAC50741BC160CD0041F449 /* tvOS_HJSDebugSample */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 3BAC50841BC160CD0041F449 /* Build configuration list for PBXNativeTarget "tvOS_HJSDebugSample" */;
+			buildPhases = (
+				3BAC50711BC160CD0041F449 /* Sources */,
+				3BAC50721BC160CD0041F449 /* Frameworks */,
+				3BAC50731BC160CD0041F449 /* Resources */,
+				3BAC50C21BC16BD80041F449 /* CopyFiles */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				3BAC50BD1BC167440041F449 /* PBXTargetDependency */,
+			);
+			name = tvOS_HJSDebugSample;
+			productName = tvOS_HJSDebugSample;
+			productReference = 3BAC50751BC160CD0041F449 /* tvOS_HJSDebugSample.app */;
+			productType = "com.apple.product-type.application";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		3BAC506D1BC160CD0041F449 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastUpgradeCheck = 0710;
+				ORGANIZATIONNAME = "HiddenJester Software";
+				TargetAttributes = {
+					3BAC50741BC160CD0041F449 = {
+						CreatedOnToolsVersion = 7.1;
+					};
+				};
+			};
+			buildConfigurationList = 3BAC50701BC160CD0041F449 /* Build configuration list for PBXProject "tvOS_HJSDebugSample" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = 3BAC506C1BC160CD0041F449;
+			productRefGroup = 3BAC50761BC160CD0041F449 /* Products */;
+			projectDirPath = "";
+			projectReferences = (
+				{
+					ProductGroup = 3BAC50881BC160DF0041F449 /* Products */;
+					ProjectRef = 3BAC50871BC160DF0041F449 /* HJSDebug.xcodeproj */;
+				},
+			);
+			projectRoot = "";
+			targets = (
+				3BAC50741BC160CD0041F449 /* tvOS_HJSDebugSample */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXReferenceProxy section */
+		3BAC508D1BC160DF0041F449 /* HJSDebug.framework */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.framework;
+			path = HJSDebug.framework;
+			remoteRef = 3BAC508C1BC160DF0041F449 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		3BAC508F1BC160DF0041F449 /* HJSDebugTests.xctest */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.cfbundle;
+			path = HJSDebugTests.xctest;
+			remoteRef = 3BAC508E1BC160DF0041F449 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		3BAC50A61BC162560041F449 /* HJSDebugtvOS.framework */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.framework;
+			path = HJSDebugtvOS.framework;
+			remoteRef = 3BAC50A51BC162560041F449 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+/* End PBXReferenceProxy section */
+
+/* Begin PBXResourcesBuildPhase section */
+		3BAC50731BC160CD0041F449 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				3BAC50801BC160CD0041F449 /* Assets.xcassets in Resources */,
+				3BAC507E1BC160CD0041F449 /* Main.storyboard in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		3BAC50711BC160CD0041F449 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				3BAC507B1BC160CD0041F449 /* ViewController.swift in Sources */,
+				3BAC50791BC160CD0041F449 /* AppDelegate.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		3BAC50BD1BC167440041F449 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = HJSDebugtvOS;
+			targetProxy = 3BAC50BC1BC167440041F449 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin PBXVariantGroup section */
+		3BAC507C1BC160CD0041F449 /* Main.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				3BAC507D1BC160CD0041F449 /* Base */,
+			);
+			name = Main.storyboard;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		3BAC50821BC160CD0041F449 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				MTL_ENABLE_DEBUG_INFO = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = appletvos;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				TARGETED_DEVICE_FAMILY = 3;
+				TVOS_DEPLOYMENT_TARGET = 9.0;
+			};
+			name = Debug;
+		};
+		3BAC50831BC160CD0041F449 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				SDKROOT = appletvos;
+				TARGETED_DEVICE_FAMILY = 3;
+				TVOS_DEPLOYMENT_TARGET = 9.0;
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		3BAC50851BC160CD0041F449 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = "App Icon & Top Shelf Image";
+				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
+				INFOPLIST_FILE = tvOS_HJSDebugSample/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.HiddenJester.tvOS-HJSDebugSample";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Debug;
+		};
+		3BAC50861BC160CD0041F449 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = "App Icon & Top Shelf Image";
+				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
+				INFOPLIST_FILE = tvOS_HJSDebugSample/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.HiddenJester.tvOS-HJSDebugSample";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		3BAC50701BC160CD0041F449 /* Build configuration list for PBXProject "tvOS_HJSDebugSample" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				3BAC50821BC160CD0041F449 /* Debug */,
+				3BAC50831BC160CD0041F449 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		3BAC50841BC160CD0041F449 /* Build configuration list for PBXNativeTarget "tvOS_HJSDebugSample" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				3BAC50851BC160CD0041F449 /* Debug */,
+				3BAC50861BC160CD0041F449 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = 3BAC506D1BC160CD0041F449 /* Project object */;
+}
