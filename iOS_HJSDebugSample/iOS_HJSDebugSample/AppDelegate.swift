@@ -11,6 +11,7 @@ import UIKit
 import HJSDebugiOS
 
 let debug = HJSDebugCenter.defaultCenter()
+
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
 
