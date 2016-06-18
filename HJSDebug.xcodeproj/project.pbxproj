@@ -247,10 +247,11 @@
 				TargetAttributes = {
 					3BAC50941BC161120041F449 = {
 						CreatedOnToolsVersion = 7.1;
-						DevelopmentTeam = 6LMYPJV5KV;
+						DevelopmentTeam = 2AXP7E8SH9;
 					};
 					3BE23D011AD04F7800DD844B = {
 						CreatedOnToolsVersion = 6.2;
+						DevelopmentTeam = 2AXP7E8SH9;
 					};
 					3BE23D0C1AD04F7800DD844B = {
 						CreatedOnToolsVersion = 6.2;
@@ -483,6 +484,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				APPLICATION_EXTENSION_API_ONLY = YES;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
 				DEFINES_MODULE = YES;
 				DYLIB_COMPATIBILITY_VERSION = 1;
 				DYLIB_CURRENT_VERSION = 1;
@@ -597,6 +599,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				APPLICATION_EXTENSION_API_ONLY = YES;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
 				DEFINES_MODULE = YES;
 				DYLIB_COMPATIBILITY_VERSION = 1;
 				DYLIB_CURRENT_VERSION = 1;
@@ -616,6 +619,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				APPLICATION_EXTENSION_API_ONLY = YES;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
 				DEFINES_MODULE = YES;
 				DYLIB_COMPATIBILITY_VERSION = 1;
 				DYLIB_CURRENT_VERSION = 1;
