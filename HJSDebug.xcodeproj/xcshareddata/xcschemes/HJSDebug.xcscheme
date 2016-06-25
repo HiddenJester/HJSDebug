@@ -14,9 +14,9 @@
             buildForAnalyzing = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "3BAC50941BC161120041F449"
-               BuildableName = "HJSDebugtvOS.framework"
-               BlueprintName = "HJSDebugtvOS"
+               BlueprintIdentifier = "3BE23D011AD04F7800DD844B"
+               BuildableName = "HJSDebug.framework"
+               BlueprintName = "HJSDebug"
                ReferencedContainer = "container:HJSDebug.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
@@ -28,7 +28,26 @@
       selectedLauncherIdentifier = "Xcode.DebuggerFoundation.Launcher.LLDB"
       shouldUseLaunchSchemeArgsEnv = "YES">
       <Testables>
+         <TestableReference
+            skipped = "NO">
+            <BuildableReference
+               BuildableIdentifier = "primary"
+               BlueprintIdentifier = "3BE23D0C1AD04F7800DD844B"
+               BuildableName = "HJSDebugTests.xctest"
+               BlueprintName = "HJSDebugTests"
+               ReferencedContainer = "container:HJSDebug.xcodeproj">
+            </BuildableReference>
+         </TestableReference>
       </Testables>
+      <MacroExpansion>
+         <BuildableReference
+            BuildableIdentifier = "primary"
+            BlueprintIdentifier = "3BE23D011AD04F7800DD844B"
+            BuildableName = "HJSDebug.framework"
+            BlueprintName = "HJSDebug"
+            ReferencedContainer = "container:HJSDebug.xcodeproj">
+         </BuildableReference>
+      </MacroExpansion>
       <AdditionalOptions>
       </AdditionalOptions>
    </TestAction>
@@ -45,9 +64,9 @@
       <MacroExpansion>
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "3BAC50941BC161120041F449"
-            BuildableName = "HJSDebugtvOS.framework"
-            BlueprintName = "HJSDebugtvOS"
+            BlueprintIdentifier = "3BE23D011AD04F7800DD844B"
+            BuildableName = "HJSDebug.framework"
+            BlueprintName = "HJSDebug"
             ReferencedContainer = "container:HJSDebug.xcodeproj">
          </BuildableReference>
       </MacroExpansion>
@@ -63,9 +82,9 @@
       <MacroExpansion>
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "3BAC50941BC161120041F449"
-            BuildableName = "HJSDebugtvOS.framework"
-            BlueprintName = "HJSDebugtvOS"
+            BlueprintIdentifier = "3BE23D011AD04F7800DD844B"
+            BuildableName = "HJSDebug.framework"
+            BlueprintName = "HJSDebug"
             ReferencedContainer = "container:HJSDebug.xcodeproj">
          </BuildableReference>
       </MacroExpansion>

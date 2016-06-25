@@ -11,8 +11,8 @@
 		3BAC507B1BC160CD0041F449 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3BAC507A1BC160CD0041F449 /* ViewController.swift */; };
 		3BAC507E1BC160CD0041F449 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3BAC507C1BC160CD0041F449 /* Main.storyboard */; };
 		3BAC50801BC160CD0041F449 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 3BAC507F1BC160CD0041F449 /* Assets.xcassets */; };
-		3BAC50BE1BC1674E0041F449 /* HJSDebugtvOS.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3BAC50A61BC162560041F449 /* HJSDebugtvOS.framework */; };
-		3BAC50CD1BC16BF80041F449 /* HJSDebugtvOS.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = 3BAC50A61BC162560041F449 /* HJSDebugtvOS.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		3BD4FDAD1D1EFFBE00DC6031 /* HJSDebug.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3BD4FDA81D1EFF9500DC6031 /* HJSDebug.framework */; };
+		3BD4FDAE1D1EFFBE00DC6031 /* HJSDebug.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = 3BD4FDA81D1EFF9500DC6031 /* HJSDebug.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -30,19 +30,33 @@
 			remoteGlobalIDString = 3BE23D0D1AD04F7800DD844B;
 			remoteInfo = HJSDebugTests;
 		};
-		3BAC50A51BC162560041F449 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 3BAC50871BC160DF0041F449 /* HJSDebug.xcodeproj */;
-			proxyType = 2;
-			remoteGlobalIDString = 3BAC50951BC161120041F449;
-			remoteInfo = "HJSDebug-tvOS";
-		};
-		3BAC50BC1BC167440041F449 /* PBXContainerItemProxy */ = {
+		3BD4FD7C1D1EF9CE00DC6031 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 3BAC50871BC160DF0041F449 /* HJSDebug.xcodeproj */;
 			proxyType = 1;
-			remoteGlobalIDString = 3BAC50941BC161120041F449;
-			remoteInfo = HJSDebugtvOS;
+			remoteGlobalIDString = 3BE23D011AD04F7800DD844B;
+			remoteInfo = HJSDebug;
+		};
+		3BD4FDA71D1EFF9500DC6031 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 3BAC50871BC160DF0041F449 /* HJSDebug.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 3BD4FD841D1EFD1C00DC6031;
+			remoteInfo = HJSDebug_tvOS;
+		};
+		3BD4FDAB1D1EFF9500DC6031 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 3BAC50871BC160DF0041F449 /* HJSDebug.xcodeproj */;
+			proxyType = 1;
+			remoteGlobalIDString = 3BD4FD831D1EFD1C00DC6031;
+			remoteInfo = HJSDebug_tvOS;
+		};
+		3BD4FDAF1D1EFFBE00DC6031 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 3BAC50871BC160DF0041F449 /* HJSDebug.xcodeproj */;
+			proxyType = 1;
+			remoteGlobalIDString = 3BD4FD831D1EFD1C00DC6031;
+			remoteInfo = HJSDebug_tvOS;
 		};
 /* End PBXContainerItemProxy section */
 
@@ -53,7 +67,7 @@
 			dstPath = "";
 			dstSubfolderSpec = 10;
 			files = (
-				3BAC50CD1BC16BF80041F449 /* HJSDebugtvOS.framework in CopyFiles */,
+				3BD4FDAE1D1EFFBE00DC6031 /* HJSDebug.framework in CopyFiles */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -74,7 +88,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				3BAC50BE1BC1674E0041F449 /* HJSDebugtvOS.framework in Frameworks */,
+				3BD4FDAD1D1EFFBE00DC6031 /* HJSDebug.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -115,7 +129,7 @@
 			children = (
 				3BAC508D1BC160DF0041F449 /* HJSDebug.framework */,
 				3BAC508F1BC160DF0041F449 /* HJSDebugTests.xctest */,
-				3BAC50A61BC162560041F449 /* HJSDebugtvOS.framework */,
+				3BD4FDA81D1EFF9500DC6031 /* HJSDebug.framework */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -135,7 +149,9 @@
 			buildRules = (
 			);
 			dependencies = (
-				3BAC50BD1BC167440041F449 /* PBXTargetDependency */,
+				3BD4FD7D1D1EF9CE00DC6031 /* PBXTargetDependency */,
+				3BD4FDAC1D1EFF9500DC6031 /* PBXTargetDependency */,
+				3BD4FDB01D1EFFBE00DC6031 /* PBXTargetDependency */,
 			);
 			name = tvOS_HJSDebugSample;
 			productName = tvOS_HJSDebugSample;
@@ -153,6 +169,7 @@
 				TargetAttributes = {
 					3BAC50741BC160CD0041F449 = {
 						CreatedOnToolsVersion = 7.1;
+						DevelopmentTeam = 2AXP7E8SH9;
 					};
 				};
 			};
@@ -195,11 +212,11 @@
 			remoteRef = 3BAC508E1BC160DF0041F449 /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
-		3BAC50A61BC162560041F449 /* HJSDebugtvOS.framework */ = {
+		3BD4FDA81D1EFF9500DC6031 /* HJSDebug.framework */ = {
 			isa = PBXReferenceProxy;
 			fileType = wrapper.framework;
-			path = HJSDebugtvOS.framework;
-			remoteRef = 3BAC50A51BC162560041F449 /* PBXContainerItemProxy */;
+			path = HJSDebug.framework;
+			remoteRef = 3BD4FDA71D1EFF9500DC6031 /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
 /* End PBXReferenceProxy section */
@@ -229,10 +246,20 @@
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
-		3BAC50BD1BC167440041F449 /* PBXTargetDependency */ = {
+		3BD4FD7D1D1EF9CE00DC6031 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
-			name = HJSDebugtvOS;
-			targetProxy = 3BAC50BC1BC167440041F449 /* PBXContainerItemProxy */;
+			name = HJSDebug;
+			targetProxy = 3BD4FD7C1D1EF9CE00DC6031 /* PBXContainerItemProxy */;
+		};
+		3BD4FDAC1D1EFF9500DC6031 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = HJSDebug_tvOS;
+			targetProxy = 3BD4FDAB1D1EFF9500DC6031 /* PBXContainerItemProxy */;
+		};
+		3BD4FDB01D1EFFBE00DC6031 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = HJSDebug_tvOS;
+			targetProxy = 3BD4FDAF1D1EFFBE00DC6031 /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
 
@@ -334,6 +361,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = "App Icon & Top Shelf Image";
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
 				INFOPLIST_FILE = tvOS_HJSDebugSample/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "com.HiddenJester.tvOS-HJSDebugSample";
@@ -346,6 +374,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = "App Icon & Top Shelf Image";
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
 				INFOPLIST_FILE = tvOS_HJSDebugSample/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "com.HiddenJester.tvOS-HJSDebugSample";

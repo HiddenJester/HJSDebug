@@ -7,7 +7,7 @@
 //
 
 import UIKit
-import HJSDebugiOS
+import HJSDebug
 
 class ViewController: UIViewController {
 	@IBOutlet weak var levelControl: UISegmentedControl!

@@ -12,8 +12,8 @@
 		3BEFA87C1BC171060075A05B /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3BEFA87A1BC171060075A05B /* Main.storyboard */; };
 		3BEFA87E1BC171060075A05B /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 3BEFA87D1BC171060075A05B /* Assets.xcassets */; };
 		3BEFA8811BC171060075A05B /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3BEFA87F1BC171060075A05B /* LaunchScreen.storyboard */; };
-		3BEFA8A11BC198770075A05B /* HJSDebugiOS.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3BEFA88F1BC1951B0075A05B /* HJSDebugiOS.framework */; };
-		3BEFA8A31BC198840075A05B /* HJSDebugiOS.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = 3BEFA88F1BC1951B0075A05B /* HJSDebugiOS.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		3BEFA8A11BC198770075A05B /* HJSDebug.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3BEFA88F1BC1951B0075A05B /* HJSDebug.framework */; };
+		3BEFA8A31BC198840075A05B /* HJSDebug.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = 3BEFA88F1BC1951B0075A05B /* HJSDebug.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -31,13 +31,6 @@
 			remoteGlobalIDString = 3BE23D0D1AD04F7800DD844B;
 			remoteInfo = HJSDebugTests;
 		};
-		3BEFA8921BC1951B0075A05B /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 3BEFA8881BC1951B0075A05B /* HJSDebug.xcodeproj */;
-			proxyType = 2;
-			remoteGlobalIDString = 3BAC50951BC161120041F449;
-			remoteInfo = HJSDebugtvOS;
-		};
 		3BEFA89C1BC1986D0075A05B /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 3BEFA8881BC1951B0075A05B /* HJSDebug.xcodeproj */;
@@ -54,7 +47,7 @@
 			dstPath = "";
 			dstSubfolderSpec = 10;
 			files = (
-				3BEFA8A31BC198840075A05B /* HJSDebugiOS.framework in CopyFiles */,
+				3BEFA8A31BC198840075A05B /* HJSDebug.framework in CopyFiles */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -76,7 +69,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				3BEFA8A11BC198770075A05B /* HJSDebugiOS.framework in Frameworks */,
+				3BEFA8A11BC198770075A05B /* HJSDebug.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -116,9 +109,8 @@
 		3BEFA8891BC1951B0075A05B /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				3BEFA88F1BC1951B0075A05B /* HJSDebugiOS.framework */,
+				3BEFA88F1BC1951B0075A05B /* HJSDebug.framework */,
 				3BEFA8911BC1951B0075A05B /* HJSDebugTests.xctest */,
-				3BEFA8931BC1951B0075A05B /* HJSDebugtvOS.framework */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -156,6 +148,7 @@
 				TargetAttributes = {
 					3BEFA8721BC171060075A05B = {
 						CreatedOnToolsVersion = 7.1;
+						DevelopmentTeam = 2AXP7E8SH9;
 					};
 				};
 			};
@@ -184,10 +177,10 @@
 /* End PBXProject section */
 
 /* Begin PBXReferenceProxy section */
-		3BEFA88F1BC1951B0075A05B /* HJSDebugiOS.framework */ = {
+		3BEFA88F1BC1951B0075A05B /* HJSDebug.framework */ = {
 			isa = PBXReferenceProxy;
 			fileType = wrapper.framework;
-			path = HJSDebugiOS.framework;
+			path = HJSDebug.framework;
 			remoteRef = 3BEFA88E1BC1951B0075A05B /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
@@ -196,13 +189,6 @@
 			fileType = wrapper.cfbundle;
 			path = HJSDebugTests.xctest;
 			remoteRef = 3BEFA8901BC1951B0075A05B /* PBXContainerItemProxy */;
-			sourceTree = BUILT_PRODUCTS_DIR;
-		};
-		3BEFA8931BC1951B0075A05B /* HJSDebugtvOS.framework */ = {
-			isa = PBXReferenceProxy;
-			fileType = wrapper.framework;
-			path = HJSDebugtvOS.framework;
-			remoteRef = 3BEFA8921BC1951B0075A05B /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
 /* End PBXReferenceProxy section */

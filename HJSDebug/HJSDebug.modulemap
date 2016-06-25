@@ -1,4 +1,4 @@
-framework module HJSDebugtvOS {
+framework module HJSDebug {
 	umbrella header "HJSDebug.h"
 
 //	header "other-header.h"

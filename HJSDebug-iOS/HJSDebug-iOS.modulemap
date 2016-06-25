@@ -1,8 +1,0 @@
-framework module HJSDebugiOS {
-	umbrella header "HJSDebug.h"
-
-//	header "other-header.h"
-
-	export *
-	module * { export * }
-}

@@ -8,7 +8,7 @@
 
 import UIKit
 
-import HJSDebugtvOS
+import HJSDebug
 
 let debug = HJSDebugCenter.defaultCenter()
 
