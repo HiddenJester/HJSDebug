@@ -6,6 +6,8 @@
 
 @class UIViewController;
 
+NS_ASSUME_NONNULL_BEGIN
+
 // Logging sits atop ASL, but I don't want to include ASL.H everywhere, nor do I need
 // all 8 logging levels. So we A ) Objective-C-ify the #defines into a NS_ENUM,
 // and B ) provide a subset of levels. That's why the actual values are discontinuous.
@@ -79,7 +81,7 @@ FOUNDATION_EXPORT NSString * debugBreakEnabledKey;
 /// This will return an existing defaultCenter but otherwise will simply debugBreak and retun nil. It's mostly useful
 /// for framework components like the CoreData stack who want to use the logger but would consider it an error condition
 /// if one was not available.
-+ (HJSDebugCenter *)existingCenter;
++ (nullable HJSDebugCenter *)existingCenter;
 
 /// Raise SIGTRAP in debug if debugBreakEnabled is true & a debugger is attached, NOP in release. If this is a
 /// debug build but one of the conditions fails it will log a message.
@@ -194,4 +196,8 @@ FOUNDATION_EXPORT NSString * debugBreakEnabledKey;
 /// Call when the app is terminating. This will close the log file and release ASL resources
 - (void)terminateLogging;
 
+- (instancetype)init NS_UNAVAILABLE;
+
 @end
+
+NS_ASSUME_NONNULL_END

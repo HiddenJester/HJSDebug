@@ -14,6 +14,8 @@
 	#import "HJSDebugCenterControlPanelViewController.h"
 #endif
 
+NS_ASSUME_NONNULL_BEGIN
+
 // MARK: Exported Constants
 NSString * debugBreakEnabledKey = @"debugBreakEnabled";
 const unsigned long long defaultMaxLogSize = 300 * 1024;
@@ -90,7 +92,9 @@ static HJSDebugCenter * defaultCenter;
 	return [HJSDebugCenter defaultCenterWithConfigURL:configURL logURL:logURL maxLogSize:defaultMaxLogSize];
 }
 
-+ (HJSDebugCenter *)defaultCenterWithConfigURL:(NSURL *)configURL logURL:(NSURL *)logURL maxLogSize:(unsigned long long)maxLogSize {
++ (HJSDebugCenter *)defaultCenterWithConfigURL:(NSURL *)configURL
+                                        logURL:(NSURL *)logURL
+                                    maxLogSize:(unsigned long long)maxLogSize {
 	static dispatch_once_t onceToken;
 
 	dispatch_once(&onceToken, ^{
@@ -99,7 +103,7 @@ static HJSDebugCenter * defaultCenter;
 	return defaultCenter;
 }
 
-+ (HJSDebugCenter *)existingCenter {
++ (nullable HJSDebugCenter *)existingCenter {
 	if (defaultCenter) {
 		return defaultCenter;
 	}
@@ -460,16 +464,6 @@ static HJSDebugCenter * defaultCenter;
 #endif
 
 #pragma mark Lifecycle
-- (id)init {
-	if (defaultCenter) {
-		[self logAtLevel:HJSLogLevelCritical
-			formatString:@"Don't create HJSDebugCenter objects, use HJSDebugCenter defaultCenter instead."];
-		return defaultCenter;
-	}
-
-	return [HJSDebugCenter defaultCenter];
-}
-
 - (id)initWithConfigURL:(NSURL *)configURL logURL:(NSURL *)logURL maxLogSize:(unsigned long long)maxLogSize {
 	NSError * __autoreleasing error;
 
@@ -644,3 +638,5 @@ static HJSDebugCenter * defaultCenter;
 }
 
 @end
+
+NS_ASSUME_NONNULL_END
