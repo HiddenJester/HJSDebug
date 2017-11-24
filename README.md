@@ -1,6 +1,7 @@
 # HJSDebug
 
 [![License: CC BY-SA 4.0](https://img.shields.io/badge/License-CC%20BY--SA%204.0-lightgrey.svg)](https://creativecommons.org/licenses/by-sa/4.0/)
+[![CocoaPods Compatible](https://img.shields.io/cocoapods/v/HJSDebug.svg)](https://cocoapods.org/pods/HJSDebug)
 [![Carthage compatible](https://img.shields.io/badge/Carthage-compatible-4BC51D.svg?style=flat)](https://github.com/Carthage/Carthage)
 
 HJSDebug is a logger that supports logging levels, automatic rotation of logs based on size, monitoring multiple logfiles
