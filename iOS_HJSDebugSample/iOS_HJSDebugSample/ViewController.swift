@@ -17,7 +17,7 @@ class ViewController: UIViewController {
 			return
 		}
 
-		guard let message = textField.text, textField.text?.characters.count > 0 else {
+		guard let message = textField.text, textField.text?.count > 0 else {
 			return
 		}
 
