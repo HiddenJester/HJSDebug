@@ -37,7 +37,7 @@ Pod::Spec.new do |s|
   #  Popular ones are 'MIT', 'BSD' and 'Apache License, Version 2.0'.
   #
 
-  s.license      = { :type => "CC BY-SA 4.0", :file => "LICENSE" }
+  s.license        = { :type => "CC BY-SA 4.0", :file => "LICENSE" }
   # s.license      = { :type => "MIT", :file => "FILE_LICENSE" }
 
 
@@ -51,8 +51,8 @@ Pod::Spec.new do |s|
   #  profile URL.
   #
 
-  s.author             = { "Timothy Sanders" => "tsanders@hiddenjester.com" }
-  # Or just: s.author    = "Timothy Sanders"
+  s.author             	 = { "Timothy Sanders" => "tsanders@hiddenjester.com" }
+  # Or just: s.author	 = "Timothy Sanders"
   # s.authors            = { "Timothy Sanders" => "email@address.com" }
   # s.social_media_url   = "http://twitter.com/Timothy Sanders"
 
@@ -88,7 +88,7 @@ Pod::Spec.new do |s|
   #  Not including the public_header_files will make all headers public.
   #
 
-  s.source_files  = "HJSDebug"
+  s.source_files  = "HJSDebug/*", "Notes.md"
 
   # s.public_header_files = "Classes/**/*.h"
 
