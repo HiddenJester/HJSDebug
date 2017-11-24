@@ -16,7 +16,7 @@ Pod::Spec.new do |s|
   #
 
   s.name         = "HJSDebug"
-  s.version      = "1.2.2"
+  s.version      = "1.2.3"
   s.summary      = "Multi-level logger with file rotation and email."
 
   # This description is used to generate tags and improve search results.
