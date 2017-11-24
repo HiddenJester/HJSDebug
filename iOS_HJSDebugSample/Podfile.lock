@@ -1,0 +1,16 @@
+PODS:
+  - HJSDebug (1.2.2)
+
+DEPENDENCIES:
+  - HJSDebug (from `~/code/HJS/HJSKit/HJSDebug`)
+
+EXTERNAL SOURCES:
+  HJSDebug:
+    :path: ~/code/HJS/HJSKit/HJSDebug
+
+SPEC CHECKSUMS:
+  HJSDebug: 6eff9f9fbcbf63c01fe560b3d96133faa7d63cb1
+
+PODFILE CHECKSUM: c9d58e1499a61c0e4059c172325cb995a78efffb
+
+COCOAPODS: 1.3.1

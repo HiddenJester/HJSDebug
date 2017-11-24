@@ -21,3 +21,4 @@ DerivedData
 # Added myself
 .DS_Store
 .Trashes
+/iOS_HJSDebugSample/Pods

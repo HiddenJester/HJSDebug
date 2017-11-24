@@ -12,40 +12,8 @@
 		3BEFA87C1BC171060075A05B /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3BEFA87A1BC171060075A05B /* Main.storyboard */; };
 		3BEFA87E1BC171060075A05B /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 3BEFA87D1BC171060075A05B /* Assets.xcassets */; };
 		3BEFA8811BC171060075A05B /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3BEFA87F1BC171060075A05B /* LaunchScreen.storyboard */; };
-		3BEFA8A11BC198770075A05B /* HJSDebug.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3BEFA88F1BC1951B0075A05B /* HJSDebug.framework */; };
-		3BEFA8A31BC198840075A05B /* HJSDebug.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = 3BEFA88F1BC1951B0075A05B /* HJSDebug.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		A4975ED2953E6E4346716E06 /* Pods_iOS_HJSDebugSample.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7E7E73B8E37ECB2059AA9915 /* Pods_iOS_HJSDebugSample.framework */; };
 /* End PBXBuildFile section */
-
-/* Begin PBXContainerItemProxy section */
-		3BEFA88E1BC1951B0075A05B /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 3BEFA8881BC1951B0075A05B /* HJSDebug.xcodeproj */;
-			proxyType = 2;
-			remoteGlobalIDString = 3BE23D021AD04F7800DD844B;
-			remoteInfo = HJSDebug;
-		};
-		3BEFA8901BC1951B0075A05B /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 3BEFA8881BC1951B0075A05B /* HJSDebug.xcodeproj */;
-			proxyType = 2;
-			remoteGlobalIDString = 3BE23D0D1AD04F7800DD844B;
-			remoteInfo = HJSDebugTests;
-		};
-		3BEFA89C1BC1986D0075A05B /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 3BEFA8881BC1951B0075A05B /* HJSDebug.xcodeproj */;
-			proxyType = 1;
-			remoteGlobalIDString = 3BE23D011AD04F7800DD844B;
-			remoteInfo = HJSDebugiOS;
-		};
-		3BF159FA1D85DE2F001AC6CE /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 3BEFA8881BC1951B0075A05B /* HJSDebug.xcodeproj */;
-			proxyType = 2;
-			remoteGlobalIDString = 3BD4FD841D1EFD1C00DC6031;
-			remoteInfo = HJSDebug_tvOS;
-		};
-/* End PBXContainerItemProxy section */
 
 /* Begin PBXCopyFilesBuildPhase section */
 		3BEFA8A21BC1987A0075A05B /* CopyFiles */ = {
@@ -54,13 +22,13 @@
 			dstPath = "";
 			dstSubfolderSpec = 10;
 			files = (
-				3BEFA8A31BC198840075A05B /* HJSDebug.framework in CopyFiles */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		19D3C14BA1081D81FA7676B4 /* Pods-iOS_HJSDebugSample.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-iOS_HJSDebugSample.release.xcconfig"; path = "Pods/Target Support Files/Pods-iOS_HJSDebugSample/Pods-iOS_HJSDebugSample.release.xcconfig"; sourceTree = "<group>"; };
 		3BEFA8731BC171060075A05B /* iOS_HJSDebugSample.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = iOS_HJSDebugSample.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		3BEFA8761BC171060075A05B /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		3BEFA8781BC171060075A05B /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -68,7 +36,8 @@
 		3BEFA87D1BC171060075A05B /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		3BEFA8801BC171060075A05B /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		3BEFA8821BC171060075A05B /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		3BEFA8881BC1951B0075A05B /* HJSDebug.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = HJSDebug.xcodeproj; path = ../HJSDebug.xcodeproj; sourceTree = "<group>"; };
+		58BECB3A0EC3B5E9394319EE /* Pods-iOS_HJSDebugSample.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-iOS_HJSDebugSample.debug.xcconfig"; path = "Pods/Target Support Files/Pods-iOS_HJSDebugSample/Pods-iOS_HJSDebugSample.debug.xcconfig"; sourceTree = "<group>"; };
+		7E7E73B8E37ECB2059AA9915 /* Pods_iOS_HJSDebugSample.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_iOS_HJSDebugSample.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -76,19 +45,28 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				3BEFA8A11BC198770075A05B /* HJSDebug.framework in Frameworks */,
+				A4975ED2953E6E4346716E06 /* Pods_iOS_HJSDebugSample.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		02145607C0794C936F9D97A5 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				7E7E73B8E37ECB2059AA9915 /* Pods_iOS_HJSDebugSample.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 		3BEFA86A1BC171060075A05B = {
 			isa = PBXGroup;
 			children = (
-				3BEFA8881BC1951B0075A05B /* HJSDebug.xcodeproj */,
 				3BEFA8751BC171060075A05B /* iOS_HJSDebugSample */,
 				3BEFA8741BC171060075A05B /* Products */,
+				585D989135A6AFE3DEA5C14E /* Pods */,
+				02145607C0794C936F9D97A5 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -113,14 +91,13 @@
 			path = iOS_HJSDebugSample;
 			sourceTree = "<group>";
 		};
-		3BEFA8891BC1951B0075A05B /* Products */ = {
+		585D989135A6AFE3DEA5C14E /* Pods */ = {
 			isa = PBXGroup;
 			children = (
-				3BEFA88F1BC1951B0075A05B /* HJSDebug.framework */,
-				3BEFA8911BC1951B0075A05B /* HJSDebugTests.xctest */,
-				3BF159FB1D85DE2F001AC6CE /* HJSDebug.framework */,
+				58BECB3A0EC3B5E9394319EE /* Pods-iOS_HJSDebugSample.debug.xcconfig */,
+				19D3C14BA1081D81FA7676B4 /* Pods-iOS_HJSDebugSample.release.xcconfig */,
 			);
-			name = Products;
+			name = Pods;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -130,15 +107,17 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 3BEFA8851BC171060075A05B /* Build configuration list for PBXNativeTarget "iOS_HJSDebugSample" */;
 			buildPhases = (
+				46474A4C0A37E1F7CD5C1EA2 /* [CP] Check Pods Manifest.lock */,
 				3BEFA86F1BC171060075A05B /* Sources */,
 				3BEFA8701BC171060075A05B /* Frameworks */,
 				3BEFA8711BC171060075A05B /* Resources */,
 				3BEFA8A21BC1987A0075A05B /* CopyFiles */,
+				561A168F5631EFF14437EF30 /* [CP] Embed Pods Frameworks */,
+				801E671521E56F3899EB6A73 /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
 			dependencies = (
-				3BEFA89D1BC1986D0075A05B /* PBXTargetDependency */,
 			);
 			name = iOS_HJSDebugSample;
 			productName = iOS_HJSDebugSample;
@@ -172,42 +151,12 @@
 			mainGroup = 3BEFA86A1BC171060075A05B;
 			productRefGroup = 3BEFA8741BC171060075A05B /* Products */;
 			projectDirPath = "";
-			projectReferences = (
-				{
-					ProductGroup = 3BEFA8891BC1951B0075A05B /* Products */;
-					ProjectRef = 3BEFA8881BC1951B0075A05B /* HJSDebug.xcodeproj */;
-				},
-			);
 			projectRoot = "";
 			targets = (
 				3BEFA8721BC171060075A05B /* iOS_HJSDebugSample */,
 			);
 		};
 /* End PBXProject section */
-
-/* Begin PBXReferenceProxy section */
-		3BEFA88F1BC1951B0075A05B /* HJSDebug.framework */ = {
-			isa = PBXReferenceProxy;
-			fileType = wrapper.framework;
-			path = HJSDebug.framework;
-			remoteRef = 3BEFA88E1BC1951B0075A05B /* PBXContainerItemProxy */;
-			sourceTree = BUILT_PRODUCTS_DIR;
-		};
-		3BEFA8911BC1951B0075A05B /* HJSDebugTests.xctest */ = {
-			isa = PBXReferenceProxy;
-			fileType = wrapper.cfbundle;
-			path = HJSDebugTests.xctest;
-			remoteRef = 3BEFA8901BC1951B0075A05B /* PBXContainerItemProxy */;
-			sourceTree = BUILT_PRODUCTS_DIR;
-		};
-		3BF159FB1D85DE2F001AC6CE /* HJSDebug.framework */ = {
-			isa = PBXReferenceProxy;
-			fileType = wrapper.framework;
-			path = HJSDebug.framework;
-			remoteRef = 3BF159FA1D85DE2F001AC6CE /* PBXContainerItemProxy */;
-			sourceTree = BUILT_PRODUCTS_DIR;
-		};
-/* End PBXReferenceProxy section */
 
 /* Begin PBXResourcesBuildPhase section */
 		3BEFA8711BC171060075A05B /* Resources */ = {
@@ -222,6 +171,63 @@
 		};
 /* End PBXResourcesBuildPhase section */
 
+/* Begin PBXShellScriptBuildPhase section */
+		46474A4C0A37E1F7CD5C1EA2 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-iOS_HJSDebugSample-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		561A168F5631EFF14437EF30 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"${SRCROOT}/Pods/Target Support Files/Pods-iOS_HJSDebugSample/Pods-iOS_HJSDebugSample-frameworks.sh",
+				"${BUILT_PRODUCTS_DIR}/HJSDebug/HJSDebug.framework",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputPaths = (
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/HJSDebug.framework",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-iOS_HJSDebugSample/Pods-iOS_HJSDebugSample-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		801E671521E56F3899EB6A73 /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"${SRCROOT}/Pods/Target Support Files/Pods-iOS_HJSDebugSample/Pods-iOS_HJSDebugSample-resources.sh",
+				"${PODS_ROOT}/HJSDebug/HJSDebug/HJSDebugCenterControlPanel.xib",
+			);
+			name = "[CP] Copy Pods Resources";
+			outputPaths = (
+				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-iOS_HJSDebugSample/Pods-iOS_HJSDebugSample-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
+
 /* Begin PBXSourcesBuildPhase section */
 		3BEFA86F1BC171060075A05B /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
@@ -233,14 +239,6 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXSourcesBuildPhase section */
-
-/* Begin PBXTargetDependency section */
-		3BEFA89D1BC1986D0075A05B /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			name = HJSDebugiOS;
-			targetProxy = 3BEFA89C1BC1986D0075A05B /* PBXContainerItemProxy */;
-		};
-/* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
 		3BEFA87A1BC171060075A05B /* Main.storyboard */ = {
@@ -364,6 +362,7 @@
 		};
 		3BEFA8861BC171060075A05B /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 58BECB3A0EC3B5E9394319EE /* Pods-iOS_HJSDebugSample.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
@@ -378,6 +377,7 @@
 		};
 		3BEFA8871BC171060075A05B /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 19D3C14BA1081D81FA7676B4 /* Pods-iOS_HJSDebugSample.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_IDENTITY = "iPhone Developer";

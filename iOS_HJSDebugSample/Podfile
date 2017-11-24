@@ -1,0 +1,9 @@
+
+target 'iOS_HJSDebugSample' do
+	use_frameworks!
+	platform :ios, '9.0'
+	
+	pod 'HJSDebug'
+	# When I'm testing new versions of the library, use a local podspec
+	# pod 'HJSDebug', :path => '~/code/HJS/HJSKit/HJSDebug'
+end
