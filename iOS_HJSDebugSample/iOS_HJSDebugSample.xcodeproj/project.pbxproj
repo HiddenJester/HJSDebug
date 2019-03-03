@@ -113,7 +113,6 @@
 				3BEFA8711BC171060075A05B /* Resources */,
 				3BEFA8A21BC1987A0075A05B /* CopyFiles */,
 				561A168F5631EFF14437EF30 /* [CP] Embed Pods Frameworks */,
-				801E671521E56F3899EB6A73 /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -206,24 +205,6 @@
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
 			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-iOS_HJSDebugSample/Pods-iOS_HJSDebugSample-frameworks.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
-		801E671521E56F3899EB6A73 /* [CP] Copy Pods Resources */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-				"${SRCROOT}/Pods/Target Support Files/Pods-iOS_HJSDebugSample/Pods-iOS_HJSDebugSample-resources.sh",
-				"${PODS_ROOT}/HJSDebug/HJSDebug/HJSDebugCenterControlPanel.xib",
-			);
-			name = "[CP] Copy Pods Resources";
-			outputPaths = (
-				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}",
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-iOS_HJSDebugSample/Pods-iOS_HJSDebugSample-resources.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 /* End PBXShellScriptBuildPhase section */

@@ -8,7 +8,7 @@
 
 @import XCTest;
 
-@import HJSDebugiOS;
+@import HJSDebug;
 
 @interface HJSDebugTests : XCTestCase
 
